@@ -8,6 +8,7 @@ import com.msl.myserieslist.entities.User;
 import com.msl.myserieslist.services.SeriesService;
 import com.msl.myserieslist.support.ResponseMessage;
 import com.msl.myserieslist.support.exceptions.UserNotExistException;
+import com.msl.myserieslist.support.exceptions.WatchlistAlreadyExistException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,24 +28,20 @@ public class WatchlistController {
     @PostMapping
     @ResponseStatus(code = HttpStatus.OK)
     public ResponseEntity create(@RequestBody @Valid Watchlist watchlist) {
-<<<<<<< HEAD
-        return new ResponseEntity<>(WatchlistService.addWatchlist(watchlist), HttpStatus.OK);
+        try{
+            return new ResponseEntity<>(WatchlistService.addWatchlist(watchlist), HttpStatus.OK);
+        } catch(UserNotExistException e){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User not found!", e);
+        } catch(WatchlistAlreadyExistException ew){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Watchlist already exists!", ew);
+        }
     }
 
     @GetMapping("/{user}")
-    public List<Watchlist> getWatchlist(@RequestBody @Valid User user) {
-        try {
-            return watchlistService.showWatchlistByUser(user);
-=======
-        return new ResponseEntity<>(WatchlistService.addSeries(series), HttpStatus.OK);
-    }
-
-    @GetMapping("/{user}")
-    public List<Series> getSeries(@RequestBody @Valid User user) {
+    public List<Watchlist> getWatchlist(@RequestBody @Valid User user) throws UserNotExistException {
         try {
             return watchlistService.getWatchlistByUser(user);
->>>>>>> origin/master
-        } catch (UserNotExistException e) {
+        }catch(UserNotExistException e){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User not found!", e);
         }
     }

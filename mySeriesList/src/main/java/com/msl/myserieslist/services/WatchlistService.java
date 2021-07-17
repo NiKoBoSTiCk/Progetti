@@ -15,6 +15,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -39,31 +40,36 @@ public class WatchlistService {
     }
 
     @Transactional(readOnly = false)
-    public void removeWatchlist(Watchlist watchlist) {
-        //TODO
+    public void removeWatchlist(Watchlist watchlist) throws WatchlistNotExistException, UserNotExistException {
+        watchlistRepository.delete(watchlist);
+        User user = watchlist.getUser();
+        Series series = watchlist.getSeries();
+        if(!userRepository.existsById(user.getIdUser()))
+            throw new UserNotExistException();
+        if(watchlistRepository.existsByUserAndSeries(user, series))
+            throw new WatchlistNotExistException();
     }
 
     @Transactional(readOnly = true)
-    public List<Watchlist> showWatchlistByUser(User user) throws UserNotExistException {
+    public List<Watchlist> getWatchlistByUser(User user) throws UserNotExistException {
         if(!userRepository.existsById(user.getIdUser()))
             throw new UserNotExistException();
         return watchlistRepository.findByUser(user);
     }
 
     @Transactional(readOnly = true)
-    public List<Watchlist> showWatchlistByUserAndStatus(User user, Watchlist.Status status) throws UserNotExistException {
+    public List<Watchlist> getWatchlistByUserAndStatus(User user, Watchlist.Status status) throws UserNotExistException {
         if(!userRepository.existsById(user.getIdUser()))
             throw new UserNotExistException();
         return watchlistRepository.findByUserAndStatus(user, status);
     }
 
     @Transactional(readOnly = true)
-    public List<Watchlist> showWatchlistByUserAndScore(User user, int score) throws UserNotExistException, ScoreNotValidException {
+    public List<Watchlist> getWatchlistByUserAndScore(User user, int score) throws UserNotExistException, ScoreNotValidException {
         if(!userRepository.existsById(user.getIdUser()))
             throw new UserNotExistException();
         if(score<0 || score>10)
             throw new ScoreNotValidException();
         return watchlistRepository.findByUserAndScore(user, score);
     }
-
 }
