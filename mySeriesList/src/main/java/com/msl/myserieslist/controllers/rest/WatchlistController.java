@@ -27,6 +27,7 @@ public class WatchlistController {
     @PostMapping
     @ResponseStatus(code = HttpStatus.OK)
     public ResponseEntity create(@RequestBody @Valid Watchlist watchlist) {
+<<<<<<< HEAD
         return new ResponseEntity<>(WatchlistService.addWatchlist(watchlist), HttpStatus.OK);
     }
 
@@ -34,6 +35,15 @@ public class WatchlistController {
     public List<Watchlist> getWatchlist(@RequestBody @Valid User user) {
         try {
             return watchlistService.showWatchlistByUser(user);
+=======
+        return new ResponseEntity<>(WatchlistService.addSeries(series), HttpStatus.OK);
+    }
+
+    @GetMapping("/{user}")
+    public List<Series> getSeries(@RequestBody @Valid User user) {
+        try {
+            return watchlistService.getWatchlistByUser(user);
+>>>>>>> origin/master
         } catch (UserNotExistException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User not found!", e);
         }
