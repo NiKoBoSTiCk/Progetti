@@ -9,13 +9,7 @@ import com.msl.myserieslist.repositories.WatchlistRepository;
 import com.msl.myserieslist.support.exceptions.*;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
-import javax.persistence.EntityManager;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -26,28 +20,33 @@ public class WatchlistService {
     SeriesRepository seriesRepository;
     @Autowired
     UserRepository userRepository;
-    @Autowired
-    private EntityManager entityManager;
 
     @Transactional(readOnly = false)
-    public Watchlist addWatchlist(Watchlist watchlist) throws WatchlistAlreadyExistException {
+    public Watchlist addWatchlist(Watchlist watchlist) throws WatchlistAlreadyExistException, UserNotExistException, SeriesNotExistException {
         Watchlist ret = watchlistRepository.save(watchlist);
         User user = watchlist.getUser();
+        if(!userRepository.existsById(user.getIdUser()))
+            throw new UserNotExistException();
         Series series = watchlist.getSeries();
+        if(!seriesRepository.existsByName(series.getName()))
+            throw new SeriesNotExistException();
         if(watchlistRepository.existsByUserAndSeries(user, series))
             throw new WatchlistAlreadyExistException();
         return ret;
     }
 
     @Transactional(readOnly = false)
-    public void removeWatchlist(Watchlist watchlist) throws WatchlistNotExistException, UserNotExistException {
+    public Watchlist removeWatchlist(Watchlist watchlist) throws WatchlistNotExistException, UserNotExistException, SeriesNotExistException {
         watchlistRepository.delete(watchlist);
         User user = watchlist.getUser();
-        Series series = watchlist.getSeries();
         if(!userRepository.existsById(user.getIdUser()))
             throw new UserNotExistException();
+        Series series = watchlist.getSeries();
+        if(!seriesRepository.existsByName(series.getName()))
+            throw new SeriesNotExistException();
         if(watchlistRepository.existsByUserAndSeries(user, series))
             throw new WatchlistNotExistException();
+        return watchlist;
     }
 
     @Transactional(readOnly = true)

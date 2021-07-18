@@ -25,7 +25,7 @@ public class SeriesController {
         try {
             seriesService.addSeries(series);
         } catch (SeriesAlreadyExistException e) {
-            return new ResponseEntity<>(new ResponseMessage("Barcode already exist!"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new ResponseMessage("Series already exist!"), HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(new ResponseMessage("Added successful!"), HttpStatus.OK);
     }

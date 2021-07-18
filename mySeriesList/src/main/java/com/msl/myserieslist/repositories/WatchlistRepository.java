@@ -10,7 +10,6 @@ import java.util.List;
 @Repository
 public interface WatchlistRepository extends JpaRepository<Watchlist, Integer> {
     List<Watchlist> findByUser(User user);
-    List<Watchlist> findByUserAndId(User user, int id);
     List<Watchlist> findByUserAndStatus(User user, Watchlist.Status status);
     List<Watchlist> findByUserAndScore(User user, int score);
     boolean existsByUserAndSeries(User user, Series series);
