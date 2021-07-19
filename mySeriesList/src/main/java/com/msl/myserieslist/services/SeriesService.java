@@ -1,8 +1,10 @@
 package com.msl.myserieslist.services;
 
+import com.msl.myserieslist.entities.Actor;
 import com.msl.myserieslist.entities.Series;
 import com.msl.myserieslist.repositories.SeriesRepository;
 import com.msl.myserieslist.support.exceptions.SeriesAlreadyExistException;
+import com.msl.myserieslist.support.exceptions.SeriesNotExistException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -25,6 +27,14 @@ public class SeriesService {
         seriesRepository.save(series);
     }
 
+    @Transactional(readOnly = false)
+    public Series removeSeries(Series series) throws SeriesNotExistException {
+        if(!seriesRepository.existsByName(series.getName()))
+            throw new SeriesNotExistException();
+        seriesRepository.delete(series);
+        return series;
+    }
+
     @Transactional(readOnly = true)
     public List<Series> showAllSeries(){
         return seriesRepository.findAll();
@@ -43,5 +53,15 @@ public class SeriesService {
     @Transactional(readOnly = true)
     public List<Series> showSeriesByName(String name){
         return seriesRepository.findByName(name);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Series> showSeriesByKeyword(String keyword){
+        return seriesRepository.findByNameContaining(keyword);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Series> showSeriesByCast(Actor actor){
+        return seriesRepository.findByCastContaining(actor);
     }
 }

@@ -4,6 +4,7 @@ import com.msl.myserieslist.entities.Actor;
 import com.msl.myserieslist.entities.Series;
 import com.msl.myserieslist.repositories.ActorRepository;
 import com.msl.myserieslist.support.exceptions.ActorAlreadyExistException;
+import com.msl.myserieslist.support.exceptions.ActorNotExistException;
 import com.msl.myserieslist.support.exceptions.SeriesAlreadyExistException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -27,11 +28,19 @@ public class ActorService {
     }
 
     @Transactional(readOnly = false)
+    public Actor removeActor(Actor actor) throws ActorNotExistException {
+        if(actorRepository.existsById(actor.getIdActor()))
+            throw new ActorNotExistException();
+        actorRepository.delete(actor);
+        return actor;
+    }
+
+    @Transactional(readOnly = true)
     public List<Actor> showAllActor(){
         return actorRepository.findAll();
     }
 
-    @Transactional(readOnly = false)
+    @Transactional(readOnly = true)
     public List<Actor> showAllActor(int pageNumber, int pageSize, String sortBy){
         Pageable paging = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy).ascending());
         Page<Actor> pagedResult = actorRepository.findAll(paging);
@@ -41,13 +50,18 @@ public class ActorService {
             return new ArrayList<>();
     }
 
-    @Transactional(readOnly = false)
+    @Transactional(readOnly = true)
     public List<Actor> showActorByFirstName(String firstName){
         return actorRepository.findByFirstName(firstName);
     }
 
-    @Transactional(readOnly = false)
+    @Transactional(readOnly = true)
     public List<Actor> showActorByLastName(String lastName){
         return actorRepository.findByLastName(lastName);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Actor> showActorByCareer(Series series){
+        return actorRepository.findByCareerContains(series);
     }
 }

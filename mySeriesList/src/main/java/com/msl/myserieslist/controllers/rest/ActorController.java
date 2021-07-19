@@ -1,12 +1,11 @@
 package com.msl.myserieslist.controllers.rest;
 
-
 import com.msl.myserieslist.entities.Actor;
 import com.msl.myserieslist.entities.Series;
-import com.msl.myserieslist.services.SeriesService;
+import com.msl.myserieslist.services.ActorService;
 import com.msl.myserieslist.support.ResponseMessage;
-import com.msl.myserieslist.support.exceptions.SeriesAlreadyExistException;
-import com.msl.myserieslist.support.exceptions.SeriesNotExistException;
+import com.msl.myserieslist.support.exceptions.ActorAlreadyExistException;
+import com.msl.myserieslist.support.exceptions.ActorNotExistException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,69 +13,68 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-
 @RestController
-@RequestMapping("/series")
-public class SeriesController {
+@RequestMapping("/actor")
+public class ActorController {
     @Autowired
-    private SeriesService seriesService;
+    private ActorService actorService;
 
 
     @PostMapping
-    public ResponseEntity create(@RequestBody @Valid Series series) {
+    public ResponseEntity create(@RequestBody @Valid Actor actor) {
         try {
-            seriesService.addSeries(series);
-        } catch (SeriesAlreadyExistException e) {
-            return new ResponseEntity<>(new ResponseMessage("Series already exist!"), HttpStatus.BAD_REQUEST);
+            actorService.addActor(actor);
+        } catch (ActorAlreadyExistException e) {
+            return new ResponseEntity<>(new ResponseMessage("Actor already exist!"), HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(new ResponseMessage("Added successful!"), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity delete(@RequestBody @Valid Series series) {
+    public ResponseEntity delete(@RequestBody @Valid Actor actor) {
         try {
-            Series removed = seriesService.removeSeries(series);
+            Actor removed = actorService.removeActor(actor);
             return new ResponseEntity<>(removed, HttpStatus.OK);
-        } catch (SeriesNotExistException e) {
-            return new ResponseEntity<>(new ResponseMessage("Series not found!"), HttpStatus.BAD_REQUEST);
+        } catch (ActorNotExistException e) {
+            return new ResponseEntity<>(new ResponseMessage("Actor not found!"), HttpStatus.BAD_REQUEST);
         }
     }
 
     @GetMapping
-    public List<Series> getAll() {
-        return seriesService.showAllSeries();
+    public List<Actor> getAll() {
+        return actorService.showAllActor();
     }
 
     @GetMapping("/paged")
     public ResponseEntity getAll(@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber, @RequestParam(value = "pageSize", defaultValue = "10") int pageSize, @RequestParam(value = "sortBy", defaultValue = "id") String sortBy) {
-        List<Series> result = seriesService.showAllSeries(pageNumber, pageSize, sortBy);
+        List<Actor> result = actorService.showAllActor(pageNumber, pageSize, sortBy);
         if(result.size() <= 0){
             return new ResponseEntity<>(new ResponseMessage("No results!"), HttpStatus.OK);
         }
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @GetMapping("/search/by_name")
-    public ResponseEntity getByName(@RequestParam(required = false) String name) {
-        List<Series> result = seriesService.showSeriesByName(name);
+    @GetMapping("/search/by_first_name")
+    public ResponseEntity getByFirstName(@RequestParam(required = false) String firstName) {
+        List<Actor> result = actorService.showActorByFirstName(firstName);
         if(result.size() <= 0){
             return new ResponseEntity<>(new ResponseMessage("No results!"), HttpStatus.OK);
         }
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @GetMapping("/search/by_keyword")
-    public ResponseEntity getByKeyword(@RequestParam(required = false) String keyword) {
-        List<Series> result = seriesService.showSeriesByKeyword(keyword);
+    @GetMapping("/search/by_last_name")
+    public ResponseEntity getByLastName(@RequestParam(required = false) String lastName) {
+        List<Actor> result = actorService.showActorByLastName(lastName);
         if(result.size() <= 0){
             return new ResponseEntity<>(new ResponseMessage("No results!"), HttpStatus.OK);
         }
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @GetMapping("/search/by_cast")
-    public ResponseEntity getByName(@RequestParam(required = false) Actor actor) {
-        List<Series> result = seriesService.showSeriesByCast(actor);
+    @GetMapping("/search/by_career")
+    public ResponseEntity getByCareer(@RequestParam(required = false) Series series) {
+        List<Actor> result = actorService.showActorByCareer(series);
         if(result.size() <= 0){
             return new ResponseEntity<>(new ResponseMessage("No results!"), HttpStatus.OK);
         }

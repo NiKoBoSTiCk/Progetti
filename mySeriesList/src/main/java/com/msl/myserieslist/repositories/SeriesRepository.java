@@ -10,7 +10,6 @@ import java.util.List;
 public interface SeriesRepository extends JpaRepository<Series, Integer> {
     List<Series> findByName(String name);
     List<Series> findByNameContaining(String name);
-    List<Series> findByRating(double rating);
-    List<Series> findByCast(Actor actor);
+    List<Series> findByCastContaining(Actor actor);
     boolean existsByName(String name);
 }
