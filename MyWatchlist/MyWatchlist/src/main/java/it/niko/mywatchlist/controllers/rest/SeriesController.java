@@ -33,7 +33,7 @@ public class SeriesController {
         return new ResponseEntity<>(new ResponseMessage("Removed successful!"), HttpStatus.OK);
     }
 
-    @GetMapping
+    @GetMapping("/search")
     public ResponseEntity<?> getAll(@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
                                  @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
                                  @RequestParam(value = "sortBy", defaultValue = "name") String sortBy){

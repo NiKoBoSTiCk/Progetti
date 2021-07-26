@@ -1,5 +1,6 @@
 package it.niko.mywatchlist.services;
 
+import it.niko.mywatchlist.entities.Series;
 import it.niko.mywatchlist.entities.SeriesInList;
 import it.niko.mywatchlist.entities.User;
 import it.niko.mywatchlist.repositories.SeriesInListRepository;
@@ -31,13 +32,16 @@ public class SeriesInListService {
             throw new SeriesAlreadyInWatchlistException();
         if(!userRepository.existsById(seriesInList.getUser().getId()))
             throw new UserNotFoundException(seriesInList.getUser().getNickname());
+        User user = userRepository.getById(seriesInList.getUser().getId());
         if(!seriesRepository.existsById(seriesInList.getSeries().getId()))
             throw new SeriesNotFoundException(seriesInList.getSeries().getName());
+        Series series = seriesRepository.getById(seriesInList.getSeries().getId());
+        if(seriesInListRepository.existsByUserAndSeries(user, series))
+            throw new SeriesAlreadyInWatchlistException();
         if(seriesInList.getProgress() < 0 ||  seriesInList.getProgress() > seriesInList.getSeries().getEpisodes())
             throw new ProgressNotValidException(seriesInList.getProgress());
         if(seriesInList.getScore() < 0 || seriesInList.getScore() > 10)
             throw new ScoreNotValidException(seriesInList.getScore());
-
         if(seriesInList.getSeries().getEpisodes() == seriesInList.getProgress())
             seriesInList.setStatus(SeriesInList.Status.COMPLETED);
         else seriesInList.setStatus(SeriesInList.Status.WATCHING);

@@ -1,0 +1,11 @@
+<div *ngIf="series">
+  <button mat-mini-fab color="warn" (click)="delete(series)">
+    <mat-icon>delete</mat-icon>
+  </button>
+
+  <h4>{{ series.name }}</h4>
+  <small>episodes: </small>
+  <p>{{ series.episodes }}</p>
+  <small>plot: </small>
+  <p>{{ series.plot }}</p>
+</div>

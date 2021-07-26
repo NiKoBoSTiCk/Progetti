@@ -1,0 +1,10 @@
+<button mat-mini-fab color="primary" (click)="create()">
+    <mat-icon>add</mat-icon>
+</button>
+
+<mat-nav-list>
+  <a mat-list-item [routerLink]="['series', series.id]" *ngFor="let series of seriesList">
+      <p matLine>{{ series.name }}</p>
+      <p matLine class="extract">{{ series.episodes }}</p>
+  </a>
+</mat-nav-list>
