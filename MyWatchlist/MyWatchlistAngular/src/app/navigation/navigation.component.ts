@@ -20,7 +20,6 @@ export class NavigationComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.user = this.authenticationService.getAuthentication()?.username;
     this.titleService.title
       .pipe(
         map(title => {
@@ -29,6 +28,7 @@ export class NavigationComponent implements OnInit {
         })
       )
       .subscribe();
+      this.user = this.authenticationService.getAuthentication()?.username;
   }
 
 }

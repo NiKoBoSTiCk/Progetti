@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { MOCK_SERIES } from 'src/app/mock/mock-series';
@@ -19,7 +20,8 @@ export class SeriesDetailComponent implements OnInit {
     private readonly route: ActivatedRoute,
     private readonly seriesService: SeriesService,
     private readonly titleService: TitleService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -28,28 +30,28 @@ export class SeriesDetailComponent implements OnInit {
             switchMap(params => this.seriesService.get(+params.id)),
             catchError(err => {
               this.router.navigate(['/']);
+              this.snackBar.open(`Error: ${err}`);
               throw err;
             }),
             map((series: Series) => {
               this.series = series;
-              this.titleService.title.next(`Messaggio ${series.id}`);
+              this.titleService.title.next(`Series ${series.id}`);
             } )
           )
           .subscribe();
-  }
-
-  private getPlot(id: number): Series | undefined {
-    return MOCK_SERIES.find(m => m.id === id);
   }
 
   delete(series: Series): void {
     this.seriesService.remove(series.id)
       .subscribe(
         () => {
-          console.log(`${series.name} deleted!`);
+          console.log(`Series ${series.name} deleted!`);
           this.router.navigate(['/']);
         },
-        err => console.error(err)
+        err =>{
+          console.error(err);
+          this.snackBar.open(`Error: ${err}`);
+        }
       );
   }
 }
