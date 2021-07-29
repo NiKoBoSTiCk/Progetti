@@ -20,31 +20,34 @@ import java.util.List;
 @Service
 public class SeriesInListService {
     @Autowired
-    SeriesInListRepository seriesInListRepository;
+    private SeriesInListRepository seriesInListRepository;
     @Autowired
-    SeriesRepository seriesRepository;
+    private SeriesRepository seriesRepository;
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Transactional
     public void addSeriesInList(SeriesInList seriesInList) throws SeriesAlreadyInWatchlistException, ProgressNotValidException, UserNotFoundException, SeriesNotFoundException, ScoreNotValidException {
         if(seriesInListRepository.existsById(seriesInList.getId()))
             throw new SeriesAlreadyInWatchlistException();
         if(!userRepository.existsById(seriesInList.getUser().getId()))
-            throw new UserNotFoundException(seriesInList.getUser().getNickname());
+            throw new UserNotFoundException(seriesInList.getUser().getUsername());
         User user = userRepository.getById(seriesInList.getUser().getId());
         if(!seriesRepository.existsById(seriesInList.getSeries().getId()))
-            throw new SeriesNotFoundException(seriesInList.getSeries().getName());
+            throw new SeriesNotFoundException(seriesInList.getSeries().getTitle());
         Series series = seriesRepository.getById(seriesInList.getSeries().getId());
         if(seriesInListRepository.existsByUserAndSeries(user, series))
             throw new SeriesAlreadyInWatchlistException();
+        series.upgradeViews();
         if(seriesInList.getProgress() < 0 ||  seriesInList.getProgress() > seriesInList.getSeries().getEpisodes())
             throw new ProgressNotValidException(seriesInList.getProgress());
         if(seriesInList.getScore() < 0 || seriesInList.getScore() > 10)
             throw new ScoreNotValidException(seriesInList.getScore());
+        if(seriesInList.getScore() != 0)
+            series.updateRating(seriesInList.getScore(), false);
         if(seriesInList.getSeries().getEpisodes() == seriesInList.getProgress())
             seriesInList.setStatus(SeriesInList.Status.COMPLETED);
-        else seriesInList.setStatus(SeriesInList.Status.WATCHING);
+
         seriesInListRepository.save(seriesInList);
     }
 
@@ -53,13 +56,16 @@ public class SeriesInListService {
         if(!seriesInListRepository.existsById(seriesInList.getId()))
             throw new SeriesNotInWatchlistException();
         if(!userRepository.existsById(seriesInList.getUser().getId()))
-            throw new UserNotFoundException(seriesInList.getUser().getNickname());
+            throw new UserNotFoundException(seriesInList.getUser().getUsername());
         if(!seriesRepository.existsById(seriesInList.getSeries().getId()))
-            throw new SeriesNotFoundException(seriesInList.getSeries().getName());
+            throw new SeriesNotFoundException(seriesInList.getSeries().getTitle());
+        Series series = seriesRepository.getById(seriesInList.getSeries().getId());
         if(seriesInList.getProgress() < 0 ||  seriesInList.getProgress() > seriesInList.getSeries().getEpisodes())
             throw new ProgressNotValidException(seriesInList.getProgress());
         if(seriesInList.getScore() < 0 || seriesInList.getScore() > 10)
             throw new ScoreNotValidException(seriesInList.getScore());
+        if(seriesInList.getScore() != 0)
+            series.updateRating(seriesInList.getScore(), false);
 
         seriesInListRepository.findById(seriesInList.getId()).map(sil -> {
             sil.setComment(seriesInList.getComment());
@@ -77,9 +83,13 @@ public class SeriesInListService {
         if(!seriesInListRepository.existsById(seriesInList.getId()))
             throw new SeriesNotInWatchlistException();
         if(!userRepository.existsById(seriesInList.getUser().getId()))
-            throw new UserNotFoundException(seriesInList.getUser().getNickname());
+            throw new UserNotFoundException(seriesInList.getUser().getUsername());
         if(!seriesRepository.existsById(seriesInList.getSeries().getId()))
-            throw new SeriesNotFoundException(seriesInList.getSeries().getName());
+            throw new SeriesNotFoundException(seriesInList.getSeries().getTitle());
+        if(seriesInList.getScore() != 0){
+            Series series = seriesRepository.getById(seriesInList.getSeries().getId());
+            series.updateRating(seriesInList.getScore(), true);
+        }
         seriesInListRepository.delete(seriesInList);
     }
 

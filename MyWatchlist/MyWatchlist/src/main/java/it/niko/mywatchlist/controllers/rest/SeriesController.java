@@ -36,7 +36,7 @@ public class SeriesController {
     @GetMapping("/search")
     public ResponseEntity<?> getAll(@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
                                  @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
-                                 @RequestParam(value = "sortBy", defaultValue = "name") String sortBy){
+                                 @RequestParam(value = "sortBy", defaultValue = "title") String sortBy){
         List<Series> result = seriesService.showAllSeries(pageNumber, pageSize, sortBy);
         if(result.size() <= 0) return new ResponseEntity<>(new ResponseMessage("No results!"), HttpStatus.OK);
         return new ResponseEntity<>(result, HttpStatus.OK);
@@ -47,7 +47,7 @@ public class SeriesController {
                                      @RequestParam(value = "maxRating", defaultValue = "10") int maxRating,
                                      @RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
                                      @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
-                                     @RequestParam(value = "sortBy", defaultValue = "name") String sortBy){
+                                     @RequestParam(value = "sortBy", defaultValue = "title") String sortBy){
         List<Series> result = seriesService.showSeriesByRating(minRating, maxRating, pageNumber, pageSize, sortBy);
         if(result.size() <= 0) return new ResponseEntity<>(new ResponseMessage("No results!"), HttpStatus.OK);
         return new ResponseEntity<>(result, HttpStatus.OK);
@@ -55,23 +55,22 @@ public class SeriesController {
 
     @GetMapping("/search/by_views")
     public ResponseEntity<?> getByViews(@RequestParam(value = "minViews", defaultValue = "0") int minViews,
-                                     @RequestParam(value = "maxViews", defaultValue = "1000") int maxViews,
+                                     @RequestParam(value = "maxViews", defaultValue = "100000") int maxViews,
                                      @RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
                                      @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
-                                     @RequestParam(value = "sortBy", defaultValue = "name") String sortBy){
+                                     @RequestParam(value = "sortBy", defaultValue = "title") String sortBy){
         List<Series> result = seriesService.showSeriesByViews(minViews, maxViews, pageNumber, pageSize, sortBy);
         if(result.size() <= 0) return new ResponseEntity<>(new ResponseMessage("No results!"), HttpStatus.OK);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @GetMapping("/search/by_name")
-    public ResponseEntity<?> getByName(@RequestParam(required = false) String name,
+    @GetMapping("/search/by_title")
+    public ResponseEntity<?> getByTitle(@RequestParam(required = false) String title,
                                     @RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
                                     @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
-                                    @RequestParam(value = "sortBy", defaultValue = "name") String sortBy){
-        List<Series> result = seriesService.showSeriesByName(name, pageNumber, pageSize, sortBy);
+                                    @RequestParam(value = "sortBy", defaultValue = "title") String sortBy){
+        List<Series> result = seriesService.showSeriesByTitle(title, pageNumber, pageSize, sortBy);
         if(result.size() <= 0) return new ResponseEntity<>(new ResponseMessage("No results!"), HttpStatus.OK);
-
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 }

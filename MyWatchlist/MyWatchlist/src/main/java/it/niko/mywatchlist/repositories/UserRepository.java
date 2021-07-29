@@ -10,8 +10,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
-    Page<User> findByNicknameContaining(String nickname, Pageable pageable);
+    Page<User> findByUsernameContaining(String username, Pageable pageable);
     User findByEmail(String email);
-    boolean existsByNickname(String nickname);
+    boolean existsByUsername(String username);
     boolean existsByEmail(String email);
 }

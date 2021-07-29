@@ -10,8 +10,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SeriesRepository extends JpaRepository<Series, Integer> {
-    Page<Series> findByNameContaining(String name, Pageable pageable);
+    Page<Series> findByTitleContaining(String title, Pageable pageable);
     Page<Series> findByRatingBetween(double minRating, double maxRating, Pageable pageable);
     Page<Series> findByViewsBetween(int minViews, int maxViews, Pageable pageable);
-    boolean existsByName(String name);
+    boolean existsByTitle(String title);
 }

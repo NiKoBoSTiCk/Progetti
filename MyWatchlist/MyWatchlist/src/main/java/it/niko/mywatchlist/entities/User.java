@@ -22,10 +22,10 @@ public class User {
     @Column(name = "id", nullable = false)
     private int id;
 
-    @Column(name = "nickname", nullable = false, length = 50)
-    private String nickname;
+    @Column(name = "username", nullable = false, length = 45)
+    private String username;
 
-    @Column(name = "email", nullable = false, length = 50)
+    @Column(name = "email", nullable = false, length = 45)
     private String email;
 
     @OneToMany(targetEntity = SeriesInList.class, mappedBy = "user", cascade = CascadeType.ALL)

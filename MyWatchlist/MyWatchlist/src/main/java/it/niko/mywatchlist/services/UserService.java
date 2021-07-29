@@ -18,11 +18,11 @@ import java.util.List;
 @Service
 public class UserService {
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Transactional(propagation = Propagation.REQUIRED)
     public void addUser(User user) throws UserAlreadyExistsException {
-        if(userRepository.existsByEmail(user.getEmail()) || userRepository.existsByNickname(user.getNickname()))
+        if(userRepository.existsByEmail(user.getEmail()) || userRepository.existsByUsername(user.getUsername()))
             throw new UserAlreadyExistsException();
         userRepository.save(user);
     }
@@ -40,7 +40,7 @@ public class UserService {
     @Transactional(readOnly = true)
     public List<User> showUsersByNickname(String nickname, int pageNumber, int pageSize, String sortBy) {
         Pageable paging = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy).descending());
-        Page<User> pagedResult = userRepository.findByNicknameContaining(nickname, paging);
+        Page<User> pagedResult = userRepository.findByUsernameContaining(nickname, paging);
         if(pagedResult.hasContent())
             return pagedResult.getContent();
         else

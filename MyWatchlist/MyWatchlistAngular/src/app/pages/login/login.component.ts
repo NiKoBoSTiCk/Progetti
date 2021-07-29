@@ -1,45 +1,60 @@
-import { Component, OnInit } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
-import { AuthenticationService } from 'src/app/services/authentication.service';
+import {Component, OnInit} from '@angular/core';
+import {UserService} from "../../services/user.service";
+import {ActivatedRoute, Router} from "@angular/router";
+import {Role} from "../../enum/role";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
 
-  username: string | undefined;
+    isInvalid: boolean;
+    isLogout: boolean;
+    submitted = false;
+    model: any = {
+        username: '',
+        password: '',
+        remembered: false
+    };
 
-  constructor(
-    private readonly authenticationService: AuthenticationService,
-    private readonly snackBar: MatSnackBar,
-    private readonly router: Router
-  ) { }
+    returnUrl = '/';
 
-  ngOnInit(): void {
-    this.logout();
-  }
-
-  login(): void {
-    if (this.username) {
-      this.authenticationService.login(this.username)
-        .subscribe(
-          () => {
-            this.snackBar.open(`Benvenuto ${this.username}`);
-            this.router.navigate(['/']);
-          },
-          err => this.snackBar.open(`Accesso non riuscito: ${err}`)
-        );
-    } else {
-      this.snackBar.open('Inserisci un nome ...');
+    constructor(private userService: UserService,
+                private router: Router,
+                private route: ActivatedRoute) {
     }
-  }
 
-  logout(): void {
-    this.authenticationService.logout()
-      .subscribe(() => this.snackBar.open('Logout effettuato'));
-  }
+    ngOnInit() {
+        let params = this.route.snapshot.queryParamMap;
+        this.isLogout = params.has('logout');
+        this.returnUrl = params.get('returnUrl');
+    }
 
+    onSubmit() {
+        this.submitted = true;
+        this.userService.login(this.model).subscribe(
+            user => {
+                if (user) {
+                    if (user.role != Role.Customer) {
+
+                        this.returnUrl = '/seller';
+                    }
+
+                    this.router.navigateByUrl(this.returnUrl);
+                } else {
+                    this.isLogout = false;
+                    this.isInvalid = true;
+                }
+
+            }
+        );
+    }
+
+    fillLoginFields(u, p) {
+        this.model.username = u;
+        this.model.password = p;
+        this.onSubmit();
+    }
 }

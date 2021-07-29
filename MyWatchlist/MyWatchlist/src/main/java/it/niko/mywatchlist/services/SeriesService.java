@@ -23,15 +23,15 @@ public class SeriesService {
 
     @Transactional
     public void addSeries(Series series) throws SeriesAlreadyExistsException {
-        if(seriesRepository.existsByName(series.getName()))
+        if(seriesRepository.existsByTitle(series.getTitle()))
             throw new SeriesAlreadyExistsException();
         seriesRepository.save(series);
     }
 
     @Transactional
     public void removeSeries(Series series) throws SeriesNotFoundException {
-        if(!seriesRepository.existsByName(series.getName()))
-            throw new SeriesNotFoundException(series.getName());
+        if(!seriesRepository.existsByTitle(series.getTitle()))
+            throw new SeriesNotFoundException(series.getTitle());
         seriesRepository.delete(series);
     }
 
@@ -66,9 +66,9 @@ public class SeriesService {
     }
 
     @Transactional(readOnly = true)
-    public List<Series> showSeriesByName(String name, int pageNumber, int pageSize, String sortBy){
+    public List<Series> showSeriesByTitle(String title, int pageNumber, int pageSize, String sortBy){
         Pageable paging = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy).descending());
-        Page<Series> pagedResult = seriesRepository.findByNameContaining(name, paging);
+        Page<Series> pagedResult = seriesRepository.findByTitleContaining(title, paging);
         if(pagedResult.hasContent())
             return pagedResult.getContent();
         else

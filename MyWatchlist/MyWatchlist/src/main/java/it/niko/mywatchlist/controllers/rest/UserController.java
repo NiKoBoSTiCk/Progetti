@@ -30,19 +30,19 @@ public class UserController {
     @RolesAllowed("admin")
     public ResponseEntity<?> getAll(@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
                                  @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
-                                 @RequestParam(value = "sortBy", defaultValue = "nickname") String sortBy){
+                                 @RequestParam(value = "sortBy", defaultValue = "username") String sortBy){
         List<User> result = userService.showAllUsers(pageNumber, pageSize, sortBy);
         if(result.size() <= 0) return new ResponseEntity<>(new ResponseMessage("No results!"), HttpStatus.OK);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @GetMapping("/search/by_nickname")
+    @GetMapping("/search/by_username")
     @RolesAllowed("admin")
-    public ResponseEntity<?> getByNickname(@RequestParam(required = false) String nickname,
+    public ResponseEntity<?> getByUsername(@RequestParam(required = false) String username,
                                         @RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
                                         @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
-                                        @RequestParam(value = "sortBy", defaultValue = "nickname") String sortBy){
-        List<User> result = userService.showUsersByNickname(nickname, pageNumber, pageSize, sortBy);
+                                        @RequestParam(value = "sortBy", defaultValue = "username") String sortBy){
+        List<User> result = userService.showUsersByNickname(username, pageNumber, pageSize, sortBy);
         if(result.size() <= 0) return new ResponseEntity<>(new ResponseMessage("No results!"), HttpStatus.OK);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }

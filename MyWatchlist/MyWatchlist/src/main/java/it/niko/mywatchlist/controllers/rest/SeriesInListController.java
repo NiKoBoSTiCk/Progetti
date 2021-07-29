@@ -17,7 +17,7 @@ import java.util.List;
 @RequestMapping("/watchlist")
 public class SeriesInListController {
     @Autowired
-    SeriesInListService seriesInListService;
+    private SeriesInListService seriesInListService;
 
     @PostMapping
     @RolesAllowed("user")
@@ -49,7 +49,7 @@ public class SeriesInListController {
     @RolesAllowed("admin")
     public ResponseEntity<?> getSeriesInList(@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
                                           @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
-                                          @RequestParam(value = "sortBy", defaultValue = "name") String sortBy){
+                                          @RequestParam(value = "sortBy", defaultValue = "title") String sortBy){
         List<SeriesInList> result = seriesInListService.showAllSeriesInList(pageNumber, pageSize, sortBy);
         if(result.size() <= 0) return new ResponseEntity<>(new ResponseMessage("No results!"), HttpStatus.OK);
         return new ResponseEntity<>(result, HttpStatus.OK);
@@ -60,7 +60,7 @@ public class SeriesInListController {
     public ResponseEntity<?> getSeriesInListByUser(@RequestBody @Valid User user,
                                               @RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
                                               @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
-                                              @RequestParam(value = "sortBy", defaultValue = "name") String sortBy){
+                                              @RequestParam(value = "sortBy", defaultValue = "title") String sortBy){
         List<SeriesInList> result = seriesInListService.showUserWatchlist(user, pageNumber, pageSize, sortBy);
         if(result.size() <= 0) return new ResponseEntity<>(new ResponseMessage("No results!"), HttpStatus.OK);
         return new ResponseEntity<>(result, HttpStatus.OK);
@@ -72,7 +72,7 @@ public class SeriesInListController {
                                               @RequestParam(value = "status", defaultValue = "WATCHING") SeriesInList.Status status,
                                               @RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
                                               @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
-                                              @RequestParam(value = "sortBy", defaultValue = "name") String sortBy){
+                                              @RequestParam(value = "sortBy", defaultValue = "title") String sortBy){
         List<SeriesInList> result = seriesInListService.showUserWatchlist(user, status, pageNumber, pageSize, sortBy);
         if(result.size() <= 0) return new ResponseEntity<>(new ResponseMessage("No results!"), HttpStatus.OK);
         return new ResponseEntity<>(result, HttpStatus.OK);
@@ -84,7 +84,7 @@ public class SeriesInListController {
                                               @RequestParam(value = "score", defaultValue = "10") int score,
                                               @RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
                                               @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
-                                              @RequestParam(value = "sortBy", defaultValue = "name") String sortBy){
+                                              @RequestParam(value = "sortBy", defaultValue = "title") String sortBy){
         List<SeriesInList> result = seriesInListService.showUserWatchlist(user, score, pageNumber, pageSize, sortBy);
         if(result.size() <= 0) return new ResponseEntity<>(new ResponseMessage("No results!"), HttpStatus.OK);
         return new ResponseEntity<>(result, HttpStatus.OK);

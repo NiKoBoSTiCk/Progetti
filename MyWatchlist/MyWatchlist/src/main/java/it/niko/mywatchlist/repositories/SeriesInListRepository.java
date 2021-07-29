@@ -13,6 +13,5 @@ public interface SeriesInListRepository extends JpaRepository<SeriesInList, Inte
     Page<SeriesInList> findByUser(User user, Pageable pageable);
     Page<SeriesInList> findByUserAndStatus(User user, SeriesInList.Status status, Pageable pageable);
     Page<SeriesInList> findByUserAndScoreLessThanEqual(User user, int score, Pageable pageable);
-    SeriesInList findByUserAndSeries(User user, Series series);
     boolean existsByUserAndSeries(User user, Series series);
 }
