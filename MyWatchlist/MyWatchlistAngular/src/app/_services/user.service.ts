@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-const API_URL = 'http://localhost:8080/watchlist/test/';
+const WATCHLIST_URL = 'http://localhost:8000/watchlist/';
+const SERIES_URL = 'http://localhost:8000/series/search/';
 
 @Injectable({
   providedIn: 'root'
@@ -10,19 +11,19 @@ const API_URL = 'http://localhost:8080/watchlist/test/';
 export class UserService {
   constructor(private http: HttpClient) { }
 
-  getPublicContent(): Observable<any> {
-    return this.http.get(API_URL + 'all', { responseType: 'text' });
+  getAllSeries(): Observable<any> {
+    return this.http.get(SERIES_URL);
   }
 
   getUserBoard(): Observable<any> {
-    return this.http.get(API_URL + 'user', { responseType: 'text' });
+    return this.http.get(WATCHLIST_URL + 'user', { responseType: 'text' });
   }
 
   getModeratorBoard(): Observable<any> {
-    return this.http.get(API_URL + 'mod', { responseType: 'text' });
+    return this.http.get(WATCHLIST_URL + 'mod', { responseType: 'text' });
   }
 
   getAdminBoard(): Observable<any> {
-    return this.http.get(API_URL + 'admin', { responseType: 'text' });
+    return this.http.get(WATCHLIST_URL + 'admin', { responseType: 'text' });
   }
 }

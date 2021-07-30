@@ -1,9 +1,10 @@
 package it.niko.mywatchlist.services;
 
-
 import it.niko.mywatchlist.entities.Genre;
 import it.niko.mywatchlist.entities.Series;
+import it.niko.mywatchlist.repositories.GenreRepository;
 import it.niko.mywatchlist.repositories.SeriesRepository;
+import it.niko.mywatchlist.support.exceptions.GenreNotExistException;
 import it.niko.mywatchlist.support.exceptions.SeriesAlreadyExistsException;
 import it.niko.mywatchlist.support.exceptions.SeriesNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,13 +16,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-
 
 @Service
 public class SeriesService {
     @Autowired
     private SeriesRepository seriesRepository;
+    @Autowired
+    private GenreRepository genreRepository;
 
     @Transactional
     public void addSeries(Series series) throws SeriesAlreadyExistsException {
@@ -92,9 +93,13 @@ public class SeriesService {
     }
 
     @Transactional(readOnly = true)
-    public List<Series> showSeriesByGenres(Set<Genre> genres, int pageNumber, int pageSize, String sortBy){
+    public List<Series> showSeriesByGenres(Genre genre, int pageNumber, int pageSize, String sortBy) throws GenreNotExistException {
+        if(!genreRepository.existsByName(genre.getName()))
+            throw new GenreNotExistException(genre.getName());
+        Genre gen = genreRepository.findByName(genre.getName());
+
         Pageable paging = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy).descending());
-        Page<Series> pagedResult = seriesRepository.findByGenres(genres, paging);
+        Page<Series> pagedResult = seriesRepository.findByGenresContains(gen, paging);
         if(pagedResult.hasContent())
             return pagedResult.getContent();
         else

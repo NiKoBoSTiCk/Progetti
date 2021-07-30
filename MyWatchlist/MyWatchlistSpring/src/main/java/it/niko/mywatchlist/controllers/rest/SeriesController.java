@@ -4,6 +4,7 @@ import it.niko.mywatchlist.entities.Genre;
 import it.niko.mywatchlist.entities.Series;
 import it.niko.mywatchlist.payload.response.MessageResponse;
 import it.niko.mywatchlist.services.SeriesService;
+import it.niko.mywatchlist.support.exceptions.GenreNotExistException;
 import it.niko.mywatchlist.support.exceptions.SeriesAlreadyExistsException;
 import it.niko.mywatchlist.support.exceptions.SeriesNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,11 +89,12 @@ public class SeriesController {
 
     @GetMapping("/search/by_genres")
     @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<?> getByGenre(@RequestBody Set<Genre> genres,
+    public ResponseEntity<?> getByGenre(@RequestBody Genre genre,
                                         @RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
                                         @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
-                                        @RequestParam(value = "sortBy", defaultValue = "title") String sortBy){
-        List<Series> result = seriesService.showSeriesByGenres(genres, pageNumber, pageSize, sortBy);
+                                        @RequestParam(value = "sortBy", defaultValue = "title") String sortBy)
+            throws GenreNotExistException {
+        List<Series> result = seriesService.showSeriesByGenres(genre, pageNumber, pageSize, sortBy);
         if(result.size() <= 0) return new ResponseEntity<>(new MessageResponse("No results!"), HttpStatus.OK);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
