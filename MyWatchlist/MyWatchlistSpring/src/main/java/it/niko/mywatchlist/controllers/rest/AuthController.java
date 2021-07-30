@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import it.niko.mywatchlist.entities.ERole;
 import it.niko.mywatchlist.entities.Role;
 import it.niko.mywatchlist.entities.User;
+import it.niko.mywatchlist.entities.Watchlist;
 import it.niko.mywatchlist.payload.request.LoginRequest;
 import it.niko.mywatchlist.payload.request.SignupRequest;
 import it.niko.mywatchlist.payload.response.JwtResponse;
@@ -91,13 +92,11 @@ public class AuthController {
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         roles.add(adminRole);
                         break;
-
                     case "mod":
                         Role modRole = roleRepository.findByName(ERole.ROLE_MODERATOR)
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         roles.add(modRole);
                         break;
-
                     default:
                         Role userRole = roleRepository.findByName(ERole.ROLE_USER)
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));

@@ -15,15 +15,15 @@ public class Watchlist {
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idUser", nullable = false)
+    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idSerie", nullable = false)
+    @JoinColumn(name = "series_id")
     private Series series;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idStatus", nullable = false)
+    @JoinColumn(name = "status_id")
     private Status status;
 
     @Column(name = "progress")

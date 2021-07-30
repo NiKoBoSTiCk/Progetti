@@ -13,10 +13,7 @@ import java.util.Set;
 @Setter
 @ToString
 @Entity(name = "Series")
-@Table(name = "series", schema = "mywatchlist",
-        uniqueConstraints =
-        @UniqueConstraint(columnNames = "title")
-)
+@Table(name = "series", schema = "mywatchlist", uniqueConstraints = @UniqueConstraint(columnNames = "title"))
 public class Series {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,8 +44,8 @@ public class Series {
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(	name = "series_genre",
-            joinColumns = @JoinColumn(name = "idSeries"),
-            inverseJoinColumns = @JoinColumn(name = "idGenre"))
+            joinColumns = @JoinColumn(name = "id_series"),
+            inverseJoinColumns = @JoinColumn(name = "id_genre"))
     @ToString.Exclude
     private Set<Genre> genres = new HashSet<>();
 
