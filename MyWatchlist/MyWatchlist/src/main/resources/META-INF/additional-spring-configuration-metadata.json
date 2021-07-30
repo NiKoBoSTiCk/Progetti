@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "watchlist.app.jwtSecret",
+      "type": "java.lang.String",
+      "description": "Description for watchlist.app.jwtSecret."
+    },
+    {
+      "name": "watchlist.app.jwtExpirationMs",
+      "type": "java.lang.String",
+      "description": "Description for watchlist.app.jwtExpirationMs."
+    }
+  ] }

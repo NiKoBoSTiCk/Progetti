@@ -1,6 +1,7 @@
 package it.niko.mywatchlist.services;
 
 
+import it.niko.mywatchlist.entities.Genre;
 import it.niko.mywatchlist.entities.Series;
 import it.niko.mywatchlist.repositories.SeriesRepository;
 import it.niko.mywatchlist.support.exceptions.SeriesAlreadyExistsException;
@@ -14,6 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 
 @Service
@@ -35,6 +37,20 @@ public class SeriesService {
         seriesRepository.delete(series);
     }
 
+    @Transactional
+    public void updateSeries(Series series) throws SeriesNotFoundException {
+        if(!seriesRepository.existsByTitle(series.getTitle()))
+            throw new SeriesNotFoundException(series.getTitle());
+
+        seriesRepository.findById(series.getId()).map(ser -> {
+            ser.setTitle(series.getTitle());
+            ser.setEpisodes(series.getEpisodes());
+            ser.setGenres(series.getGenres());
+            ser.setPlot(series.getPlot());
+            return seriesRepository.save(ser);
+        });
+    }
+
     @Transactional(readOnly = true)
     public List<Series> showAllSeries(int pageNumber, int pageSize, String sortBy){
         Pageable paging = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy).descending());
@@ -46,9 +62,9 @@ public class SeriesService {
     }
 
     @Transactional(readOnly = true)
-    public List<Series> showSeriesByRating(double minRating, double maxRating, int pageNumber, int pageSize, String sortBy){
+    public List<Series> showSeriesByRating(double rating, int pageNumber, int pageSize, String sortBy){
         Pageable paging = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy).descending());
-        Page<Series> pagedResult = seriesRepository.findByRatingBetween(minRating, maxRating, paging);
+        Page<Series> pagedResult = seriesRepository.findByRating(rating, paging);
         if(pagedResult.hasContent())
             return pagedResult.getContent();
         else
@@ -69,6 +85,16 @@ public class SeriesService {
     public List<Series> showSeriesByTitle(String title, int pageNumber, int pageSize, String sortBy){
         Pageable paging = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy).descending());
         Page<Series> pagedResult = seriesRepository.findByTitleContaining(title, paging);
+        if(pagedResult.hasContent())
+            return pagedResult.getContent();
+        else
+            return new ArrayList<>();
+    }
+
+    @Transactional(readOnly = true)
+    public List<Series> showSeriesByGenres(Set<Genre> genres, int pageNumber, int pageSize, String sortBy){
+        Pageable paging = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy).descending());
+        Page<Series> pagedResult = seriesRepository.findByGenres(genres, paging);
         if(pagedResult.hasContent())
             return pagedResult.getContent();
         else

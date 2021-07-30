@@ -1,66 +1,69 @@
 package it.niko.mywatchlist.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
 @Getter
 @Setter
-@EqualsAndHashCode
 @ToString
 @Entity(name = "Series")
-@Table(name = "series", schema = "myserieslist")
+@Table(name = "series", schema = "mywatchlist",
+        uniqueConstraints =
+        @UniqueConstraint(columnNames = "title")
+)
 public class Series {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private int id;
+    private Integer id;
 
-    @Column(name = "title", nullable = false, length = 50)
+    @Column(name = "title")
+    @NotBlank
+    @Size(max = 50)
     private String title;
 
     @Column(name = "episodes")
     private int episodes;
 
-    @Column(name = "rating", length = 4)
+    @Column(name = "rating")
     private double rating;
 
-    @Column(name = "views", length = 10)
+    @Column(name = "views")
     private int views;
 
-    @Column(name = "plot", length = 100)
+    @Column(name = "plot")
+    @NotBlank
+    @Size(max = 100)
     private String plot;
 
     @Column(name = "members")
     private int members;
 
-    @Column(name = "genre", length = 45)
-    private String genre;
-
-    @OneToMany(targetEntity = SeriesInList.class, mappedBy = "series", cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(	name = "series_genre",
+            joinColumns = @JoinColumn(name = "idSeries"),
+            inverseJoinColumns = @JoinColumn(name = "idGenre"))
     @ToString.Exclude
-    @JsonIgnore
-    Set<SeriesInList> watchlist = new HashSet<>();
+    private Set<Genre> genres = new HashSet<>();
 
-    private void increaseMembers(){ members++; }
-    private void decreaseMembers() { members--; }
-    public void upgradeViews() { views++; }
+    public Series() {}
+
+    public Series(String title) {
+        this.title = title;
+    }
+
+    public void increaseViews() { views++; }
 
     public void updateRating(int newScore, boolean leave){
         double x = rating * members;
-        if(leave){
-            x -= newScore;
-            decreaseMembers();
-        }
-        else {
-            x += newScore;
-            increaseMembers();
-        }
+        if(leave){ x -= newScore; members--;}
+        else { x += newScore; members++;}
         x /= members;
         rating = x;
     }
