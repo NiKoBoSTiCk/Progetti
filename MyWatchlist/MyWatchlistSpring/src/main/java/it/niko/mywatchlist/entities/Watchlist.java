@@ -34,5 +34,12 @@ public class Watchlist {
 
     @Column(name = "comment")
     private String comment;
+
+    public Watchlist(){}
+
+    public Watchlist(User user, Series series){
+        this.user = user;
+        this.series = series;
+    }
 }
 

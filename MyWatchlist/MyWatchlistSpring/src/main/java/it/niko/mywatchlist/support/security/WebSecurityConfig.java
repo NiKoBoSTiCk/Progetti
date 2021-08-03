@@ -2,7 +2,7 @@ package it.niko.mywatchlist.support.security;
 
 import it.niko.mywatchlist.support.security.jwt.AuthEntryPointJwt;
 import it.niko.mywatchlist.support.security.jwt.AuthTokenFilter;
-import it.niko.mywatchlist.support.security.services.UserDetailsServiceImpl;
+import it.niko.mywatchlist.services.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

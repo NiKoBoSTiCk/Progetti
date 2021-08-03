@@ -2,7 +2,7 @@ package it.niko.mywatchlist.support.security.jwt;
 
 import java.util.Date;
 
-import it.niko.mywatchlist.support.security.services.UserDetailsImpl;
+import it.niko.mywatchlist.support.security.UserDetailsImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;

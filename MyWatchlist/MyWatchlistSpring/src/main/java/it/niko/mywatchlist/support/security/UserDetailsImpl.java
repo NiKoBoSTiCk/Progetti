@@ -1,4 +1,4 @@
-package it.niko.mywatchlist.support.security.services;
+package it.niko.mywatchlist.support.security;
 
 import java.util.Collection;
 import java.util.List;

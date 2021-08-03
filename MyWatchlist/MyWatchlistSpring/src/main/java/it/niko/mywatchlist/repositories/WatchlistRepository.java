@@ -8,9 +8,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import java.util.Optional;
 
 @Repository
 public interface WatchlistRepository extends JpaRepository<Watchlist, Integer> {
+    Optional<Watchlist> findByUserAndSeries(User user, Series series);
     Page<Watchlist> findByUser(User user, Pageable pageable);
     Page<Watchlist> findByUserAndStatus(User user, Status status, Pageable pageable);
     Page<Watchlist> findByUserAndScoreLessThanEqual(User user, int score, Pageable pageable);

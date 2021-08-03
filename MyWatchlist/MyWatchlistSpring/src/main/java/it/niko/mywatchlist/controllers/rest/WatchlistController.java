@@ -3,11 +3,11 @@ package it.niko.mywatchlist.controllers.rest;
 import it.niko.mywatchlist.entities.Status;
 import it.niko.mywatchlist.entities.User;
 import it.niko.mywatchlist.entities.Watchlist;
+import it.niko.mywatchlist.payload.request.WatchlistRequest;
 import it.niko.mywatchlist.payload.response.MessageResponse;
 import it.niko.mywatchlist.services.WatchlistService;
 import it.niko.mywatchlist.support.exceptions.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -22,28 +22,26 @@ public class WatchlistController {
 
     @PostMapping
     @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<?> create(@RequestBody @Valid Watchlist watchlist)
-            throws SeriesAlreadyInWatchlistException, ProgressNotValidException,
-            UserNotFoundException, SeriesNotFoundException, ScoreNotValidException {
-        watchlistService.addWatchlist(watchlist);
-        return new ResponseEntity<>(new MessageResponse("Added successful!"), HttpStatus.OK);
+    public ResponseEntity<?> create(@RequestBody @Valid WatchlistRequest watchlistRequest)
+            throws SeriesAlreadyInWatchlistException, UserNotFoundException, SeriesNotFoundException{
+        watchlistService.addWatchlist(watchlistRequest);
+        return ResponseEntity.ok(new MessageResponse("Added successful!"));
     }
 
     @PutMapping("/update")
     @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<?> update(@RequestBody @Valid Watchlist watchlist)
-            throws SeriesNotInWatchlistException, ProgressNotValidException,
-            ScoreNotValidException, UserNotFoundException, SeriesNotFoundException {
-        watchlistService.updateWatchlist(watchlist);
-        return new ResponseEntity<>(new MessageResponse("Progress updated successful!"), HttpStatus.OK);
+    public ResponseEntity<?> update(@RequestBody @Valid WatchlistRequest watchlistRequest)
+            throws SeriesNotInWatchlistException, UserNotFoundException, SeriesNotFoundException {
+        watchlistService.updateWatchlist(watchlistRequest);
+        return ResponseEntity.ok(new MessageResponse("Progress updated successful!"));
     }
 
     @DeleteMapping
     @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<?> delete(@RequestBody @Valid Watchlist watchlist)
+    public ResponseEntity<?> delete(@RequestBody @Valid WatchlistRequest watchlistRequest)
             throws SeriesNotInWatchlistException, UserNotFoundException, SeriesNotFoundException {
-        watchlistService.removeWatchlist(watchlist);
-        return new ResponseEntity<>(new MessageResponse("Removed successful!"), HttpStatus.OK);
+        watchlistService.removeWatchlist(watchlistRequest);
+        return ResponseEntity.ok(new MessageResponse("Removed successful!"));
     }
 
     @GetMapping
@@ -51,9 +49,9 @@ public class WatchlistController {
     public ResponseEntity<?> getWatchlists(@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
                                           @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
                                           @RequestParam(value = "sortBy", defaultValue = "title") String sortBy){
-        List<Watchlist> result = watchlistService.showAllWatchlists(pageNumber, pageSize, sortBy);
-        if(result.size() <= 0) return new ResponseEntity<>(new MessageResponse("No results!"), HttpStatus.OK);
-        return new ResponseEntity<>(result, HttpStatus.OK);
+        List<Watchlist> ret = watchlistService.showAllWatchlists(pageNumber, pageSize, sortBy);
+        if(ret.size() != 0) return ResponseEntity.ok(ret);
+        return ResponseEntity.ok(new MessageResponse("No results!"));
     }
 
     @GetMapping("/search")
@@ -62,9 +60,9 @@ public class WatchlistController {
                                               @RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
                                               @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
                                               @RequestParam(value = "sortBy", defaultValue = "title") String sortBy){
-        List<Watchlist> result = watchlistService.showUserWatchlist(user, pageNumber, pageSize, sortBy);
-        if(result.size() <= 0) return new ResponseEntity<>(new MessageResponse("No results!"), HttpStatus.OK);
-        return new ResponseEntity<>(result, HttpStatus.OK);
+        List<Watchlist> ret = watchlistService.showUserWatchlist(user, pageNumber, pageSize, sortBy);
+        if(ret.size() != 0) return ResponseEntity.ok(ret);
+        return ResponseEntity.ok(new MessageResponse("No results!"));
     }
 
     @GetMapping("/search/by_status")
@@ -74,9 +72,9 @@ public class WatchlistController {
                                               @RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
                                               @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
                                               @RequestParam(value = "sortBy", defaultValue = "title") String sortBy){
-        List<Watchlist> result = watchlistService.showUserWatchlistByStatus(user, status, pageNumber, pageSize, sortBy);
-        if(result.size() <= 0) return new ResponseEntity<>(new MessageResponse("No results!"), HttpStatus.OK);
-        return new ResponseEntity<>(result, HttpStatus.OK);
+        List<Watchlist> ret = watchlistService.showUserWatchlistByStatus(user, status, pageNumber, pageSize, sortBy);
+        if(ret.size() != 0) return ResponseEntity.ok(ret);
+        return ResponseEntity.ok(new MessageResponse("No results!"));
     }
 
     @GetMapping("/search/by_score")
@@ -86,8 +84,8 @@ public class WatchlistController {
                                               @RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
                                               @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
                                               @RequestParam(value = "sortBy", defaultValue = "title") String sortBy){
-        List<Watchlist> result = watchlistService.showUserWatchlistByScore(user, score, pageNumber, pageSize, sortBy);
-        if(result.size() <= 0) return new ResponseEntity<>(new MessageResponse("No results!"), HttpStatus.OK);
-        return new ResponseEntity<>(result, HttpStatus.OK);
+        List<Watchlist> ret = watchlistService.showUserWatchlistByScore(user, score, pageNumber, pageSize, sortBy);
+        if(ret.size() != 0) return ResponseEntity.ok(ret);
+        return ResponseEntity.ok(new MessageResponse("No results!"));
     }
 }

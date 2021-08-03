@@ -1,6 +1,7 @@
 package it.niko.mywatchlist.services;
 
 import it.niko.mywatchlist.entities.*;
+import it.niko.mywatchlist.payload.request.WatchlistRequest;
 import it.niko.mywatchlist.repositories.StatusRepository;
 import it.niko.mywatchlist.repositories.WatchlistRepository;
 import it.niko.mywatchlist.repositories.SeriesRepository;
@@ -28,71 +29,36 @@ public class WatchlistService {
     private StatusRepository statusRepository;
 
     @Transactional
-    public void addWatchlist(Watchlist watchlist) throws SeriesAlreadyInWatchlistException, ProgressNotValidException, UserNotFoundException, SeriesNotFoundException, ScoreNotValidException {
-        if(watchlistRepository.existsById(watchlist.getId()))
-            throw new SeriesAlreadyInWatchlistException();
-        if(!userRepository.existsById(watchlist.getUser().getId()))
-            throw new UserNotFoundException(watchlist.getUser().getUsername());
-        if(!seriesRepository.existsById(watchlist.getSeries().getId()))
-            throw new SeriesNotFoundException(watchlist.getSeries().getTitle());
-        if(watchlist.getProgress() < 0 ||  watchlist.getProgress() > watchlist.getSeries().getEpisodes())
-            throw new ProgressNotValidException(watchlist.getProgress());
-        if(watchlist.getScore() < 0 || watchlist.getScore() > 10)
-            throw new ScoreNotValidException(watchlist.getScore());
-
-        User user = userRepository.getById(watchlist.getUser().getId());
-        Series series = seriesRepository.getById(watchlist.getSeries().getId());
+    public void addWatchlist(WatchlistRequest wRequest) throws SeriesAlreadyInWatchlistException, UserNotFoundException, SeriesNotFoundException{
+        User user = userRepository.findByUsername(wRequest.getUsername()).orElseThrow(UserNotFoundException::new);
+        Series series = seriesRepository.findByTitle(wRequest.getTitle()).orElseThrow(SeriesNotFoundException::new);
         if(watchlistRepository.existsByUserAndSeries(user, series))
-            throw new SeriesAlreadyInWatchlistException();
+            throw new SeriesAlreadyInWatchlistException(user.getUsername());
 
+        Watchlist watchlist = new Watchlist(user, series);
+        configureWatchlist(wRequest, series, watchlist);
         series.increaseViews();
-        if(watchlist.getScore() != 0)
-            series.updateRating(watchlist.getScore(), false);
-        if(watchlist.getSeries().getEpisodes() == watchlist.getProgress())
-            watchlist.setStatus(statusRepository.findByName(EStatus.COMPLETED));
         watchlistRepository.save(watchlist);
     }
 
     @Transactional
-    public void updateWatchlist(Watchlist watchlist) throws SeriesNotInWatchlistException, ProgressNotValidException, ScoreNotValidException, UserNotFoundException, SeriesNotFoundException {
-        if(!watchlistRepository.existsById(watchlist.getId()))
-            throw new SeriesNotInWatchlistException();
-        if(!userRepository.existsById(watchlist.getUser().getId()))
-            throw new UserNotFoundException(watchlist.getUser().getUsername());
-        if(!seriesRepository.existsById(watchlist.getSeries().getId()))
-            throw new SeriesNotFoundException(watchlist.getSeries().getTitle());
+    public void updateWatchlist(WatchlistRequest wRequest) throws SeriesNotInWatchlistException, UserNotFoundException, SeriesNotFoundException {
+        User user = userRepository.findByUsername(wRequest.getUsername()).orElseThrow(UserNotFoundException::new);
+        Series series = seriesRepository.findByTitle(wRequest.getTitle()).orElseThrow(SeriesNotFoundException::new);
+        Watchlist watchlist = watchlistRepository.findByUserAndSeries(user, series).orElseThrow(SeriesNotInWatchlistException::new);
 
-        Series series = seriesRepository.getById(watchlist.getSeries().getId());
-        if(watchlist.getProgress() < 0 ||  watchlist.getProgress() > watchlist.getSeries().getEpisodes())
-            throw new ProgressNotValidException(watchlist.getProgress());
-        if(watchlist.getScore() < 0 || watchlist.getScore() > 10)
-            throw new ScoreNotValidException(watchlist.getScore());
-        if(watchlist.getScore() != 0)
-            series.updateRating(watchlist.getScore(), false);
-
-        watchlistRepository.findById(watchlist.getId()).map(wat -> {
-            wat.setComment(watchlist.getComment());
-            wat.setScore(watchlist.getScore());
-            wat.setProgress(watchlist.getProgress());
-            wat.setStatus(watchlist.getStatus());
-            if(watchlist.getSeries().getEpisodes() == wat.getProgress())
-                wat.setStatus(statusRepository.findByName(EStatus.COMPLETED));
-            return watchlistRepository.save(wat);
-        });
+        configureWatchlist(wRequest, series, watchlist);
+        watchlistRepository.save(watchlist);
     }
 
     @Transactional
-    public void removeWatchlist(Watchlist watchlist) throws SeriesNotInWatchlistException, UserNotFoundException, SeriesNotFoundException {
-        if(!watchlistRepository.existsById(watchlist.getId()))
-            throw new SeriesNotInWatchlistException();
-        if(!userRepository.existsById(watchlist.getUser().getId()))
-            throw new UserNotFoundException(watchlist.getUser().getUsername());
-        if(!seriesRepository.existsById(watchlist.getSeries().getId()))
-            throw new SeriesNotFoundException(watchlist.getSeries().getTitle());
-        if(watchlist.getScore() != 0){
-            Series series = seriesRepository.getById(watchlist.getSeries().getId());
+    public void removeWatchlist(WatchlistRequest wRequest) throws SeriesNotInWatchlistException, UserNotFoundException, SeriesNotFoundException {
+        User user = userRepository.findByUsername(wRequest.getUsername()).orElseThrow(UserNotFoundException::new);
+        Series series = seriesRepository.findByTitle(wRequest.getTitle()).orElseThrow(SeriesNotFoundException::new);
+        Watchlist watchlist = watchlistRepository.findByUserAndSeries(user, series).orElseThrow(SeriesNotInWatchlistException::new);
+
+        if(watchlist.getScore() != 0)
             series.updateRating(watchlist.getScore(), true);
-        }
         watchlistRepository.delete(watchlist);
     }
 
@@ -134,5 +100,66 @@ public class WatchlistService {
             return pagedResult.getContent();
         else
             return new ArrayList<>();
+    }
+
+    private void configureWatchlist(WatchlistRequest wRequest, Series series, Watchlist watchlist) {
+        if(wRequest.getProgress() < 0)
+            watchlist.setProgress(0);
+        else if(wRequest.getProgress() > series.getEpisodes())
+            watchlist.setProgress(series.getEpisodes());
+        else watchlist.setProgress(wRequest.getProgress());
+
+        if(wRequest.getScore() < 0)
+            watchlist.setScore(0);
+        else watchlist.setScore(Math.min(wRequest.getScore(), 10));
+
+        if(wRequest.getComment() != null)
+            watchlist.setComment(wRequest.getComment());
+
+        assignStatus(watchlist, series, wRequest.getStatus());
+
+        if(watchlist.getScore() != 0)
+            series.updateRating(watchlist.getScore(), false);
+
+        if(series.getEpisodes() == watchlist.getProgress())
+            watchlist.setStatus(statusRepository.findByName(EStatus.COMPLETED)
+                    .orElseThrow(() -> new RuntimeException("Error: Status completed not found!")));
+    }
+
+    private void assignStatus(Watchlist watchlist, Series series, String status) {
+        if(status == null){
+            Status watching = statusRepository.findByName(EStatus.WATCHING)
+                    .orElseThrow(() -> new RuntimeException("Error: Status watching not found!"));
+            watchlist.setStatus(watching);
+        }
+        else switch(status){
+            case "completed":
+                Status completed = statusRepository.findByName(EStatus.COMPLETED)
+                        .orElseThrow(() -> new RuntimeException("Error: Status completed not found!"));
+                watchlist.setStatus(completed);
+                watchlist.setProgress(series.getEpisodes());
+                break;
+            case "dropped":
+                Status dropped = statusRepository.findByName(EStatus.DROPPED)
+                        .orElseThrow(() -> new RuntimeException("Error: Status dropped not found!"));
+                watchlist.setStatus(dropped);
+                break;
+            case "onhold":
+                Status onhold = statusRepository.findByName(EStatus.ON_HOLD)
+                        .orElseThrow(() -> new RuntimeException("Error: Status on hold not found!"));
+                watchlist.setStatus(onhold);
+                break;
+            case "plantowatch":
+                Status plantowatch = statusRepository.findByName(EStatus.PLAN_TO_WATCH)
+                        .orElseThrow(() -> new RuntimeException("Error: Status plan to watch not found!"));
+                watchlist.setStatus(plantowatch);
+                watchlist.setProgress(0);
+                break;
+            default:
+                Status watching = statusRepository.findByName(EStatus.WATCHING)
+                        .orElseThrow(() -> new RuntimeException("Error: Status watching not found!"));
+                watchlist.setStatus(watching);
+                break;
+        }
     }
 }

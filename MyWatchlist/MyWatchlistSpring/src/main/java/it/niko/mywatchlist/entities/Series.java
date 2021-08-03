@@ -36,7 +36,7 @@ public class Series {
 
     @Column(name = "plot")
     @NotBlank
-    @Size(max = 100)
+    @Size(max = 200)
     private String plot;
 
     @Column(name = "members")

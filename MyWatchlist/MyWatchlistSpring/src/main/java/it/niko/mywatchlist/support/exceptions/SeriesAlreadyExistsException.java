@@ -1,5 +1,7 @@
 package it.niko.mywatchlist.support.exceptions;
 
 public class SeriesAlreadyExistsException extends Exception {
-    public SeriesAlreadyExistsException(){}
+    public SeriesAlreadyExistsException(){
+        super("Series already exists");
+    }
 }

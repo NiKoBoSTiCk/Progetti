@@ -1,10 +1,9 @@
 package it.niko.mywatchlist.services;
 
-import it.niko.mywatchlist.entities.Genre;
-import it.niko.mywatchlist.entities.Series;
+import it.niko.mywatchlist.entities.*;
+import it.niko.mywatchlist.payload.request.SeriesRequest;
 import it.niko.mywatchlist.repositories.GenreRepository;
 import it.niko.mywatchlist.repositories.SeriesRepository;
-import it.niko.mywatchlist.support.exceptions.GenreNotExistException;
 import it.niko.mywatchlist.support.exceptions.SeriesAlreadyExistsException;
 import it.niko.mywatchlist.support.exceptions.SeriesNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class SeriesService {
@@ -25,31 +26,34 @@ public class SeriesService {
     private GenreRepository genreRepository;
 
     @Transactional
-    public void addSeries(Series series) throws SeriesAlreadyExistsException {
-        if(seriesRepository.existsByTitle(series.getTitle()))
+    public void addSeries(SeriesRequest seriesRequest) throws SeriesAlreadyExistsException {
+        if(seriesRepository.existsByTitle(seriesRequest.getTitle()))
             throw new SeriesAlreadyExistsException();
+
+        Series series = new Series(seriesRequest.getTitle());
+        Set<String> strGenres = seriesRequest.getGenres();
+        if(strGenres != null){
+            Set<Genre> genres = assignGenres(strGenres);
+            series.setGenres(genres);
+        }
         seriesRepository.save(series);
     }
 
     @Transactional
-    public void removeSeries(Series series) throws SeriesNotFoundException {
-        if(!seriesRepository.existsByTitle(series.getTitle()))
-            throw new SeriesNotFoundException(series.getTitle());
+    public void removeSeries(String title) throws SeriesNotFoundException {
+        Series series = seriesRepository.findByTitle(title).orElseThrow(SeriesNotFoundException::new);
         seriesRepository.delete(series);
     }
 
     @Transactional
-    public void updateSeries(Series series) throws SeriesNotFoundException {
-        if(!seriesRepository.existsByTitle(series.getTitle()))
-            throw new SeriesNotFoundException(series.getTitle());
-
-        seriesRepository.findById(series.getId()).map(ser -> {
-            ser.setTitle(series.getTitle());
-            ser.setEpisodes(series.getEpisodes());
-            ser.setGenres(series.getGenres());
-            ser.setPlot(series.getPlot());
-            return seriesRepository.save(ser);
-        });
+    public void updateSeries(SeriesRequest seriesRequest) throws SeriesNotFoundException {
+        Series series = seriesRepository.findByTitle(seriesRequest.getTitle()).orElseThrow(SeriesNotFoundException::new);
+        series.setEpisodes(seriesRequest.getEpisodes());
+        series.setPlot(seriesRequest.getPlot());
+        Set<String> strGenres = seriesRequest.getGenres();
+        Set<Genre> genres = assignGenres(strGenres);
+        series.setGenres(genres);
+        seriesRepository.save(series);
     }
 
     @Transactional(readOnly = true)
@@ -93,16 +97,64 @@ public class SeriesService {
     }
 
     @Transactional(readOnly = true)
-    public List<Series> showSeriesByGenres(Genre genre, int pageNumber, int pageSize, String sortBy) throws GenreNotExistException {
-        if(!genreRepository.existsByName(genre.getName()))
-            throw new GenreNotExistException(genre.getName());
-        Genre gen = genreRepository.findByName(genre.getName());
-
+    public List<Series> showSeriesByGenres(Set<String> strGenres, int pageNumber, int pageSize, String sortBy){
+        Set<Genre> genres = assignGenres(strGenres);
+        Genre genre = genres.stream().findFirst().orElseThrow(() -> new RuntimeException("Error: Genre not found."));
         Pageable paging = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy).descending());
-        Page<Series> pagedResult = seriesRepository.findByGenresContains(gen, paging);
+        Page<Series> pagedResult = seriesRepository.findByGenresContains(genre, paging);
         if(pagedResult.hasContent())
             return pagedResult.getContent();
         else
             return new ArrayList<>();
+    }
+
+    private Set<Genre> assignGenres(Set<String> strGenres){
+        Set<Genre> genres = new HashSet<>();
+        strGenres.forEach(genre -> {
+            switch(genre) {
+                case "drama":
+                    Genre drama = genreRepository.findByName(EGenre.DRAMA)
+                            .orElseThrow(() -> new RuntimeException("Error: Genre drama not found."));
+                    genres.add(drama);
+                    break;
+                case "crime":
+                    Genre crime = genreRepository.findByName(EGenre.CRIME)
+                            .orElseThrow(() -> new RuntimeException("Error: Genre crime not found."));
+                    genres.add(crime);
+                    break;
+                case "comedy":
+                    Genre comedy = genreRepository.findByName(EGenre.COMEDY)
+                            .orElseThrow(() -> new RuntimeException("Error: Genre comedy not found."));
+                    genres.add(comedy);
+                    break;
+                case "horror":
+                    Genre horror = genreRepository.findByName(EGenre.HORROR)
+                            .orElseThrow(() -> new RuntimeException("Error: Genre horror not found."));
+                    genres.add(horror);
+                    break;
+                case "fantasy":
+                    Genre fantasy = genreRepository.findByName(EGenre.FANTASY)
+                            .orElseThrow(() -> new RuntimeException("Error: Genre fantasy not found."));
+                    genres.add(fantasy);
+                    break;
+                case "thriller":
+                    Genre thriller = genreRepository.findByName(EGenre.THRILLER)
+                            .orElseThrow(() -> new RuntimeException("Error: Genre thriller not found."));
+                    genres.add(thriller);
+                    break;
+                case "action":
+                    Genre action = genreRepository.findByName(EGenre.ACTION)
+                            .orElseThrow(() -> new RuntimeException("Error: Genre action not found."));
+                    genres.add(action);
+                    break;
+                case "adventure":
+                    Genre adventure = genreRepository.findByName(EGenre.ADVENTURE)
+                            .orElseThrow(() -> new RuntimeException("Error: Genre adventure not found."));
+                    genres.add(adventure);
+                    break;
+                default: throw new RuntimeException("Error: Genre not found.");
+            }
+        });
+        return genres;
     }
 }

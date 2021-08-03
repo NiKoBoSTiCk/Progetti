@@ -1,7 +1,8 @@
-package it.niko.mywatchlist.support.security.services;
+package it.niko.mywatchlist.services;
 
 import it.niko.mywatchlist.entities.User;
 import it.niko.mywatchlist.repositories.UserRepository;
+import it.niko.mywatchlist.support.security.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -22,5 +23,4 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + username));
         return UserDetailsImpl.build(user);
     }
-
 }
