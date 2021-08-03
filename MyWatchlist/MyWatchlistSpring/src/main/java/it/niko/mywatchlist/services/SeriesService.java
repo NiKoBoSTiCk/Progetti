@@ -101,11 +101,14 @@ public class SeriesService {
     }
 
     @Transactional(readOnly = true)
-    public List<Series> showSeriesByGenres(Set<String> strGenres, int pageNumber, int pageSize, String sortBy){
+    public List<Series> showSeriesByGenres(String genre, int pageNumber, int pageSize, String sortBy){
+        Set<String> strGenres = new HashSet<>();
+        strGenres.add(genre);
         Set<Genre> genres = assignGenres(strGenres);
-        Genre genre = genres.stream().findFirst().orElseThrow(() -> new RuntimeException("Error: Genre not found."));
+        Genre gen = genres.stream().findFirst().orElseThrow(() -> new RuntimeException("Error: Genre not found."));
+
         Pageable paging = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy).descending());
-        Page<Series> pagedResult = seriesRepository.findByGenresContains(genre, paging);
+        Page<Series> pagedResult = seriesRepository.findByGenresContains(gen, paging);
         if(pagedResult.hasContent())
             return pagedResult.getContent();
         else

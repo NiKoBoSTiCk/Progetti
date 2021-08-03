@@ -12,7 +12,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Set;
 
 @RestController
 @RequestMapping("/series")
@@ -76,7 +75,7 @@ public class SeriesController {
 
     @GetMapping("/search/by_title")
     @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<?> getByTitle(@RequestParam String title,
+    public ResponseEntity<?> getByTitle(@RequestParam(value = "title") String title,
                                     @RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
                                     @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
                                     @RequestParam(value = "sortBy", defaultValue = "title") String sortBy){
@@ -85,13 +84,13 @@ public class SeriesController {
         return ResponseEntity.ok(new MessageResponse("No results!"));
     }
 
-    @GetMapping("/search/by_genres")
+    @GetMapping("/search/by_genre")
     @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<?> getByGenre(@RequestParam Set<String> genres,
+    public ResponseEntity<?> getByGenre(@RequestParam(value = "genre", defaultValue = "drama") String genre,
                                         @RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
                                         @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
                                         @RequestParam(value = "sortBy", defaultValue = "title") String sortBy){
-        List<Series> ret = seriesService.showSeriesByGenres(genres, pageNumber, pageSize, sortBy);
+        List<Series> ret = seriesService.showSeriesByGenres(genre, pageNumber, pageSize, sortBy);
         if(ret.size() != 0) return ResponseEntity.ok(ret);
         return ResponseEntity.ok(new MessageResponse("No results!"));
     }
