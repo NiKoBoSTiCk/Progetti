@@ -31,6 +31,8 @@ public class SeriesService {
             throw new SeriesAlreadyExistsException();
 
         Series series = new Series(seriesRequest.getTitle());
+        series.setEpisodes(seriesRequest.getEpisodes());
+        series.setPlot(seriesRequest.getPlot());
         Set<String> strGenres = seriesRequest.getGenres();
         if(strGenres != null){
             Set<Genre> genres = assignGenres(strGenres);
@@ -51,8 +53,10 @@ public class SeriesService {
         series.setEpisodes(seriesRequest.getEpisodes());
         series.setPlot(seriesRequest.getPlot());
         Set<String> strGenres = seriesRequest.getGenres();
-        Set<Genre> genres = assignGenres(strGenres);
-        series.setGenres(genres);
+        if(strGenres != null){
+            Set<Genre> genres = assignGenres(strGenres);
+            series.setGenres(genres);
+        }
         seriesRepository.save(series);
     }
 
