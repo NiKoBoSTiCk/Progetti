@@ -28,7 +28,7 @@ public class WatchlistController {
         return ResponseEntity.ok(new MessageResponse("Added successful!"));
     }
 
-    @PutMapping("/update")
+    @PutMapping
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<?> update(@RequestBody @Valid WatchlistRequest watchlistRequest)
             throws SeriesNotInWatchlistException, UserNotFoundException, SeriesNotFoundException {

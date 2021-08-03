@@ -113,13 +113,13 @@ public class WatchlistService {
             watchlist.setScore(0);
         else watchlist.setScore(Math.min(wRequest.getScore(), 10));
 
+        if(watchlist.getScore() != 0)
+            series.updateRating(watchlist.getScore(), false);
+
         if(wRequest.getComment() != null)
             watchlist.setComment(wRequest.getComment());
 
         assignStatus(watchlist, series, wRequest.getStatus());
-
-        if(watchlist.getScore() != 0)
-            series.updateRating(watchlist.getScore(), false);
 
         if(series.getEpisodes() == watchlist.getProgress())
             watchlist.setStatus(statusRepository.findByName(EStatus.COMPLETED)
