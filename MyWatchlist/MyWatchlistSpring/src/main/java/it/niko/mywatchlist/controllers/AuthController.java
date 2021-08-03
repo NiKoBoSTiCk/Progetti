@@ -1,4 +1,4 @@
-package it.niko.mywatchlist.controllers.rest;
+package it.niko.mywatchlist.controllers;
 
 import javax.validation.Valid;
 import it.niko.mywatchlist.payload.request.LoginRequest;

@@ -1,4 +1,4 @@
-package it.niko.mywatchlist.controllers.rest;
+package it.niko.mywatchlist.controllers;
 
 import it.niko.mywatchlist.entities.Series;
 import it.niko.mywatchlist.payload.request.SeriesRequest;
