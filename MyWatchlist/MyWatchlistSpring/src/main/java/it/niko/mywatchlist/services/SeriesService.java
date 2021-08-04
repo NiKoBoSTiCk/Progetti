@@ -36,7 +36,10 @@ public class SeriesService {
         series.setPlot(seriesRequest.getPlot());
         Set<String> strGenres = seriesRequest.getGenres();
         if(strGenres != null){
-            Set<Genre> genres = assignGenres(strGenres);
+            Set<Genre> genres = new HashSet<>();
+            for(String strGen: strGenres){
+                genres.add(convertGenre(strGen));
+            }
             series.setGenres(genres);
         }
         seriesRepository.save(series);
@@ -57,7 +60,10 @@ public class SeriesService {
         series.setPlot(seriesRequest.getPlot());
         Set<String> strGenres = seriesRequest.getGenres();
         if(strGenres != null){
-            Set<Genre> genres = assignGenres(strGenres);
+            Set<Genre> genres = new HashSet<>();
+            for(String strGen: strGenres){
+                genres.add(convertGenre(strGen));
+            }
             series.setGenres(genres);
         }
         seriesRepository.save(series);
@@ -105,11 +111,7 @@ public class SeriesService {
 
     @Transactional(readOnly = true)
     public List<Series> showSeriesByGenres(String genre, int pageNumber, int pageSize, String sortBy){
-        Set<String> strGenres = new HashSet<>();
-        strGenres.add(genre);
-        Set<Genre> genres = assignGenres(strGenres);
-        Genre gen = genres.stream().findFirst().orElseThrow(() -> new RuntimeException("Error: Genre not found."));
-
+        Genre gen = convertGenre(genre);
         Pageable paging = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy).descending());
         Page<Series> pagedResult = seriesRepository.findByGenresContains(gen, paging);
         if(pagedResult.hasContent())
@@ -118,53 +120,85 @@ public class SeriesService {
             return new ArrayList<>();
     }
 
-    private Set<Genre> assignGenres(Set<String> strGenres){
-        Set<Genre> genres = new HashSet<>();
-        strGenres.forEach(genre -> {
-            switch(genre) {
-                case "drama":
-                    Genre drama = genreRepository.findByName(EGenre.DRAMA)
-                            .orElseThrow(() -> new RuntimeException("Error: Genre drama not found."));
-                    genres.add(drama);
-                    break;
-                case "crime":
-                    Genre crime = genreRepository.findByName(EGenre.CRIME)
-                            .orElseThrow(() -> new RuntimeException("Error: Genre crime not found."));
-                    genres.add(crime);
-                    break;
-                case "comedy":
-                    Genre comedy = genreRepository.findByName(EGenre.COMEDY)
-                            .orElseThrow(() -> new RuntimeException("Error: Genre comedy not found."));
-                    genres.add(comedy);
-                    break;
-                case "horror":
-                    Genre horror = genreRepository.findByName(EGenre.HORROR)
-                            .orElseThrow(() -> new RuntimeException("Error: Genre horror not found."));
-                    genres.add(horror);
-                    break;
-                case "fantasy":
-                    Genre fantasy = genreRepository.findByName(EGenre.FANTASY)
-                            .orElseThrow(() -> new RuntimeException("Error: Genre fantasy not found."));
-                    genres.add(fantasy);
-                    break;
-                case "thriller":
-                    Genre thriller = genreRepository.findByName(EGenre.THRILLER)
-                            .orElseThrow(() -> new RuntimeException("Error: Genre thriller not found."));
-                    genres.add(thriller);
-                    break;
-                case "action":
-                    Genre action = genreRepository.findByName(EGenre.ACTION)
-                            .orElseThrow(() -> new RuntimeException("Error: Genre action not found."));
-                    genres.add(action);
-                    break;
-                case "adventure":
-                    Genre adventure = genreRepository.findByName(EGenre.ADVENTURE)
-                            .orElseThrow(() -> new RuntimeException("Error: Genre adventure not found."));
-                    genres.add(adventure);
-                    break;
-                default: throw new RuntimeException("Error: Genre not found.");
-            }
-        });
-        return genres;
+    private Genre convertGenre(String genre){
+        switch(genre) {
+            case "drama":
+                return genreRepository.findByName(EGenre.DRAMA)
+                        .orElseThrow(() -> new RuntimeException("Error: Genre drama not found."));
+            case "crime":
+                return genreRepository.findByName(EGenre.CRIME)
+                        .orElseThrow(() -> new RuntimeException("Error: Genre crime not found."));
+            case "comedy":
+                return genreRepository.findByName(EGenre.COMEDY)
+                        .orElseThrow(() -> new RuntimeException("Error: Genre comedy not found."));
+            case "horror":
+                return genreRepository.findByName(EGenre.HORROR)
+                        .orElseThrow(() -> new RuntimeException("Error: Genre horror not found."));
+            case "fantasy":
+                return genreRepository.findByName(EGenre.FANTASY)
+                        .orElseThrow(() -> new RuntimeException("Error: Genre fantasy not found."));
+            case "thriller":
+                return genreRepository.findByName(EGenre.THRILLER)
+                        .orElseThrow(() -> new RuntimeException("Error: Genre thriller not found."));
+            case "action":
+                return genreRepository.findByName(EGenre.ACTION)
+                        .orElseThrow(() -> new RuntimeException("Error: Genre action not found."));
+            case "adventure":
+                return genreRepository.findByName(EGenre.ADVENTURE)
+                        .orElseThrow(() -> new RuntimeException("Error: Genre adventure not found."));
+            case "animation":
+                return genreRepository.findByName(EGenre.ANIMATION)
+                        .orElseThrow(() -> new RuntimeException("Error: Genre animation not found."));
+            case "sitcom":
+                return genreRepository.findByName(EGenre.SITCOM)
+                        .orElseThrow(() -> new RuntimeException("Error: Genre adventure not found."));
+            case "sci_fi":
+                return genreRepository.findByName(EGenre.SCI_FI)
+                        .orElseThrow(() -> new RuntimeException("Error: Genre sci-fi not found."));
+            case "reality":
+                return genreRepository.findByName(EGenre.REALITY)
+                        .orElseThrow(() -> new RuntimeException("Error: Genre reality not found."));
+            case "soap-opera":
+                return genreRepository.findByName(EGenre.SOAP_OPERA)
+                        .orElseThrow(() -> new RuntimeException("Error: Genre sci-fi not found."));
+            case "telenovela":
+                return genreRepository.findByName(EGenre.TELENOVELA)
+                        .orElseThrow(() -> new RuntimeException("Error: Genre telenovela not found."));
+            case "documentary":
+                return genreRepository.findByName(EGenre.DOCUMENTAY)
+                        .orElseThrow(() -> new RuntimeException("Error: Genre documentary not found."));
+            case "educational":
+                return genreRepository.findByName(EGenre.EDUCATIONAL)
+                        .orElseThrow(() -> new RuntimeException("Error: Genre educational not found."));
+            case "sport":
+                return genreRepository.findByName(EGenre.SPORTS)
+                        .orElseThrow(() -> new RuntimeException("Error: Genre sport not found."));
+            case "romance":
+                return genreRepository.findByName(EGenre.ROMANCE)
+                        .orElseThrow(() -> new RuntimeException("Error: Genre romance not found."));
+            case "satirical":
+                return genreRepository.findByName(EGenre.SATIRICAL)
+                        .orElseThrow(() -> new RuntimeException("Error: Genre satirical not found."));
+            case "supernatural":
+                return genreRepository.findByName(EGenre.SUPERNATURAL)
+                        .orElseThrow(() -> new RuntimeException("Error: Genre supernatural not found."));
+            case "science":
+                return genreRepository.findByName(EGenre.SCIENCE)
+                        .orElseThrow(() -> new RuntimeException("Error: Genre science not found."));
+            case "school":
+                return genreRepository.findByName(EGenre.SCHOOL)
+                        .orElseThrow(() -> new RuntimeException("Error: Genre school not found."));
+            case "time_travel":
+                return genreRepository.findByName(EGenre.TIME_TRAVEL)
+                        .orElseThrow(() -> new RuntimeException("Error: Genre time_travel not found."));
+            case "historical":
+                return genreRepository.findByName(EGenre.HISTORICAL)
+                        .orElseThrow(() -> new RuntimeException("Error: Genre historical not found."));
+            case "war":
+                return genreRepository.findByName(EGenre.WAR)
+                        .orElseThrow(() -> new RuntimeException("Error: Genre war not found."));
+            default:
+                throw new RuntimeException("Error: Genre not found.");
+        }
     }
 }
