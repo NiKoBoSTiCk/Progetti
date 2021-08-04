@@ -40,8 +40,8 @@ public class GlobalExceptionHandler{
         else if (ex instanceof EmailAlreadyTakenException)
             return ResponseEntity.badRequest().body(new MessageResponse(ex.getMessage()));
 
-        //else if (ex instanceof RuntimeException)
-        //    return ResponseEntity.badRequest().body(new MessageResponse(ex.getMessage()));
+        else if (ex instanceof RuntimeException)
+            return ResponseEntity.badRequest().body(new MessageResponse(ex.getMessage()));
 
         else return ResponseEntity.internalServerError().body(new MessageResponse(ex.getMessage()));
     }
