@@ -4,6 +4,7 @@ import it.niko.mywatchlist.entities.*;
 import it.niko.mywatchlist.payload.request.SeriesRequest;
 import it.niko.mywatchlist.repositories.GenreRepository;
 import it.niko.mywatchlist.repositories.SeriesRepository;
+import it.niko.mywatchlist.repositories.WatchlistRepository;
 import it.niko.mywatchlist.support.exceptions.SeriesAlreadyExistsException;
 import it.niko.mywatchlist.support.exceptions.SeriesNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +14,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+
+import java.util.*;
 
 @Service
 public class SeriesService {
@@ -24,6 +23,8 @@ public class SeriesService {
     private SeriesRepository seriesRepository;
     @Autowired
     private GenreRepository genreRepository;
+    @Autowired
+    private WatchlistRepository watchlistRepository;
 
     @Transactional
     public void addSeries(SeriesRequest seriesRequest) throws SeriesAlreadyExistsException {
@@ -44,6 +45,8 @@ public class SeriesService {
     @Transactional
     public void removeSeries(String title) throws SeriesNotFoundException {
         Series series = seriesRepository.findByTitle(title).orElseThrow(SeriesNotFoundException::new);
+        List<Watchlist> toDel = watchlistRepository.findBySeries(series);
+        watchlistRepository.deleteAll(toDel);
         seriesRepository.delete(series);
     }
 

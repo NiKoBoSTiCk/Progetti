@@ -41,6 +41,9 @@ public class WatchlistService {
         watchlistRepository.save(watchlist);
     }
 
+    // BUG:
+    // Ogni volta che si chiama il metodo updateWatchlist con (score != 0) viene richiamato il metodo updateRating,
+    // aggiungendo di conseguenza un nuovo membro e ricalcolando il rating.
     @Transactional
     public void updateWatchlist(WatchlistRequest wRequest) throws SeriesNotInWatchlistException, UserNotFoundException, SeriesNotFoundException {
         User user = userRepository.findByUsername(wRequest.getUsername()).orElseThrow(UserNotFoundException::new);
