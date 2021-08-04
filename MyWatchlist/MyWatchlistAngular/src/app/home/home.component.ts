@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../_services/user.service';
+import { SeriesService } from '../_services/series.service';
+import {Series} from "../models/series";
 
 @Component({
   selector: 'app-home',
@@ -7,18 +8,23 @@ import { UserService } from '../_services/user.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  content?: string;
+  series?: Series[];
 
-  constructor(private userService: UserService) { }
+  constructor(private seriesService: SeriesService) { }
 
   ngOnInit(): void {
-    this.userService.getAllSeries().subscribe(
+    this.getSeries('title')
+  }
+
+  getSeries(sortBy:string){
+    this.seriesService.getAllSeries(sortBy).subscribe(
       data => {
-        this.content = data;
+        this.series = data;
       },
       err => {
-        this.content = JSON.parse(err.error).message;
+        this.series = JSON.parse(err.error).message;
       }
     );
   }
+
 }

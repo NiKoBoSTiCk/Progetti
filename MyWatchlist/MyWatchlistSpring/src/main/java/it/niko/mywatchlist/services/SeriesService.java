@@ -14,7 +14,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.*;
 
 @Service
@@ -45,6 +44,7 @@ public class SeriesService {
         seriesRepository.save(series);
     }
 
+    //da controllare
     @Transactional
     public void removeSeries(String title) throws SeriesNotFoundException {
         Series series = seriesRepository.findByTitle(title).orElseThrow(SeriesNotFoundException::new);
@@ -82,7 +82,7 @@ public class SeriesService {
     @Transactional(readOnly = true)
     public List<Series> showSeriesByRating(double rating, int pageNumber, int pageSize, String sortBy){
         Pageable paging = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy).descending());
-        Page<Series> pagedResult = seriesRepository.findByRating(rating, paging);
+        Page<Series> pagedResult = seriesRepository.findByRatingLessThanEqual(rating, paging);
         if(pagedResult.hasContent())
             return pagedResult.getContent();
         else

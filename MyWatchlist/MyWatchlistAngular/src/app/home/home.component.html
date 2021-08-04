@@ -1,5 +1,18 @@
+<h2>Series List</h2>
+
+
 <div class="container">
+  <button (click)="getSeries('title')"> By Title </button>
+  <button (click)="getSeries('views')"> Top Views </button>
+  <button (click)="getSeries('rating')"> Top Rated </button>
+
   <header class="jumbotron">
-    <p>{{ content }}</p>
+    <a *ngFor="let serie of series" routerLink="detail/{{serie.title}}">
+      <p> {{serie.title}}
+    </a>
   </header>
 </div>
+
+
+
+

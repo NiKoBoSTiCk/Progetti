@@ -12,7 +12,7 @@ import java.util.Optional;
 public interface SeriesRepository extends JpaRepository<Series, Integer> {
     Optional<Series> findByTitle(String title);
     Page<Series> findByTitleContaining(String title, Pageable pageable);
-    Page<Series> findByRating(double rating, Pageable pageable);
+    Page<Series> findByRatingLessThanEqual(double rating, Pageable pageable);
     Page<Series> findByViewsBetween(int minViews, int maxViews, Pageable pageable);
     Page<Series> findByGenresContains(Genre genre, Pageable pageable);
     boolean existsByTitle(String title);
