@@ -67,7 +67,7 @@ public class WatchlistService {
 
     @Transactional(readOnly = true)
     public List<Watchlist> showAllWatchlists(int pageNumber, int pageSize, String sortBy){
-        Pageable paging = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy));
+        Pageable paging = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy).descending());
         Page<Watchlist> pagedResult = watchlistRepository.findAll(paging);
         if(pagedResult.hasContent())
             return pagedResult.getContent();
@@ -78,7 +78,7 @@ public class WatchlistService {
     @Transactional(readOnly = true)
     public List<Watchlist> showUserWatchlist(String username, int pageNumber, int pageSize, String sortBy) throws UserNotFoundException {
         User user = userRepository.findByUsername(username).orElseThrow(UserNotFoundException::new);
-        Pageable paging = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy));
+        Pageable paging = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy).descending());
         Page<Watchlist> pagedResult = watchlistRepository.findByUser(user, paging);
         if(pagedResult.hasContent())
             return pagedResult.getContent();
@@ -87,9 +87,11 @@ public class WatchlistService {
     }
 
     @Transactional(readOnly = true)
-    public List<Watchlist> showUserWatchlistByStatus(User user, Status status , int pageNumber, int pageSize, String sortBy){
+    public List<Watchlist> showUserWatchlistByStatus(String username, String status , int pageNumber, int pageSize, String sortBy) throws UserNotFoundException {
+        User user = userRepository.findByUsername(username).orElseThrow(UserNotFoundException::new);
+        Status st = convertStatus(status);
         Pageable paging = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy).descending());
-        Page<Watchlist> pagedResult = watchlistRepository.findByUserAndStatus(user, status, paging);
+        Page<Watchlist> pagedResult = watchlistRepository.findByUserAndStatus(user, st, paging);
         if(pagedResult.hasContent())
             return pagedResult.getContent();
         else
@@ -97,7 +99,8 @@ public class WatchlistService {
     }
 
     @Transactional(readOnly = true)
-    public List<Watchlist> showUserWatchlistByScore(User user, int score , int pageNumber, int pageSize, String sortBy){
+    public List<Watchlist> showUserWatchlistByScore(String username, int score , int pageNumber, int pageSize, String sortBy) throws UserNotFoundException {
+        User user = userRepository.findByUsername(username).orElseThrow(UserNotFoundException::new);
         Pageable paging = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy).descending());
         Page<Watchlist> pagedResult = watchlistRepository.findByUserAndScoreLessThanEqual(user, score, paging);
         if(pagedResult.hasContent())
@@ -164,6 +167,26 @@ public class WatchlistService {
                         .orElseThrow(() -> new RuntimeException("Error: Status watching not found!"));
                 watchlist.setStatus(watching);
                 break;
+        }
+    }
+
+    private Status convertStatus(String status) {
+        switch(status){
+            case "completed":
+                return statusRepository.findByName(EStatus.COMPLETED)
+                        .orElseThrow(() -> new RuntimeException("Error: Status completed not found!"));
+            case "dropped":
+                return statusRepository.findByName(EStatus.DROPPED)
+                        .orElseThrow(() -> new RuntimeException("Error: Status dropped not found!"));
+            case "onhold":
+                return statusRepository.findByName(EStatus.ON_HOLD)
+                        .orElseThrow(() -> new RuntimeException("Error: Status on hold not found!"));
+            case "plantowatch":
+                return statusRepository.findByName(EStatus.PLAN_TO_WATCH)
+                        .orElseThrow(() -> new RuntimeException("Error: Status plan to watch not found!"));
+            default:
+                return statusRepository.findByName(EStatus.WATCHING)
+                        .orElseThrow(() -> new RuntimeException("Error: Status watching not found!"));
         }
     }
 }

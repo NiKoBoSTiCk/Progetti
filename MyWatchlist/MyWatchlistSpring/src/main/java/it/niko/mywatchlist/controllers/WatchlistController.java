@@ -1,7 +1,5 @@
 package it.niko.mywatchlist.controllers;
 
-import it.niko.mywatchlist.entities.Status;
-import it.niko.mywatchlist.entities.User;
 import it.niko.mywatchlist.entities.Watchlist;
 import it.niko.mywatchlist.payload.request.WatchlistRequest;
 import it.niko.mywatchlist.payload.response.MessageResponse;
@@ -48,7 +46,7 @@ public class WatchlistController {
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> getWatchlists(@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
                                           @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
-                                          @RequestParam(value = "sortBy", defaultValue = "progress") String sortBy){
+                                          @RequestParam(value = "sortBy", defaultValue = "user") String sortBy){
         List<Watchlist> ret = watchlistService.showAllWatchlists(pageNumber, pageSize, sortBy);
         if(ret.size() != 0) return ResponseEntity.ok(ret);
         return ResponseEntity.ok(new MessageResponse("No results!"));
@@ -59,32 +57,34 @@ public class WatchlistController {
     public ResponseEntity<?> getWatchlistByUser(@PathVariable String username,
                                               @RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
                                               @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
-                                              @RequestParam(value = "sortBy", defaultValue = "status_id") String sortBy) throws UserNotFoundException {
+                                              @RequestParam(value = "sortBy", defaultValue = "series") String sortBy)
+            throws UserNotFoundException {
         List<Watchlist> ret = watchlistService.showUserWatchlist(username, pageNumber, pageSize, sortBy);
         if(ret.size() != 0) return ResponseEntity.ok(ret);
         return ResponseEntity.ok(new MessageResponse("No results!"));
     }
 
-    @GetMapping("/search/by_status")
+    @GetMapping("/{username}/{status}")
     @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<?> getWatchlistByUserAndStatus(@RequestBody @Valid User user,
-                                              @RequestParam(value = "status", defaultValue = "watching") Status status,
+    public ResponseEntity<?> getWatchlistByUserAndStatus(@PathVariable String username, @PathVariable String status,
                                               @RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
                                               @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
-                                              @RequestParam(value = "sortBy", defaultValue = "title") String sortBy){
-        List<Watchlist> ret = watchlistService.showUserWatchlistByStatus(user, status, pageNumber, pageSize, sortBy);
+                                              @RequestParam(value = "sortBy", defaultValue = "score") String sortBy)
+            throws UserNotFoundException {
+        List<Watchlist> ret = watchlistService.showUserWatchlistByStatus(username, status, pageNumber, pageSize, sortBy);
         if(ret.size() != 0) return ResponseEntity.ok(ret);
         return ResponseEntity.ok(new MessageResponse("No results!"));
     }
 
-    @GetMapping("/search/by_score")
+    @GetMapping("/{username}/by_score")
     @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<?> getWatchlistByUserAndScore(@RequestBody @Valid User user,
+    public ResponseEntity<?> getWatchlistByUserAndScore(@PathVariable String username,
                                               @RequestParam(value = "score", defaultValue = "10") int score,
                                               @RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
                                               @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
-                                              @RequestParam(value = "sortBy", defaultValue = "title") String sortBy){
-        List<Watchlist> ret = watchlistService.showUserWatchlistByScore(user, score, pageNumber, pageSize, sortBy);
+                                              @RequestParam(value = "sortBy", defaultValue = "score") String sortBy)
+            throws UserNotFoundException {
+        List<Watchlist> ret = watchlistService.showUserWatchlistByScore(username, score, pageNumber, pageSize, sortBy);
         if(ret.size() != 0) return ResponseEntity.ok(ret);
         return ResponseEntity.ok(new MessageResponse("No results!"));
     }
