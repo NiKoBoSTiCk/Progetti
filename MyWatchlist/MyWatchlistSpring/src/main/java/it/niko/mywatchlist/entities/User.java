@@ -39,6 +39,7 @@ public class User {
     @Column(name = "password")
     @NotBlank
     @Size(min=8, max = 120)
+    @JsonIgnore
     private String password;
 
     @OneToMany(targetEntity = Watchlist.class, mappedBy = "user", cascade = CascadeType.ALL)
@@ -51,6 +52,7 @@ public class User {
             joinColumns = @JoinColumn(name = "id_user"),
             inverseJoinColumns = @JoinColumn(name = "id_role")
     )
+    @JsonIgnore
     private Set<Role> roles = new HashSet<>();
 
     public User() {}

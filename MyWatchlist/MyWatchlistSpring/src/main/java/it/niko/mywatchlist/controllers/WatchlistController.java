@@ -48,19 +48,19 @@ public class WatchlistController {
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> getWatchlists(@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
                                           @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
-                                          @RequestParam(value = "sortBy", defaultValue = "title") String sortBy){
+                                          @RequestParam(value = "sortBy", defaultValue = "progress") String sortBy){
         List<Watchlist> ret = watchlistService.showAllWatchlists(pageNumber, pageSize, sortBy);
         if(ret.size() != 0) return ResponseEntity.ok(ret);
         return ResponseEntity.ok(new MessageResponse("No results!"));
     }
 
-    @GetMapping("/search")
+    @GetMapping("/{username}")
     @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<?> getWatchlistByUser(@RequestBody @Valid User user,
+    public ResponseEntity<?> getWatchlistByUser(@PathVariable String username,
                                               @RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
                                               @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
-                                              @RequestParam(value = "sortBy", defaultValue = "title") String sortBy){
-        List<Watchlist> ret = watchlistService.showUserWatchlist(user, pageNumber, pageSize, sortBy);
+                                              @RequestParam(value = "sortBy", defaultValue = "status_id") String sortBy) throws UserNotFoundException {
+        List<Watchlist> ret = watchlistService.showUserWatchlist(username, pageNumber, pageSize, sortBy);
         if(ret.size() != 0) return ResponseEntity.ok(ret);
         return ResponseEntity.ok(new MessageResponse("No results!"));
     }
@@ -68,7 +68,7 @@ public class WatchlistController {
     @GetMapping("/search/by_status")
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<?> getWatchlistByUserAndStatus(@RequestBody @Valid User user,
-                                              @RequestParam(value = "status", defaultValue = "WATCHING") Status status,
+                                              @RequestParam(value = "status", defaultValue = "watching") Status status,
                                               @RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
                                               @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
                                               @RequestParam(value = "sortBy", defaultValue = "title") String sortBy){

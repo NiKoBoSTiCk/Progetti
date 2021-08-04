@@ -12,7 +12,8 @@ public class GlobalExceptionHandler{
             UserNotFoundException.class, UserAlreadyExistsException.class,
             SeriesNotFoundException.class, SeriesAlreadyExistsException.class,
             SeriesNotInWatchlistException.class, SeriesAlreadyInWatchlistException.class,
-            RuntimeException.class, UsernameAlreadyTakenException.class, EmailAlreadyTakenException.class
+            //RuntimeException.class,
+            UsernameAlreadyTakenException.class, EmailAlreadyTakenException.class
     })
     public final ResponseEntity<?> handleException(Exception ex){
         if(ex instanceof UserNotFoundException)
@@ -39,8 +40,8 @@ public class GlobalExceptionHandler{
         else if (ex instanceof EmailAlreadyTakenException)
             return ResponseEntity.badRequest().body(new MessageResponse(ex.getMessage()));
 
-        else if (ex instanceof RuntimeException)
-            return ResponseEntity.badRequest().body(new MessageResponse(ex.getMessage()));
+        //else if (ex instanceof RuntimeException)
+        //    return ResponseEntity.badRequest().body(new MessageResponse(ex.getMessage()));
 
         else return ResponseEntity.internalServerError().body(new MessageResponse(ex.getMessage()));
     }
