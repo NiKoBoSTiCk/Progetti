@@ -12,8 +12,7 @@ public class GlobalExceptionHandler{
             UserNotFoundException.class, UserAlreadyExistsException.class,
             SeriesNotFoundException.class, SeriesAlreadyExistsException.class,
             SeriesNotInWatchlistException.class, SeriesAlreadyInWatchlistException.class,
-            //RuntimeException.class,
-            UsernameAlreadyTakenException.class, EmailAlreadyTakenException.class
+            RuntimeException.class, UsernameAlreadyTakenException.class, EmailAlreadyTakenException.class
     })
     public final ResponseEntity<?> handleException(Exception ex){
         if(ex instanceof UserNotFoundException)
