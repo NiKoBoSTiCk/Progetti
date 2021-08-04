@@ -110,10 +110,10 @@ public class SeriesService {
     }
 
     @Transactional(readOnly = true)
-    public List<Series> showSeriesByGenres(String genre, int pageNumber, int pageSize, String sortBy){
-        Genre gen = convertGenre(genre);
+    public List<Series> showSeriesByGenres(String gen, int pageNumber, int pageSize, String sortBy){
+        Genre genre = convertGenre(gen);
         Pageable paging = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy).descending());
-        Page<Series> pagedResult = seriesRepository.findByGenresContains(gen, paging);
+        Page<Series> pagedResult = seriesRepository.findByGenresContains(genre, paging);
         if(pagedResult.hasContent())
             return pagedResult.getContent();
         else
