@@ -13,7 +13,7 @@ import { BoardModeratorComponent } from './board-moderator/board-moderator.compo
 import { BoardUserComponent } from './board-user/board-user.component';
 import { authInterceptorProviders } from "../_helpers/auth.interceptor";
 import {MessagesComponent} from "./messages/messages.component";
-import { DetailComponent } from './detail/detail.component';
+import { SeriesDetailComponent } from './series-detail/series.detail.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +26,7 @@ import { DetailComponent } from './detail/detail.component';
     BoardModeratorComponent,
     BoardUserComponent,
     MessagesComponent,
-    DetailComponent
+    SeriesDetailComponent
   ],
   imports: [
     BrowserModule,

@@ -27,6 +27,14 @@ export class SeriesService {
     );
   }
 
+  getSeriesById(id:number): Observable<Series> {
+    return this.httpWithoutInterceptor.get<Series>(
+      this.seriesUrl + id)
+      .pipe(
+        catchError(this.handleError<Series>('getSeriesById'))
+      );
+  }
+
   getSeriesByRating(rating:number): Observable<Series[]> {
     return this.httpWithoutInterceptor.get<Series[]>(
       this.seriesUrl + 'by_rating' + '?rating=${rating}')

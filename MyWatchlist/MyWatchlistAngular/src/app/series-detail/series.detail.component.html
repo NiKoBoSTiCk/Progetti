@@ -1,0 +1,13 @@
+<div *ngIf="serie">
+
+  <h2>{{serie.title | uppercase}} Details</h2>
+  <div><span>id: </span>{{serie.id}}</div>
+  <div><span>title: </span>{{serie.title}}</div>
+  <div><span>episodes: </span>{{serie.episodes}}</div>
+  <div><span>views: </span>{{serie.views}}</div>
+  <div><span>rating: </span>{{serie.rating}}</div>
+  <div><span>members: </span>{{serie.members}}</div>
+  <div>genres:<span *ngFor="let genre of serie.genres"> {{genre.name}} </span></div>
+
+  <button (click)="goBack()">go back</button>
+</div>

@@ -50,6 +50,11 @@ public class SeriesController {
         return ResponseEntity.ok(new MessageResponse("No results!"));
     }
 
+    @GetMapping("/search/{id}")
+    public ResponseEntity<?> getAll(@PathVariable int id) throws SeriesNotFoundException {
+        return ResponseEntity.ok(seriesService.showSeriesById(id));
+    }
+
     @GetMapping("/search/by_rating")
     public ResponseEntity<?> getByRating(@RequestParam(value = "rating", defaultValue = "10") int rating,
                                      @RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,

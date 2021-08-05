@@ -80,6 +80,11 @@ public class SeriesService {
     }
 
     @Transactional(readOnly = true)
+    public Series showSeriesById(int id) throws SeriesNotFoundException {
+        return seriesRepository.findById(id).orElseThrow(SeriesNotFoundException::new);
+    }
+
+    @Transactional(readOnly = true)
     public List<Series> showSeriesByRating(double rating, int pageNumber, int pageSize, String sortBy){
         Pageable paging = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy).descending());
         Page<Series> pagedResult = seriesRepository.findByRatingLessThanEqual(rating, paging);

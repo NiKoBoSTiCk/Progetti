@@ -7,11 +7,11 @@ import { ProfileComponent } from './profile/profile.component';
 import { BoardUserComponent } from './board-user/board-user.component';
 import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
 import { BoardAdminComponent } from './board-admin/board-admin.component';
-import { DetailComponent } from "./detail/detail.component";
+import { SeriesDetailComponent } from "./series-detail/series.detail.component";
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'detail', component: DetailComponent },
+  { path: 'detail/:id', component: SeriesDetailComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
