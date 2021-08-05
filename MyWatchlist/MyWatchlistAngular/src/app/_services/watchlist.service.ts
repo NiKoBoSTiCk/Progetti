@@ -1,0 +1,70 @@
+import { Injectable } from '@angular/core';
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import { MessageService } from "./message.service";
+import { Observable, of } from "rxjs";
+import { catchError } from "rxjs/operators";
+import { Watchlist } from "../models/watchlist";
+
+@Injectable({
+  providedIn: 'root'
+})
+export class WatchlistService {
+
+  private watchlistUrl = 'http://localhost:8000/watchlist/';
+
+  constructor(private http: HttpClient, private messageService: MessageService) { }
+
+  getWatchlist(username:string): Observable<Watchlist[]> {
+    return this.http.get<Watchlist[]>(
+      this.watchlistUrl + username)
+      .pipe(
+        catchError(this.handleError<Watchlist[]>('getWatchlist', []))
+      );
+  }
+
+  getWatchlistById(id:number): Observable<Watchlist> {
+    return this.http.get<Watchlist>(
+      this.watchlistUrl + 'by_id/' + id)
+      .pipe(
+        catchError(this.handleError<Watchlist>('getWatchlist'))
+      );
+  }
+  deleteWatchlist(title:string, username:string): Observable<any>{
+    return this.http.delete(this.watchlistUrl, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+      body: {
+        title: title,
+        username: username
+      },
+    }).pipe(
+      catchError(this.handleError<Watchlist>('deleteWatchlist'))
+    );
+  }
+
+  updateWatchlist(title:string, username:string, progress:number, status:string, score:number, comment:string): Observable<any>{
+    return this.http.put(this.watchlistUrl, {
+      title: title,
+      username: username,
+      progress: progress,
+      status: status,
+      score: score,
+      comment: comment
+    }).pipe(
+      catchError(this.handleError<Watchlist>('updateWatchlist'))
+    );
+  }
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error);
+      this.log(`${operation} failed: ${error.message}`);
+      return of(result as T);
+    };
+  }
+
+  private log(message: string) {
+    this.messageService.add(`SeriesService: ${message}`);
+  }
+}

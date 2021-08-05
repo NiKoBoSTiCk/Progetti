@@ -1,0 +1,12 @@
+<div *ngIf="watchlist">
+
+  <h2>{{watchlist.series.title | uppercase}} Details</h2>
+  <div><span>id: </span>{{watchlist.id}}</div>
+  <div><span>progress: </span>{{watchlist.progress}} / {{watchlist.series.episodes}}</div>
+  <div><span>score: </span>{{watchlist.score}}</div>
+  <div><span>status: </span>{{watchlist.status.name}}</div>
+  <div><span>comment: </span>{{watchlist.comment}}</div>
+
+  <button (click)="deleteWatchlist()">DELETE</button>
+  <button (click)="goBack()">BACK</button>
+</div>

@@ -14,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/watchlist")
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 public class WatchlistController {
     @Autowired
     private WatchlistService watchlistService;
@@ -21,7 +22,7 @@ public class WatchlistController {
     @PostMapping
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<?> create(@RequestBody @Valid WatchlistRequest watchlistRequest)
-            throws SeriesAlreadyInWatchlistException, UserNotFoundException, SeriesNotFoundException{
+            throws SeriesAlreadyInWatchlistException, UserNotFoundException, SeriesNotFoundException {
         watchlistService.addWatchlist(watchlistRequest);
         return ResponseEntity.ok(new MessageResponse("Added successful!"));
     }
@@ -46,10 +47,16 @@ public class WatchlistController {
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> getWatchlists(@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
                                           @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
-                                          @RequestParam(value = "sortBy", defaultValue = "user") String sortBy){
+                                          @RequestParam(value = "sortBy", defaultValue = "user") String sortBy) {
         List<Watchlist> ret = watchlistService.showAllWatchlists(pageNumber, pageSize, sortBy);
         if(ret.size() != 0) return ResponseEntity.ok(ret);
         return ResponseEntity.ok(new MessageResponse("No results!"));
+    }
+
+    @GetMapping("/by_id/{id}")
+    @PreAuthorize("hasRole('USER')")
+    public ResponseEntity<?> getWatchlistByUser(@PathVariable int id) throws WatchlistNotFoundException {
+        return ResponseEntity.ok(watchlistService.showWatchlistById(id));
     }
 
     @GetMapping("/{username}")

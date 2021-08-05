@@ -32,5 +32,4 @@ export class SeriesDetailComponent implements OnInit {
   goBack(): void {
     this.location.back();
   }
-
 }

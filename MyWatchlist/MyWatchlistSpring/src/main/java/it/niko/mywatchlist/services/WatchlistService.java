@@ -76,6 +76,11 @@ public class WatchlistService {
     }
 
     @Transactional(readOnly = true)
+    public Watchlist showWatchlistById(int id) throws WatchlistNotFoundException {
+        return watchlistRepository.findById(id).orElseThrow(WatchlistNotFoundException::new);
+    }
+
+    @Transactional(readOnly = true)
     public List<Watchlist> showUserWatchlist(String username, int pageNumber, int pageSize, String sortBy) throws UserNotFoundException {
         User user = userRepository.findByUsername(username).orElseThrow(UserNotFoundException::new);
         Pageable paging = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy).descending());

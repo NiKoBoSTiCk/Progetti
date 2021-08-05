@@ -8,10 +8,12 @@ import { BoardUserComponent } from './board-user/board-user.component';
 import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
 import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { SeriesDetailComponent } from "./series-detail/series.detail.component";
+import { WatchlistDetailComponent } from "./watchlist-detail/watchlist-detail.component";
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'detail/:id', component: SeriesDetailComponent },
+  { path: 'detail-watchlist/:id', component: WatchlistDetailComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },

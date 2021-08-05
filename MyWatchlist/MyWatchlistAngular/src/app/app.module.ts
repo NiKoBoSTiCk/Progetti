@@ -12,8 +12,9 @@ import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
 import { BoardUserComponent } from './board-user/board-user.component';
 import { authInterceptorProviders } from "../_helpers/auth.interceptor";
-import {MessagesComponent} from "./messages/messages.component";
+import { MessagesComponent } from "./messages/messages.component";
 import { SeriesDetailComponent } from './series-detail/series.detail.component';
+import { WatchlistDetailComponent } from './watchlist-detail/watchlist-detail.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { SeriesDetailComponent } from './series-detail/series.detail.component';
     BoardModeratorComponent,
     BoardUserComponent,
     MessagesComponent,
-    SeriesDetailComponent
+    SeriesDetailComponent,
+    WatchlistDetailComponent
   ],
   imports: [
     BrowserModule,

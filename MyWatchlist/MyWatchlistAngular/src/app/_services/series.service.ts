@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {HttpBackend, HttpClient, HttpHeaders, HttpParams,} from "@angular/common/http";
-import { Observable, of, throwError } from "rxjs";
+import {HttpBackend, HttpClient, HttpHeaders} from "@angular/common/http";
+import { Observable, of } from "rxjs";
 import { Series } from "../models/series";
 import { catchError } from "rxjs/operators";
 import { MessageService } from "./message.service";
@@ -35,9 +35,33 @@ export class SeriesService {
       );
   }
 
+  deleteSeries(title:string): Observable<any>{
+    return this.http.delete(this.seriesUrl, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+      body: {
+        title: title
+      },
+    }).pipe(
+      catchError(this.handleError<Series>('deleteSeries'))
+    );
+  }
+
+  updateSeries(title:string, episodes:number, plot:string, genres:string[]): Observable<any>{
+    return this.http.put(this.seriesUrl, {
+      title: title,
+      episodes: episodes,
+      plot: plot,
+      genres: genres
+    }).pipe(
+      catchError(this.handleError<Series>('updateSeries'))
+    );
+  }
+
   getSeriesByRating(rating:number): Observable<Series[]> {
     return this.httpWithoutInterceptor.get<Series[]>(
-      this.seriesUrl + 'by_rating' + '?rating=${rating}')
+      this.seriesUrl + 'by_rating' + '?rating=' + rating)
       .pipe(
         catchError(this.handleError<Series[]>('getSeriesByRating', []))
       );
@@ -45,7 +69,7 @@ export class SeriesService {
 
   getSeriesByViews(min:number, max:number): Observable<Series[]> {
     return this.httpWithoutInterceptor.get<Series[]>(
-      this.seriesUrl + 'by_views'+ '?minViews=${min}&maxViews=${max}')
+      this.seriesUrl + 'by_views'+ '?minViews=' + min + '&maxViews=' + max)
       .pipe(
         catchError(this.handleError<Series[]>('getSeriesByViews', []))
       );
@@ -61,7 +85,7 @@ export class SeriesService {
 
   getSeriesByGenre(genre:string): Observable<Series[]> {
     return this.httpWithoutInterceptor.get<Series[]>(
-      this.seriesUrl + 'by_genre' + '?genre=${genre}')
+      this.seriesUrl + 'by_genre' + '?genre=' + genre)
       .pipe(
         catchError(this.handleError<Series[]>('getSeriesByGenre', []))
       );
