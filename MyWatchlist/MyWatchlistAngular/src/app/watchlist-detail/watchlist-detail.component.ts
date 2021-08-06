@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
-import {Location} from "@angular/common";
-import {WatchlistService} from "../_services/watchlist.service";
-import {Watchlist} from "../models/watchlist";
-import {TokenStorageService} from "../_services/token-storage.service";
+import { ActivatedRoute } from "@angular/router";
+import { Location } from "@angular/common";
+import { WatchlistService } from "../_services/watchlist.service";
+import { Watchlist } from "../models/watchlist";
+import { TokenStorageService } from "../_services/token-storage.service";
+import { WatchForm } from "./watch-form";
 
 @Component({
   selector: 'app-watchlist-detail',
@@ -11,8 +12,12 @@ import {TokenStorageService} from "../_services/token-storage.service";
   styleUrls: ['./watchlist-detail.component.css']
 })
 export class WatchlistDetailComponent implements OnInit {
+
+  states = ['watching', 'completed', 'dropped', 'on_hold', 'plan_to_watch'];
+  model = new WatchForm(this.states[0], 0, 0, '');
   currentUser: any;
   watchlist?: Watchlist;
+  update = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -24,6 +29,7 @@ export class WatchlistDetailComponent implements OnInit {
   ngOnInit(): void {
     this.currentUser = this.token.getUser();
     this.getWatchlist();
+    this.update = false;
   }
 
   getWatchlist(): void {
@@ -34,12 +40,32 @@ export class WatchlistDetailComponent implements OnInit {
 
   deleteWatchlist(): void{
     if(this.watchlist){
-      this.watchlistService.deleteWatchlist(this.watchlist.series.title, this.currentUser.username)
+      this.watchlistService.deleteWatchlist(this.watchlist.series.title, this.currentUser.username).subscribe(
+        data => {this.reloadPage()}
+      )
     }
+  }
+
+  onSubmit(): void {
+    const {  progress, status, score, comment } = this.model;
+    if(this.watchlist) {
+      this.watchlistService.updateWatchlist(
+        this.watchlist.series.title, this.currentUser.username,
+        status, progress, score, comment).subscribe(
+        data => {this.reloadPage()}
+      )
+    }
+  }
+
+  updateButton(){
+    this.update = true;
   }
 
   goBack(): void {
     this.location.back();
   }
 
+  reloadPage(): void {
+    window.location.reload();
+  }
 }

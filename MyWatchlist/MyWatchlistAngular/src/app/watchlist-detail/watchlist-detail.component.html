@@ -7,6 +7,75 @@
   <div><span>status: </span>{{watchlist.status.name}}</div>
   <div><span>comment: </span>{{watchlist.comment}}</div>
 
+  <button (click)="updateButton()">UPDATE</button>
   <button (click)="deleteWatchlist()">DELETE</button>
   <button (click)="goBack()">BACK</button>
 </div>
+
+<form *ngIf="update" (ngSubmit)="onSubmit()" #watchForm="ngForm">
+  <div class="form-group">
+    <label for="progress">Progress</label>
+    <input type="number"
+           class="form-control"
+           id="progress"
+           required
+           [(ngModel)]="model.progress"
+           name="progress"
+           #progress="ngModel"
+    >
+    <div [hidden]="progress.valid || progress.pristine" class="alert alert-danger">
+      Progress is required!
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Status</label>
+    <select class="form-control"
+            id="status"
+            required
+            [(ngModel)]="model.status"
+            name="status"
+            #status="ngModel">
+      <option *ngFor="let s of states" [value]="s">{{s}}</option>
+    </select>
+    <div [hidden]="status.valid || status.pristine" class="alert alert-danger">
+      Status is required
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="score">Score</label>
+    <input type="number"
+           class="form-control"
+           id="score"
+           required
+           [(ngModel)]="model.score"
+           name="progress"
+           #score="ngModel"
+    >
+    <div [hidden]="score.valid || score.pristine" class="alert alert-danger">
+      Score is required!
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="comment">Comment</label>
+    <input type="text"
+           class="form-control"
+           id="comment"
+           required
+           [(ngModel)]="model.comment"
+           name="comment"
+           #comment="ngModel"
+    >
+    <div [hidden]="comment.valid || comment.pristine" class="alert alert-danger">
+      Comment is required!
+    </div>
+  </div>
+
+  <div class="form-group">
+    <button class="btn btn-primary btn-block">
+      Save
+    </button>
+  </div>
+</form>

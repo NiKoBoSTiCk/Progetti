@@ -39,11 +39,11 @@ export class WatchlistService {
         username: username
       },
     }).pipe(
-      catchError(this.handleError<Watchlist>('deleteWatchlist'))
+      catchError(this.handleError('deleteWatchlist'))
     );
   }
 
-  updateWatchlist(title:string, username:string, progress:number, status:string, score:number, comment:string): Observable<any>{
+  updateWatchlist(title:string, username:string, status:string, progress:number,  score:number, comment:string): Observable<any>{
     return this.http.put(this.watchlistUrl, {
       title: title,
       username: username,
@@ -52,7 +52,7 @@ export class WatchlistService {
       score: score,
       comment: comment
     }).pipe(
-      catchError(this.handleError<Watchlist>('updateWatchlist'))
+      catchError(this.handleError('updateWatchlist'))
     );
   }
 
