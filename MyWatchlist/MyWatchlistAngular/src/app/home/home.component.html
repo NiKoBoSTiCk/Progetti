@@ -1,14 +1,52 @@
 <h2>Series List</h2>
 
-<button (click)="getSeries('title')"> By Title </button>
-<button (click)="getSeries('views')"> Top Views </button>
-<button (click)="getSeries('rating')"> Top Rated </button>
-<ul class="series">
+<div class="list row">
+  <div class="col-md-8">
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search by title"
+        [(ngModel)]="title"
+      />
+      <div class="input-group-append">
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          (click)="searchTitle()"
+        >
+          Search
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+  <ul class="series-list">
+    <li *ngFor="let serie of series | paginate : {
+      itemsPerPage: pageSize, currentPage: pageNumber, totalItems: count
+    };">
+      <a routerLink="/detail/{{serie.id}}"> {{serie.title}} </a>
+    </li>
+  </ul>
 
-  <li *ngFor="let serie of series">
-    <a routerLink="/detail/{{serie.id}}">
-      <span class="badge">{{serie.id}}</span> {{serie.title}}
-    </a>
-  </li>
-</ul>
+  <div class="col-md-12">
+    <pagination-controls
+      previousLabel="Prev"
+      nextLabel="Next"
+      [responsive]="true"
+      (pageChange)="handlePageChange($event)">
+    </pagination-controls>
+  </div>
+
+  <div class="mt-3">
+    Items per Page:
+    <select (change)="handlePageSizeChange($event)">
+      <option *ngFor="let size of pageSizes" [ngValue]="size">
+        {{ size }}
+      </option>
+    </select>
+  </div>
+
+
+
 

@@ -41,7 +41,7 @@ export class WatchlistDetailComponent implements OnInit {
   deleteWatchlist(): void{
     if(this.watchlist){
       this.watchlistService.deleteWatchlist(this.watchlist.series.title, this.currentUser.username).subscribe(
-        data => {this.reloadPage()}
+        data => {this.goBack()}
       )
     }
   }

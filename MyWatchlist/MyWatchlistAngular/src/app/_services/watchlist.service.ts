@@ -29,6 +29,18 @@ export class WatchlistService {
         catchError(this.handleError<Watchlist>('getWatchlist'))
       );
   }
+
+  addWatchlist(title:string, username:string): Observable<any>{
+    return this.http.post(this.watchlistUrl,
+      {
+        title: title,
+        username: username
+      })
+      .pipe(
+        catchError(this.handleError('addWatchlist'))
+      );
+  }
+
   deleteWatchlist(title:string, username:string): Observable<any>{
     return this.http.delete(this.watchlistUrl, {
       headers: new HttpHeaders({

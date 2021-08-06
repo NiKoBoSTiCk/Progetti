@@ -19,11 +19,11 @@ export class SeriesService {
     this.httpWithoutInterceptor = new HttpClient(httpBackend);
   }
 
-  getAllSeries(sortBy:string): Observable<Series[]> {
-    return this.httpWithoutInterceptor.get<Series[]>(
-      this.seriesUrl + 'all' + '?sortBy=' + sortBy)
+  getAllSeries(pageNumber:number, pageSize:number, sortBy:string): Observable<any> {
+    return this.httpWithoutInterceptor.get<any>(
+      this.seriesUrl + 'all' +  '?pageSize=' + pageSize + '&pageNumber=' + pageNumber + '&sortBy=' + sortBy)
       .pipe(
-      catchError(this.handleError<Series[]>('getAllSeries', []))
+      catchError(this.handleError<any>('getAllSeries', []))
     );
   }
 

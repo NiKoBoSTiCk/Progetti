@@ -70,13 +70,9 @@ public class SeriesService {
     }
 
     @Transactional(readOnly = true)
-    public List<Series> showAllSeries(int pageNumber, int pageSize, String sortBy){
+    public Page<Series> showAllSeries(int pageNumber, int pageSize, String sortBy){
         Pageable paging = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy).descending());
-        Page<Series> pagedResult = seriesRepository.findAll(paging);
-        if(pagedResult.hasContent())
-            return pagedResult.getContent();
-        else
-            return new ArrayList<>();
+        return seriesRepository.findAll(paging);
     }
 
     @Transactional(readOnly = true)

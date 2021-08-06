@@ -7,6 +7,7 @@ import it.niko.mywatchlist.services.SeriesService;
 import it.niko.mywatchlist.support.exceptions.SeriesAlreadyExistsException;
 import it.niko.mywatchlist.support.exceptions.SeriesNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -45,8 +46,8 @@ public class SeriesController {
     public ResponseEntity<?> getAll(@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
                                  @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
                                  @RequestParam(value = "sortBy", defaultValue = "title") String sortBy){
-        List<Series> ret = seriesService.showAllSeries(pageNumber, pageSize, sortBy);
-        if(ret.size() != 0) return ResponseEntity.ok(ret);
+        Page<Series> ret = seriesService.showAllSeries(pageNumber, pageSize, sortBy);
+        if(ret.hasContent()) return ResponseEntity.ok(ret);
         return ResponseEntity.ok(new MessageResponse("No results!"));
     }
 
