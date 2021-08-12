@@ -6,10 +6,10 @@ import { Watchlist } from "../models/watchlist";
 
 @Component({
   selector: 'app-board-user',
-  templateUrl: './board-user.component.html',
-  styleUrls: ['./board-user.component.css']
+  templateUrl: './watchlist.component.html',
+  styleUrls: ['./watchlist.component.css']
 })
-export class BoardUserComponent implements OnInit {
+export class WatchlistComponent implements OnInit {
 
   currentUser: any;
   watchlist?: Watchlist[];

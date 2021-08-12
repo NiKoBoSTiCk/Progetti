@@ -1,26 +1,11 @@
-<div *ngIf="serie">
+<h2> Add Series </h2>
 
-  <h2>{{serie.title | uppercase}} Details</h2>
-  <div><span>id: </span>{{serie.id}}</div>
-  <div><span>title: </span>{{serie.title}}</div>
-  <div><span>episodes: </span>{{serie.episodes}}</div>
-  <div><span>views: </span>{{serie.views}}</div>
-  <div><span>rating: </span>{{serie.rating}}</div>
-  <div><span>members: </span>{{serie.members}}</div>
-  <div><span>plot: </span>{{serie.plot}}</div>
-  <div>genres:<span *ngFor="let genre of serie.genres"> {{genre.name}} </span></div>
-
-  <button *ngIf="isLoggedIn" (click)="addToWatchlist()">ADD TO WATCHLIST</button>
-  <button *ngIf="showUpdateButton" (click)="updateButton()">UPDATE</button>
-  <button *ngIf="showDeleteButton" (click)="deleteSeries()">DELETE</button>
-  <button (click)="goBack()">BACK</button>
-</div>
-
-<form *ngIf="update" (ngSubmit)="onSubmit()">
-
+<form (ngSubmit)="onSubmit()">
   <div class="form-group">
     <label for="title">Title</label>
     <input type="text"
+           minlength="1"
+           maxlength="20"
            class="form-control"
            id="title"
            required
@@ -28,6 +13,9 @@
            name="title"
            #title="ngModel"
     >
+    <div [hidden]="title.valid || title.pristine " class="alert alert-danger">
+      Title is required!
+    </div>
   </div>
 
   <div class="form-group">
@@ -56,6 +44,9 @@
            name="plot"
            #plot="ngModel"
     >
+    <div [hidden]="plot.valid || plot.pristine" class="alert alert-danger">
+      Plot is required!
+    </div>
   </div>
 
   <div class="form-group">
@@ -76,8 +67,9 @@
   </div>
 
   <div class="form-group">
-    <button *ngIf="title.valid && episodes.valid && plot.valid" class="btn btn-primary btn-block">
-      Save
+    <button *ngIf="title.valid && episodes.valid" class="btn btn-primary btn-block">
+      Create
     </button>
   </div>
 </form>
+

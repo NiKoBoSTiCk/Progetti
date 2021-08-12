@@ -30,7 +30,7 @@ public class SeriesController {
 
     @DeleteMapping
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<?> delete(@RequestBody @Valid String title) throws SeriesNotFoundException {
+    public ResponseEntity<?> delete(@RequestParam(value = "title") String title) throws SeriesNotFoundException {
         seriesService.removeSeries(title);
         return ResponseEntity.ok(new MessageResponse("Removed successful!"));
     }

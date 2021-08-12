@@ -74,11 +74,7 @@ public class UserService {
     @Transactional(readOnly = true)
     public List<User> showAllUsers(int pageNumber, int pageSize, String sortBy) {
         Pageable paging = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy).descending());
-        Page<User> pagedResult = userRepository.findAll(paging);
-        if(pagedResult.hasContent())
-            return pagedResult.getContent();
-        else
-            return new ArrayList<>();
+        return userRepository.findAll(paging).getContent();
     }
 
     @Transactional(readOnly = true)

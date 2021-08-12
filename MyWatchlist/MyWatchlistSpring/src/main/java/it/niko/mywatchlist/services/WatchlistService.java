@@ -41,9 +41,6 @@ public class WatchlistService {
         watchlistRepository.save(watchlist);
     }
 
-    // BUG:
-    // Ogni volta che si chiama il metodo updateWatchlist con (score != 0) viene richiamato il metodo updateRating,
-    // aggiungendo di conseguenza un nuovo membro e ricalcolando il rating.
     @Transactional
     public void updateWatchlist(WatchlistRequest wRequest) throws SeriesNotInWatchlistException, UserNotFoundException, SeriesNotFoundException {
         User user = userRepository.findByUsername(wRequest.getUsername()).orElseThrow(UserNotFoundException::new);
@@ -156,12 +153,12 @@ public class WatchlistService {
                         .orElseThrow(() -> new RuntimeException("Error: Status dropped not found!"));
                 watchlist.setStatus(dropped);
                 break;
-            case "onhold":
+            case "on_hold":
                 Status onhold = statusRepository.findByName(EStatus.ON_HOLD)
                         .orElseThrow(() -> new RuntimeException("Error: Status on hold not found!"));
                 watchlist.setStatus(onhold);
                 break;
-            case "plantowatch":
+            case "plan_to_watch":
                 Status plantowatch = statusRepository.findByName(EStatus.PLAN_TO_WATCH)
                         .orElseThrow(() -> new RuntimeException("Error: Status plan to watch not found!"));
                 watchlist.setStatus(plantowatch);

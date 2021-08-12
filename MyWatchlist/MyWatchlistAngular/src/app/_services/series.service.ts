@@ -9,7 +9,7 @@ import { MessageService } from "./message.service";
   providedIn: 'root'
 })
 export class SeriesService {
-  private seriesUrl = 'http://localhost:8000/series/';
+  private seriesUrl = 'http://localhost:8000/series';
 
   httpWithoutInterceptor: HttpClient;
 
@@ -21,7 +21,7 @@ export class SeriesService {
 
   getAllSeries(pageNumber:number, pageSize:number, sortBy:string): Observable<any> {
     return this.httpWithoutInterceptor.get<any>(
-      this.seriesUrl + 'search/all' +  '?pageSize=' + pageSize + '&pageNumber=' + pageNumber + '&sortBy=' + sortBy)
+      this.seriesUrl + '/search/all' +  '?pageSize=' + pageSize + '&pageNumber=' + pageNumber + '&sortBy=' + sortBy)
       .pipe(
       catchError(this.handleError<any>('getAllSeries', []))
     );
@@ -29,7 +29,7 @@ export class SeriesService {
 
   getSeriesById(id:number): Observable<Series> {
     return this.httpWithoutInterceptor.get<Series>(
-      this.seriesUrl + 'search/' + id)
+      this.seriesUrl + '/search/' + id)
       .pipe(
         catchError(this.handleError<Series>('getSeriesById'))
       );
@@ -37,7 +37,7 @@ export class SeriesService {
 
   getSeriesByTitle(title:string): Observable<Series[]> {
     return this.httpWithoutInterceptor.get<Series[]>(
-      this.seriesUrl + 'search/by_title' + '?title=' + title)
+      this.seriesUrl + '/search/by_title' + '?title=' + title)
       .pipe(
         catchError(this.handleError<Series[]>('getSeriesByTitle'))
       );
@@ -45,22 +45,30 @@ export class SeriesService {
 
   getSeriesByGenre(genre:string): Observable<Series[]> {
     return this.httpWithoutInterceptor.get<Series[]>(
-      this.seriesUrl + 'search/by_genre' + '?genre=' + genre)
+      this.seriesUrl + '/search/by_genre' + '?genre=' + genre)
       .pipe(
         catchError(this.handleError<Series[]>('getSeriesByGenre', []))
       );
   }
 
+  addSeries(title:string, episodes:number, plot:string, genres:string[]): Observable<any>{
+    return this.http.post(this.seriesUrl,
+      {
+        title: title,
+        episodes: episodes,
+        plot: plot,
+        genres: genres
+      })
+      .pipe(
+        catchError(this.handleError('addSeries'))
+      );
+  }
+
   deleteSeries(title:string): Observable<any>{
-    return this.http.delete(this.seriesUrl, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      }),
-      body: {
-        title: title
-      },
-    }).pipe(
-      catchError(this.handleError<Series>('deleteSeries'))
+    console.log(" " + title);
+    return this.http.delete(this.seriesUrl + '?title=' + title
+    ).pipe(
+      catchError(this.handleError('deleteSeries'))
     );
   }
 

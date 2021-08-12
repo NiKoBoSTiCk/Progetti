@@ -4,7 +4,7 @@ import { Location } from "@angular/common";
 import { WatchlistService } from "../_services/watchlist.service";
 import { Watchlist } from "../models/watchlist";
 import { TokenStorageService } from "../_services/token-storage.service";
-import { WatchForm } from "./watch-form";
+import { WatchForm } from "../models/watch-form";
 
 @Component({
   selector: 'app-watchlist-detail',
@@ -29,7 +29,6 @@ export class WatchlistDetailComponent implements OnInit {
   ngOnInit(): void {
     this.currentUser = this.token.getUser();
     this.getWatchlist();
-    this.update = false;
   }
 
   getWatchlist(): void {
@@ -41,13 +40,13 @@ export class WatchlistDetailComponent implements OnInit {
   deleteWatchlist(): void{
     if(this.watchlist){
       this.watchlistService.deleteWatchlist(this.watchlist.series.title, this.currentUser.username).subscribe(
-        data => {this.goBack()}
+        _ => { this.goBack() }
       )
     }
   }
 
   onSubmit(): void {
-    const {  progress, status, score, comment } = this.model;
+    const { progress, status, score, comment } = this.model;
     if(this.watchlist) {
       this.watchlistService.updateWatchlist(
         this.watchlist.series.title, this.currentUser.username,
@@ -58,7 +57,7 @@ export class WatchlistDetailComponent implements OnInit {
   }
 
   updateButton(){
-    this.update = true;
+    this.update = !this.update;
   }
 
   goBack(): void {
