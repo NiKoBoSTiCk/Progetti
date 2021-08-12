@@ -71,7 +71,9 @@ public class SeriesService {
 
     @Transactional(readOnly = true)
     public Page<Series> showAllSeries(int pageNumber, int pageSize, String sortBy){
-        Pageable paging = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy).descending());
+        Pageable paging;
+        if(sortBy.equals("title")) paging = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy).ascending());
+        else paging = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy).descending());
         return seriesRepository.findAll(paging);
     }
 

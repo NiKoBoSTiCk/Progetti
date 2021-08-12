@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SeriesService } from '../_services/series.service';
-import {Series} from "../models/series";
+import { Series } from "../models/series";
 
 @Component({
   selector: 'app-home',
@@ -9,13 +9,13 @@ import {Series} from "../models/series";
 })
 export class HomeComponent implements OnInit {
   series: Series[] = [];
-  currentIndex = -1;
   title = '';
   pageNumber = 1;
   count = 0;
-  pageSize = 3;
-  pageSizes = [3, 6, 9];
-  sortBy = '';
+  pageSize = 5;
+  pageSizes = [5, 10, 15];
+  sortType = ['title', 'rating', 'views', 'members'];
+  sortBy = 'title';
 
   constructor(private seriesService: SeriesService) { }
 
@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
 
   getAllSeries(){
     const params = this.getRequestParams(this.pageNumber, this.pageSize, this.sortBy);
-    this.seriesService.getAllSeries(params.pageNumber, params.pageSize, 'title').subscribe(
+    this.seriesService.getAllSeries(params.pageNumber, params.pageSize, params.sortBy).subscribe(
       response => {
         const { content, totalElements } = response;
         this.series = content;
@@ -48,7 +48,7 @@ export class HomeComponent implements OnInit {
   searchTitle() {
     this.seriesService.getSeriesByTitle(this.title).subscribe(
       data => {
-        this.series[0] = data;
+        this.series = data;
       },
       err => {
         this.series = JSON.parse(err.error).message;
@@ -67,8 +67,8 @@ export class HomeComponent implements OnInit {
     this.getAllSeries();
   }
 
-  refreshList(): void {
+  changeSortType(event: any){
+    this.sortBy = event.target.value;
     this.getAllSeries();
-    this.currentIndex = -1;
   }
 }
