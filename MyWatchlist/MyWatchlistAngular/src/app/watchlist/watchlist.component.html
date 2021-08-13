@@ -1,7 +1,18 @@
 <h2>{{currentUser.username}}'s Watchlist</h2>
 
-<ul class="watchlist">
 
+<div class="sort-type">
+  Search By Status
+  <select (change)="searchByStatus($event)">
+    <option *ngFor="let status of statusList" [ngValue]="status">
+      {{ status }}
+    </option>
+  </select>
+</div>
+
+
+
+<ul class="watchlist">
   <li *ngFor="let w of watchlist">
     <a routerLink="/detail-watchlist/{{w.id}}">
        {{w.series.title}}

@@ -22,6 +22,14 @@ export class WatchlistService {
       );
   }
 
+  getWatchlistByStatus(username:string, status:string): Observable<Watchlist[]> {
+    return this.http.get<Watchlist[]>(
+      this.watchlistUrl + username + '/' + status)
+      .pipe(
+        catchError(this.handleError<Watchlist[]>('getWatchlist', []))
+      );
+  }
+
   getWatchlistById(id:number): Observable<Watchlist> {
     return this.http.get<Watchlist>(
       this.watchlistUrl + 'by_id/' + id)

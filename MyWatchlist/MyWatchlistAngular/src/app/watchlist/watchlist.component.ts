@@ -13,12 +13,14 @@ export class WatchlistComponent implements OnInit {
 
   currentUser: any;
   watchlist?: Watchlist[];
+  statusList = ['watching', 'completed', 'dropped', 'plan_to_watch', 'on_hold'];
+  status = 'watching';
 
   constructor(private watchlistService: WatchlistService, private token: TokenStorageService) { }
 
   ngOnInit(): void {
     this.currentUser = this.token.getUser();
-    this.getWatchlist(this.currentUser.username)
+    this.getWatchlist(this.currentUser.username);
   }
 
   getWatchlist(username:string){
@@ -32,4 +34,20 @@ export class WatchlistComponent implements OnInit {
     );
   }
 
+  getWatchlistByStatus(username:string, status:string){
+    this.watchlistService.getWatchlistByStatus(username, status).subscribe(
+      data => {
+        this.watchlist = data;
+      },
+      err => {
+        this.watchlist = JSON.parse(err.error).message;
+      }
+    );
+  }
+
+  searchByStatus(event:any) {
+    this.status = event.target.value;
+    console.log(" status => " + event.target.value);
+    this.getWatchlistByStatus(this.currentUser.username, status);
+  }
 }
