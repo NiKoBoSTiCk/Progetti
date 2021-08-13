@@ -25,7 +25,7 @@ export class AddSeriesComponent implements OnInit {
   onSubmit() {
     const {  title, episodes, plot, genres } = this.model;
     this.seriesService.addSeries(title, episodes, plot, genres).subscribe(
-      data => {this.reloadPage()}
+      _ => { this.reloadPage() }
     )
   }
 

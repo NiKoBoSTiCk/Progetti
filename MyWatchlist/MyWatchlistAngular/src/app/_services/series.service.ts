@@ -73,6 +73,7 @@ export class SeriesService {
   }
 
   updateSeries(title:string, episodes:number, plot:string, genres:string[]): Observable<any>{
+    console.log(" episodes :"+ episodes);
     return this.http.put(this.seriesUrl, {
       title: title,
       episodes: episodes,

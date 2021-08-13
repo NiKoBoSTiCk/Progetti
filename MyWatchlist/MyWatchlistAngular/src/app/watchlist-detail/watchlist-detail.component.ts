@@ -14,6 +14,7 @@ import { WatchForm } from "../models/watch-form";
 export class WatchlistDetailComponent implements OnInit {
 
   states = ['watching', 'completed', 'dropped', 'on_hold', 'plan_to_watch'];
+  scores = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   model = new WatchForm(this.states[0], 0, 0, '');
   currentUser: any;
   watchlist?: Watchlist;

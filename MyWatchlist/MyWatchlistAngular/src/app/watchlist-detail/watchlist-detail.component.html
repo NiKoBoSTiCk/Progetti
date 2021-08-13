@@ -14,13 +14,13 @@
 
 <form *ngIf="update" (ngSubmit)="onSubmit()">
   <div class="form-group">
-    <label for="progress">Progress</label>
-    <input type="number"
-           class="form-control"
-           id="progress"
+    <label>Progress</label>
+    <input class="form-control"
+           name="progress"
+           type="number"
+           min="0"
            required
            [(ngModel)]="model.progress"
-           name="progress"
            #progress="ngModel"
     >
     <div [hidden]="progress.valid || progress.pristine" class="alert alert-danger">
@@ -31,43 +31,39 @@
   <div class="form-group">
     <label>Status</label>
     <select class="form-control"
-            id="status"
+            name="status"
             required
             [(ngModel)]="model.status"
-            name="status">
-      <option *ngFor="let s of states" [value]="s">{{s}}</option>
+    >
+      <option *ngFor="let state of states" [value]="state">{{state}}</option>
     </select>
   </div>
 
   <div class="form-group">
-    <label for="score">Score</label>
-    <input type="number"
-           min="0"
-           class="form-control"
-           id="score"
-           required
-           [(ngModel)]="model.score"
-           name="score"
-           #score="ngModel"
+    <label>Score</label>
+    <select class="form-control"
+            name="score"
+            required
+            [(ngModel)]="model.score"
     >
-    <div [hidden]="score.valid || score.pristine" class="alert alert-danger">
-      Score is required!
-    </div>
+      <option *ngFor="let score of scores" [value]="score">{{score}}</option>
+    </select>
   </div>
 
   <div class="form-group">
-    <label for="comment">Comment</label>
-    <input type="text"
-           class="form-control"
+    <label>Comment</label>
+    <input class="form-control"
+           type="text"
+           name="comment"
+           maxlength="200"
            id="comment"
            required
            [(ngModel)]="model.comment"
-           name="comment"
     >
   </div>
 
   <div class="form-group">
-    <button *ngIf="score.valid" class="btn btn-primary btn-block">
+    <button *ngIf="progress.valid" class="btn btn-primary btn-block">
       Save
     </button>
   </div>

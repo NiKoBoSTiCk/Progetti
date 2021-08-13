@@ -46,10 +46,10 @@ export class SeriesDetailComponent implements OnInit {
   }
 
   onSubmit() {
-    const { title, episodes, plot, genres } = this.model;
+    const { episodes, plot, genres } = this.model;
     if(this.serie) {
       this.seriesService.updateSeries(
-        title, episodes, plot, genres ).subscribe(
+        this.serie.title, episodes, plot, genres ).subscribe(
         _ => { this.reloadPage() }
       )
     }

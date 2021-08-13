@@ -20,8 +20,10 @@
 
 <ul class="series-list">
   <li *ngFor="let serie of series | paginate : {
-     itemsPerPage: pageSize, currentPage: pageNumber, totalItems: count
-   };">
+     itemsPerPage: pageSize,
+     currentPage: pageNumber,
+     totalItems: count
+     };">
     <a routerLink="/detail/{{serie.id}}"> {{serie.title}} </a>
   </li>
 </ul>
