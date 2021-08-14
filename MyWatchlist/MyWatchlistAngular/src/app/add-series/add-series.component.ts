@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SeriesService } from "../_services/series.service";
 import { SeriesForm } from "../models/series-form";
+import { Genres } from "../models/genres";
 
 @Component({
   selector: 'app-board-admin',
@@ -9,18 +10,12 @@ import { SeriesForm } from "../models/series-form";
 })
 export class AddSeriesComponent implements OnInit {
 
-  genresList = ['drama', 'crime', 'sci_fi', 'comedy', 'fantasy', 'animation',
-            'sitcom', 'reality', 'soap_opera', 'telenovela', 'documentary',
-            'action', 'educational', 'sport', 'horror', 'romance',
-            'satirical', 'supernatural', 'science', 'school', 'time_travel',
-            'historical', 'adventure', 'thriller', 'war'];
+  genresList = Genres.list;
   model = new SeriesForm('', 0, '', []);
 
   constructor(private seriesService: SeriesService) { }
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void { }
 
   onSubmit() {
     const {  title, episodes, plot, genres } = this.model;

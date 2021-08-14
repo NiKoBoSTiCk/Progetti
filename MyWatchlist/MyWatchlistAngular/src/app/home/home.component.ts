@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SeriesService } from '../_services/series.service';
 import { Series } from "../models/series";
+import {Genres} from "../models/genres";
 
 @Component({
   selector: 'app-home',
@@ -9,6 +10,10 @@ import { Series } from "../models/series";
 })
 export class HomeComponent implements OnInit {
   series: Series[] = [];
+  sortType = ['title', 'rating', 'views', 'members'];
+  genresList = Genres.list;
+  selectedGenre = '';
+  sortBy = 'title';
   title = '';
   byTitle = false;
   byGenre = false;
@@ -16,14 +21,6 @@ export class HomeComponent implements OnInit {
   count = 0;
   pageSize = 5;
   pageSizes = [5, 10, 15];
-  sortType = ['title', 'rating', 'views', 'members'];
-  genresList = ['drama', 'crime', 'sci_fi', 'comedy', 'fantasy', 'animation',
-    'sitcom', 'reality', 'soap_opera', 'telenovela', 'documentary',
-    'action', 'educational', 'sport', 'horror', 'romance',
-    'satirical', 'supernatural', 'science', 'school', 'time_travel',
-    'historical', 'adventure', 'thriller', 'war'];
-  selectedGenre = '';
-  sortBy = 'title';
 
   constructor(private seriesService: SeriesService) { }
 

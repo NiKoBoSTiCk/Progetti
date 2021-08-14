@@ -7,6 +7,7 @@ import { TokenStorageService } from "../_services/token-storage.service";
 import { WatchlistService } from "../_services/watchlist.service";
 import { SeriesForm } from "../models/series-form";
 import {MessageService} from "../_services/message.service";
+import {Genres} from "../models/genres";
 
 
 @Component({
@@ -15,7 +16,9 @@ import {MessageService} from "../_services/message.service";
   styleUrls: ['./series.detail.component.css']
 })
 export class SeriesDetailComponent implements OnInit {
+
   serie?:Series;
+  genresList = Genres.list;
   currentUser: any;
   isLoggedIn = false;
   showDeleteButton = false;
@@ -23,11 +26,6 @@ export class SeriesDetailComponent implements OnInit {
   watchlistAdded = false;
   update = false;
   model = new SeriesForm('', 0, '', []);
-  genresList = ['drama', 'crime', 'sci_fi', 'comedy', 'fantasy', 'animation',
-    'sitcom', 'reality', 'soap_opera', 'telenovela', 'documentary',
-    'action', 'educational', 'sport', 'horror', 'romance',
-    'satirical', 'supernatural', 'science', 'school', 'time_travel',
-    'historical', 'adventure', 'thriller', 'war'];
 
   constructor(
     private route: ActivatedRoute,

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { MessageService } from "./message.service";
 import { Observable, of } from "rxjs";
 import { catchError } from "rxjs/operators";
@@ -13,30 +13,6 @@ export class WatchlistService {
   private watchlistUrl = 'http://localhost:8000/watchlist/';
 
   constructor(private http: HttpClient, private messageService: MessageService) { }
-
-  getWatchlist(username:string): Observable<Watchlist[]> {
-    return this.http.get<Watchlist[]>(
-      this.watchlistUrl + username)
-      .pipe(
-        catchError(this.handleError<Watchlist[]>('getWatchlist', []))
-      );
-  }
-
-  getWatchlistByStatus(username:string, status:string): Observable<Watchlist[]> {
-    return this.http.get<Watchlist[]>(
-      this.watchlistUrl + username + '/by_status?status=' + status)
-      .pipe(
-        catchError(this.handleError<Watchlist[]>('getWatchlist', []))
-      );
-  }
-
-  getWatchlistById(username:string, id:number): Observable<Watchlist> {
-    return this.http.get<Watchlist>(
-      this.watchlistUrl + username + '/' + id)
-      .pipe(
-        catchError(this.handleError<Watchlist>('getWatchlist'))
-      );
-  }
 
   addWatchlist(title:string, username:string): Observable<any>{
     return this.http.post(this.watchlistUrl,
@@ -74,6 +50,30 @@ export class WatchlistService {
     }).pipe(
       catchError(this.handleError('updateWatchlist'))
     );
+  }
+
+  getWatchlist(username:string): Observable<Watchlist[]> {
+    return this.http.get<Watchlist[]>(
+      this.watchlistUrl + username)
+      .pipe(
+        catchError(this.handleError<Watchlist[]>('getWatchlist', []))
+      );
+  }
+
+  getWatchlistByStatus(username:string, status:string): Observable<Watchlist[]> {
+    return this.http.get<Watchlist[]>(
+      this.watchlistUrl + username + '/by_status?status=' + status)
+      .pipe(
+        catchError(this.handleError<Watchlist[]>('getWatchlist', []))
+      );
+  }
+
+  getWatchlistById(username:string, id:number): Observable<Watchlist> {
+    return this.http.get<Watchlist>(
+      this.watchlistUrl + username + '/' + id)
+      .pipe(
+        catchError(this.handleError<Watchlist>('getWatchlist'))
+      );
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
