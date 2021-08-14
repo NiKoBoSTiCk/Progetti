@@ -104,7 +104,7 @@ public class SeriesService {
 
     @Transactional(readOnly = true)
     public List<Series> showSeriesByTitle(String title, int pageNumber, int pageSize, String sortBy){
-        Pageable paging = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy).descending());
+        Pageable paging = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy).ascending());
         Page<Series> pagedResult = seriesRepository.findByTitleContaining(title, paging);
         if(pagedResult.hasContent())
             return pagedResult.getContent();

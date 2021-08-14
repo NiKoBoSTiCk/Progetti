@@ -79,8 +79,7 @@ public class WatchlistController {
                                               @RequestParam(value = "sortBy", defaultValue = "score") String sortBy)
             throws UserNotFoundException {
         List<Watchlist> ret = watchlistService.showUserWatchlistByStatus(username, status, pageNumber, pageSize, sortBy);
-        if(ret.size() != 0) return ResponseEntity.ok(ret);
-        return ResponseEntity.ok(new MessageResponse("No results!"));
+        return ResponseEntity.ok(ret);
     }
 
     @GetMapping("/{username}/by_score")

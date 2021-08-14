@@ -1,15 +1,11 @@
 <h2>{{currentUser.username}}'s Watchlist</h2>
 
-
-<div class="sort-type">
-  Search By Status
-  <select (change)="searchByStatus($event)">
-    <option *ngFor="let status of statusList" [ngValue]="status">
-      {{ status }}
-    </option>
-  </select>
-</div>
-
+<button (click)="getWatchlist(currentUser.username)"> All </button>
+<button (click)="searchByStatus('watching')"> Watching </button>
+<button (click)="searchByStatus('dropped')"> Dropped </button>
+<button (click)="searchByStatus('completed')"> Completed </button>
+<button (click)="searchByStatus('plantowatch')"> Plan To Watch </button>
+<button (click)="searchByStatus('onhold')"> On Hold </button>
 
 
 <ul class="watchlist">

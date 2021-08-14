@@ -13,8 +13,6 @@ export class WatchlistComponent implements OnInit {
 
   currentUser: any;
   watchlist?: Watchlist[];
-  statusList = ['watching', 'completed', 'dropped', 'plan_to_watch', 'on_hold'];
-  status = 'watching';
 
   constructor(private watchlistService: WatchlistService, private token: TokenStorageService) { }
 
@@ -45,9 +43,7 @@ export class WatchlistComponent implements OnInit {
     );
   }
 
-  searchByStatus(event:any) {
-    this.status = event.target.value;
-    console.log(" status => " + event.target.value);
+  searchByStatus(status:string) {
     this.getWatchlistByStatus(this.currentUser.username, status);
   }
 }
