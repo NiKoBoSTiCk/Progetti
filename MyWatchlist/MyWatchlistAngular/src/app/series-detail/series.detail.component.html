@@ -10,14 +10,17 @@
   <div><span>plot: </span>{{serie.plot}}</div>
   <div>genres:<span *ngFor="let genre of serie.genres"> {{genre.name}} </span></div>
 
-  <button *ngIf="isLoggedIn" (click)="addToWatchlist()">ADD TO WATCHLIST</button>
+  <button *ngIf="isLoggedIn && !watchlistAdded" (click)="addToWatchlist()">ADD TO WATCHLIST</button>
   <button *ngIf="showUpdateButton" (click)="updateButton()">UPDATE</button>
   <button *ngIf="showDeleteButton" (click)="deleteSeries()">DELETE</button>
   <button (click)="goBack()">BACK</button>
 </div>
 
-<form *ngIf="update && serie" (ngSubmit)="onSubmit()">
+<div class="alert alert-success" *ngIf="watchlistAdded">
+  Series added to {{currentUser.username}}'s Watchlist.
+</div>
 
+<form *ngIf="update && serie" (ngSubmit)="onSubmit()">
   <div class="form-group">
     <label>Episodes</label>
     <input class="form-control"

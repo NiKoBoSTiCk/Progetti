@@ -10,11 +10,19 @@ import { Series } from "../models/series";
 export class HomeComponent implements OnInit {
   series: Series[] = [];
   title = '';
+  byTitle = false;
+  byGenre = false;
   pageNumber = 1;
   count = 0;
   pageSize = 5;
   pageSizes = [5, 10, 15];
   sortType = ['title', 'rating', 'views', 'members'];
+  genresList = ['drama', 'crime', 'sci_fi', 'comedy', 'fantasy', 'animation',
+    'sitcom', 'reality', 'soap_opera', 'telenovela', 'documentary',
+    'action', 'educational', 'sport', 'horror', 'romance',
+    'satirical', 'supernatural', 'science', 'school', 'time_travel',
+    'historical', 'adventure', 'thriller', 'war'];
+  selectedGenre = '';
   sortBy = 'title';
 
   constructor(private seriesService: SeriesService) { }
@@ -24,8 +32,43 @@ export class HomeComponent implements OnInit {
   }
 
   getAllSeries(){
+    this.byTitle = false;
+    this.byGenre = false;
     const params = this.getRequestParams(this.pageNumber, this.pageSize, this.sortBy);
     this.seriesService.getAllSeries(params.pageNumber, params.pageSize, params.sortBy).subscribe(
+      response => {
+        const { content, totalElements } = response;
+        this.series = content;
+        this.count = totalElements;
+      },
+      err => {
+        this.series = JSON.parse(err.error).message;
+      }
+    );
+  }
+
+  searchTitle() {
+    this.byTitle = true;
+    this.byGenre = false;
+    this.selectedGenre = '';
+    const params = this.getRequestParams(this.pageNumber, this.pageSize, this.sortBy);
+    this.seriesService.getSeriesByTitle(this.title, params.pageNumber, params.pageSize, params.sortBy).subscribe(
+      response => {
+        const { content, totalElements } = response;
+        this.series = content;
+        this.count = totalElements;
+      },
+      err => {
+        this.series = JSON.parse(err.error).message;
+      }
+    );
+  }
+
+  searchGenre() {
+    this.byGenre = true;
+    this.byTitle = false;
+    const params = this.getRequestParams(this.pageNumber, this.pageSize, this.sortBy);
+    this.seriesService.getSeriesByGenre(this.selectedGenre, params.pageNumber, params.pageSize, params.sortBy).subscribe(
       response => {
         const { content, totalElements } = response;
         this.series = content;
@@ -45,30 +88,25 @@ export class HomeComponent implements OnInit {
     return params;
   }
 
-  searchTitle() {
-    this.seriesService.getSeriesByTitle(this.title).subscribe(
-      data => {
-        this.series = data;
-      },
-      err => {
-        this.series = JSON.parse(err.error).message;
-      }
-    );
-  }
-
   handlePageChange(event: number): void {
     this.pageNumber = event;
-    this.getAllSeries();
+    if(this.byTitle) this.searchTitle();
+    else if(this.byGenre) this.searchGenre();
+    else this.getAllSeries();
   }
 
   handlePageSizeChange(event: any): void {
     this.pageSize = event.target.value;
     this.pageNumber = 1;
-    this.getAllSeries();
+    if(this.byTitle) this.searchTitle();
+    else if(this.byGenre) this.searchGenre();
+    else this.getAllSeries();
   }
 
   changeSortType(event: any){
     this.sortBy = event.target.value;
-    this.getAllSeries();
+    if(this.byTitle) this.searchTitle();
+    else if(this.byGenre) this.searchGenre();
+    else this.getAllSeries();
   }
 }

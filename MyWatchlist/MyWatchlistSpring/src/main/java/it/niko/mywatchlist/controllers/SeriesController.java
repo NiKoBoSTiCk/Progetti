@@ -52,7 +52,7 @@ public class SeriesController {
     }
 
     @GetMapping("/search/{id}")
-    public ResponseEntity<?> getAll(@PathVariable int id) throws SeriesNotFoundException {
+    public ResponseEntity<?> getById(@PathVariable int id) throws SeriesNotFoundException {
         return ResponseEntity.ok(seriesService.showSeriesById(id));
     }
 
@@ -82,9 +82,8 @@ public class SeriesController {
                                     @RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
                                     @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
                                     @RequestParam(value = "sortBy", defaultValue = "title") String sortBy){
-        List<Series> ret = seriesService.showSeriesByTitle(title, pageNumber, pageSize, sortBy);
-        if(ret.size() != 0) return ResponseEntity.ok(ret);
-        return ResponseEntity.ok(new MessageResponse("No results!"));
+        Page<Series> ret = seriesService.showSeriesByTitle(title, pageNumber, pageSize, sortBy);
+        return ResponseEntity.ok(ret);
     }
 
     @GetMapping("/search/by_genre")
@@ -92,8 +91,7 @@ public class SeriesController {
                                         @RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
                                         @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
                                         @RequestParam(value = "sortBy", defaultValue = "title") String sortBy){
-        List<Series> ret = seriesService.showSeriesByGenres(genre, pageNumber, pageSize, sortBy);
-        if(ret.size() != 0) return ResponseEntity.ok(ret);
-        return ResponseEntity.ok(new MessageResponse("No results!"));
+        Page<Series> ret = seriesService.showSeriesByGenres(genre, pageNumber, pageSize, sortBy);
+        return ResponseEntity.ok(ret);
     }
 }

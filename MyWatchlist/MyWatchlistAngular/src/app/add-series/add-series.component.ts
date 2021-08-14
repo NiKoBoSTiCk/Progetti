@@ -11,7 +11,7 @@ export class AddSeriesComponent implements OnInit {
 
   genresList = ['drama', 'crime', 'sci_fi', 'comedy', 'fantasy', 'animation',
             'sitcom', 'reality', 'soap_opera', 'telenovela', 'documentary',
-            'action', 'educational', 'sports', 'horror', 'romance',
+            'action', 'educational', 'sport', 'horror', 'romance',
             'satirical', 'supernatural', 'science', 'school', 'time_travel',
             'historical', 'adventure', 'thriller', 'war'];
   model = new SeriesForm('', 0, '', []);

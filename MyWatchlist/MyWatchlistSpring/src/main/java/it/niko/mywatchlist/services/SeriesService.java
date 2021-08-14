@@ -103,24 +103,20 @@ public class SeriesService {
     }
 
     @Transactional(readOnly = true)
-    public List<Series> showSeriesByTitle(String title, int pageNumber, int pageSize, String sortBy){
-        Pageable paging = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy).ascending());
-        Page<Series> pagedResult = seriesRepository.findByTitleContaining(title, paging);
-        if(pagedResult.hasContent())
-            return pagedResult.getContent();
-        else
-            return new ArrayList<>();
+    public Page<Series> showSeriesByTitle(String title, int pageNumber, int pageSize, String sortBy){
+        Pageable paging;
+        if(sortBy.equals("title")) paging = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy).ascending());
+        else paging = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy).descending());
+        return seriesRepository.findByTitleContaining(title, paging);
     }
 
     @Transactional(readOnly = true)
-    public List<Series> showSeriesByGenres(String gen, int pageNumber, int pageSize, String sortBy){
+    public Page<Series> showSeriesByGenres(String gen, int pageNumber, int pageSize, String sortBy){
         Genre genre = convertGenre(gen);
-        Pageable paging = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy).descending());
-        Page<Series> pagedResult = seriesRepository.findByGenresContains(genre, paging);
-        if(pagedResult.hasContent())
-            return pagedResult.getContent();
-        else
-            return new ArrayList<>();
+        Pageable paging;
+        if(sortBy.equals("title")) paging = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy).ascending());
+        else paging = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy).descending());
+        return seriesRepository.findByGenresContains(genre, paging);
     }
 
     private Genre convertGenre(String genre){
@@ -161,7 +157,7 @@ public class SeriesService {
             case "reality":
                 return genreRepository.findByName(EGenre.REALITY)
                         .orElseThrow(() -> new RuntimeException("Error: Genre reality not found."));
-            case "soap-opera":
+            case "soap_opera":
                 return genreRepository.findByName(EGenre.SOAP_OPERA)
                         .orElseThrow(() -> new RuntimeException("Error: Genre sci-fi not found."));
             case "telenovela":

@@ -53,10 +53,11 @@ public class WatchlistController {
         return ResponseEntity.ok(new MessageResponse("No results!"));
     }
 
-    @GetMapping("/by_id/{id}")
+    @GetMapping("/{username}/{id}")
     @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<?> getWatchlistByUser(@PathVariable int id) throws WatchlistNotFoundException {
-        return ResponseEntity.ok(watchlistService.showWatchlistById(id));
+    public ResponseEntity<?> getWatchlistByUserAndId(@PathVariable String username, @PathVariable int id)
+            throws WatchlistNotFoundException, UserNotFoundException {
+        return ResponseEntity.ok(watchlistService.showUserWatchlistById(username, id));
     }
 
     @GetMapping("/{username}")
@@ -64,16 +65,17 @@ public class WatchlistController {
     public ResponseEntity<?> getWatchlistByUser(@PathVariable String username,
                                               @RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
                                               @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
-                                              @RequestParam(value = "sortBy", defaultValue = "series") String sortBy)
+                                              @RequestParam(value = "sortBy", defaultValue = "score") String sortBy)
             throws UserNotFoundException {
         List<Watchlist> ret = watchlistService.showUserWatchlist(username, pageNumber, pageSize, sortBy);
         if(ret.size() != 0) return ResponseEntity.ok(ret);
         return ResponseEntity.ok(new MessageResponse("No results!"));
     }
 
-    @GetMapping("/{username}/{status}")
+    @GetMapping("/{username}/by_status")
     @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<?> getWatchlistByUserAndStatus(@PathVariable String username, @PathVariable String status,
+    public ResponseEntity<?> getWatchlistByUserAndStatus(@PathVariable String username,
+                                                         @RequestParam(value = "status", defaultValue = "watching") String status,
                                               @RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
                                               @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
                                               @RequestParam(value = "sortBy", defaultValue = "score") String sortBy)

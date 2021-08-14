@@ -24,15 +24,15 @@ export class WatchlistService {
 
   getWatchlistByStatus(username:string, status:string): Observable<Watchlist[]> {
     return this.http.get<Watchlist[]>(
-      this.watchlistUrl + username + '/' + status)
+      this.watchlistUrl + username + '/by_status?status=' + status)
       .pipe(
         catchError(this.handleError<Watchlist[]>('getWatchlist', []))
       );
   }
 
-  getWatchlistById(id:number): Observable<Watchlist> {
+  getWatchlistById(username:string, id:number): Observable<Watchlist> {
     return this.http.get<Watchlist>(
-      this.watchlistUrl + 'by_id/' + id)
+      this.watchlistUrl + username + '/' + id)
       .pipe(
         catchError(this.handleError<Watchlist>('getWatchlist'))
       );
@@ -85,6 +85,6 @@ export class WatchlistService {
   }
 
   private log(message: string) {
-    this.messageService.add(`SeriesService: ${message}`);
+    this.messageService.add(`WatchlistService: ${message}`);
   }
 }

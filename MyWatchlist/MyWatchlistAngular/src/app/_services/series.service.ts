@@ -35,19 +35,19 @@ export class SeriesService {
       );
   }
 
-  getSeriesByTitle(title:string): Observable<Series[]> {
-    return this.httpWithoutInterceptor.get<Series[]>(
-      this.seriesUrl + '/search/by_title' + '?title=' + title)
+  getSeriesByTitle(title:string, pageNumber:number, pageSize:number, sortBy:string): Observable<any> {
+    return this.httpWithoutInterceptor.get<any>(
+      this.seriesUrl + '/search/by_title' + '?title=' + title + '&pageSize=' + pageSize + '&pageNumber=' + pageNumber + '&sortBy=' + sortBy)
       .pipe(
-        catchError(this.handleError<Series[]>('getSeriesByTitle'))
+        catchError(this.handleError<any>('getSeriesByTitle'))
       );
   }
 
-  getSeriesByGenre(genre:string): Observable<Series[]> {
-    return this.httpWithoutInterceptor.get<Series[]>(
-      this.seriesUrl + '/search/by_genre' + '?genre=' + genre)
+  getSeriesByGenre(genre:string, pageNumber:number, pageSize:number, sortBy:string): Observable<any> {
+    return this.httpWithoutInterceptor.get<any>(
+      this.seriesUrl + '/search/by_genre' + '?genre=' + genre + '&pageSize=' + pageSize + '&pageNumber=' + pageNumber + '&sortBy=' + sortBy)
       .pipe(
-        catchError(this.handleError<Series[]>('getSeriesByGenre', []))
+        catchError(this.handleError<any>('getSeriesByGenre', []))
       );
   }
 

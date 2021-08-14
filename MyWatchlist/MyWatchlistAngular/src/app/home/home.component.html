@@ -55,6 +55,15 @@
   </select>
 </div>
 
+<div class="genre-type">
+  Genre:
+  <select [(ngModel)]="selectedGenre" (change)="searchGenre()">
+    <option *ngFor="let genre of genresList" [ngValue]="genre">
+      {{ genre }}
+    </option>
+  </select>
+</div>
+
 
 
 

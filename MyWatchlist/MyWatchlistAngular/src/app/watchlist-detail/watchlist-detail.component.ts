@@ -34,7 +34,7 @@ export class WatchlistDetailComponent implements OnInit {
 
   getWatchlist(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.watchlistService.getWatchlistById(id)
+    this.watchlistService.getWatchlistById(this.currentUser.username, id)
       .subscribe(watchlist => this.watchlist = watchlist);
   }
 

@@ -48,6 +48,6 @@ export class AuthService {
   }
 
   private log(message: string) {
-    this.messageService.add(`SeriesService: ${message}`);
+    this.messageService.add(`AuthService: ${message}`);
   }
 }

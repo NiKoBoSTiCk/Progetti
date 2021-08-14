@@ -73,8 +73,11 @@ public class WatchlistService {
     }
 
     @Transactional(readOnly = true)
-    public Watchlist showWatchlistById(int id) throws WatchlistNotFoundException {
-        return watchlistRepository.findById(id).orElseThrow(WatchlistNotFoundException::new);
+    public Watchlist showUserWatchlistById(String username, int id) throws WatchlistNotFoundException, UserNotFoundException {
+        User user = userRepository.findByUsername(username).orElseThrow(UserNotFoundException::new);
+        Watchlist watchlist = watchlistRepository.findById(id).orElseThrow(WatchlistNotFoundException::new);
+        if(!user.getWatchlist().contains(watchlist)) throw new WatchlistNotFoundException();
+        return watchlist;
     }
 
     @Transactional(readOnly = true)

@@ -6,6 +6,7 @@ import { Location } from '@angular/common';
 import { TokenStorageService } from "../_services/token-storage.service";
 import { WatchlistService } from "../_services/watchlist.service";
 import { SeriesForm } from "../models/series-form";
+import {MessageService} from "../_services/message.service";
 
 
 @Component({
@@ -19,11 +20,12 @@ export class SeriesDetailComponent implements OnInit {
   isLoggedIn = false;
   showDeleteButton = false;
   showUpdateButton = false;
+  watchlistAdded = false;
   update = false;
   model = new SeriesForm('', 0, '', []);
   genresList = ['drama', 'crime', 'sci_fi', 'comedy', 'fantasy', 'animation',
     'sitcom', 'reality', 'soap_opera', 'telenovela', 'documentary',
-    'action', 'educational', 'sports', 'horror', 'romance',
+    'action', 'educational', 'sport', 'horror', 'romance',
     'satirical', 'supernatural', 'science', 'school', 'time_travel',
     'historical', 'adventure', 'thriller', 'war'];
 
@@ -48,10 +50,10 @@ export class SeriesDetailComponent implements OnInit {
   onSubmit() {
     const { episodes, plot, genres } = this.model;
     if(this.serie) {
-      this.seriesService.updateSeries(
-        this.serie.title, episodes, plot, genres ).subscribe(
+      this.seriesService.updateSeries(this.serie.title, episodes, plot, genres )
+        .subscribe(
         _ => { this.reloadPage() }
-      )
+        )
     }
   }
 
@@ -62,8 +64,12 @@ export class SeriesDetailComponent implements OnInit {
   }
 
   addToWatchlist(): void {
+    this.watchlistAdded = true;
     if(this.serie){
-      this.watchlistService.addWatchlist(this.serie.title, this.currentUser.username).subscribe();
+      this.watchlistService.addWatchlist(this.serie.title, this.currentUser.username)
+        .subscribe(
+
+        );
     }
   }
 
