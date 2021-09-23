@@ -2,13 +2,10 @@ package it.niko;
 
 import it.niko.gioco.Mazzo;
 import it.niko.gioco.ScaleESerpenti;
-
 import java.util.*;
 
 public class Main {
-
     public static void main(String[] args) {
-
         HashMap<Integer, Integer> serpenti = new HashMap<>();
         serpenti.put(98,79);
         serpenti.put(95,75);
@@ -55,7 +52,7 @@ public class Main {
         );
 
         while(!gioco.eTerminata()){
-            gioco.prossimoTurno();
+            System.out.println(gioco.prossimoTurno());
         }
     }
 }
