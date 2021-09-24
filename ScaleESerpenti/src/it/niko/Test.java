@@ -4,7 +4,7 @@ import it.niko.gioco.Mazzo;
 import it.niko.gioco.ScaleESerpenti;
 import java.util.*;
 
-public class Main {
+public class Test {
     public static void main(String[] args) {
         HashMap<Integer, Integer> serpenti = new HashMap<>();
         serpenti.put(98,79);
@@ -42,11 +42,11 @@ public class Main {
         ScaleESerpenti gioco = new ScaleESerpenti(
                 100,
                 5,
+                2,
                 serpenti,
                 scale,
                 caselleSpeciali,
                 mazzo,
-                2,
                 true,
                 true
         );

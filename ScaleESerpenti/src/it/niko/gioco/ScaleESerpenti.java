@@ -21,25 +21,25 @@ public class ScaleESerpenti {
     private boolean partitaTerminata;
     private StringBuilder logTurno;
 
-    public ScaleESerpenti(int lunghezzaP, int numGiocatori,
+    public ScaleESerpenti(int lunghezzaP, int numGiocatori, int numDadi,
                           HashMap<Integer, Integer> serpenti,
                           HashMap<Integer, Integer> scale,
                           HashMap<Integer, String> caselleSpeciali,
                           Mazzo mazzo,
-                          int numDadi, boolean soloDado, boolean doppioSei){
+                          boolean soloDado, boolean doppioSei){
         this.lunghezzaP = lunghezzaP;
+        this.numGiocatori = numGiocatori;
+        this.numDadi = numDadi;
         this.serpenti = serpenti;
         this.scale = scale;
         this.caselleSpeciali = caselleSpeciali;
-        this.numGiocatori = numGiocatori;
-        this.posizioni = new int[numGiocatori];
-        this.soste = new int[numGiocatori];
-        this.divieti = new int[numGiocatori];
-        this.numDadi = numDadi;
-        this.random = new Random();
         this.mazzo = mazzo;
         this.soloDado = soloDado;
         this.doppioSei = doppioSei;
+        this.posizioni = new int[numGiocatori];
+        this.soste = new int[numGiocatori];
+        this.divieti = new int[numGiocatori];
+        this.random = new Random();
         this.giocatore = 0;
         this.partitaTerminata = false;
         this.logTurno = new StringBuilder();
@@ -65,6 +65,17 @@ public class ScaleESerpenti {
         }
         giocatore = (giocatore + 1) % numGiocatori;
         return logTurno.toString();
+    }
+
+    public int getPosizione(int giocatore){
+        return posizioni[giocatore];
+    }
+
+    public int getSoste(int giocatore){
+        return soste[giocatore];
+    }
+
+    public int getDivieti(int giocatore){ return divieti[giocatore];
     }
 
     public boolean eTerminata(){
@@ -130,7 +141,7 @@ public class ScaleESerpenti {
             logTurno.append(String.format("Il giocatore %d si sposta da %d a %d\n", giocatore, vecchiaPos, nuovaPos));
             if(nuovaPos > lunghezzaP){
                 nuovaPos = lunghezzaP - (nuovaPos - lunghezzaP);
-                logTurno.append(String.format("Il giocatore %d ha superato il limite del tabellone, tornando alla posizione %d\n", giocatore, nuovaPos));
+                logTurno.append(String.format("Il giocatore %d ha superato il limite del tabellone, torna alla posizione %d\n", giocatore, nuovaPos));
             }
         }
         if(serpenti.containsKey(nuovaPos)){
