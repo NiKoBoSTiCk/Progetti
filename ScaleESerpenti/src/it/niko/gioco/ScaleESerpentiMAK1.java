@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-public class ScaleESerpenti {
+public class ScaleESerpentiMAK1 {
     private final int lunghezzaP;
     private final Map<Integer, Integer> serpenti, scale;
     private final Map<Integer, String> caselleSpeciali;
@@ -16,17 +16,17 @@ public class ScaleESerpenti {
     private final boolean soloDado;
     private final boolean doppioSei;
     private final Random random;
-    private final Mazzo mazzo;
+    private final Mazzov1 mazzo;
     private int giocatore;
     private boolean partitaTerminata;
     private StringBuilder logTurno;
 
-    public ScaleESerpenti(int lunghezzaP, int numGiocatori, int numDadi,
-                          HashMap<Integer, Integer> serpenti,
-                          HashMap<Integer, Integer> scale,
-                          HashMap<Integer, String> caselleSpeciali,
-                          Mazzo mazzo,
-                          boolean soloDado, boolean doppioSei){
+    public ScaleESerpentiMAK1(int lunghezzaP, int numGiocatori, int numDadi,
+                              HashMap<Integer, Integer> serpenti,
+                              HashMap<Integer, Integer> scale,
+                              HashMap<Integer, String> caselleSpeciali,
+                              Mazzov1 mazzo,
+                              boolean soloDado, boolean doppioSei){
         this.lunghezzaP = lunghezzaP;
         this.numGiocatori = numGiocatori;
         this.numDadi = numDadi;

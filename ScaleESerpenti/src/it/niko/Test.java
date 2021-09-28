@@ -1,7 +1,7 @@
 package it.niko;
 
-import it.niko.gioco.Mazzo;
-import it.niko.gioco.ScaleESerpenti;
+import it.niko.gioco.Mazzov1;
+import it.niko.gioco.ScaleESerpentiMAK1;
 import java.util.*;
 
 public class Test {
@@ -37,9 +37,9 @@ public class Test {
 
         String[] carte = {"molla", "locanda", "divieto" ,"panchina", "dadi", "molla", "divieto" ,"dadi", "divieto" ,"panchina", "locanda"};
         Collections.shuffle(Arrays.asList(carte));
-        Mazzo mazzo = new Mazzo(carte);
+        Mazzov1 mazzo = new Mazzov1(carte);
 
-        ScaleESerpenti gioco = new ScaleESerpenti(
+        ScaleESerpentiMAK1 gioco = new ScaleESerpentiMAK1(
                 100,
                 5,
                 2,

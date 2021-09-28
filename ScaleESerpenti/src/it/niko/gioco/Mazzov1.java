@@ -1,11 +1,11 @@
 package it.niko.gioco;
 
-public class Mazzo {
+public class Mazzov1 {
     private final String[] carte;
     private final int size;
     private int cur;
 
-    public Mazzo(String[] carte){
+    public Mazzov1(String[] carte){
         this.carte = carte;
         size = carte.length;
         cur = -1;

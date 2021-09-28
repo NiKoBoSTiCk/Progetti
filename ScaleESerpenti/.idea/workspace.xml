@@ -5,13 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4616484b-36ad-4982-a48c-16ab204d47fd" name="Changes" comment="commit 4">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/it/niko/GUI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/it/niko/model/Dado.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/it/niko/model/Giocatore.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/it/niko/model/Mazzo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/it/niko/model/MazzoIF.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/it/niko/model/Pesca.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/it/niko/model/Premio.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/it/niko/model/Scala.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/it/niko/model/ScaleESerpenti.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/it/niko/model/Serpente.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/it/niko/model/Sosta.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/it/niko/model/Tabellone.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/it/niko/model/TabelloneDecorator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/it/niko/model/TabelloneIF.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/gioco/ScaleESerpenti.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/gioco/ScaleESerpenti.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/niko/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/niko/gioco/ScaleESerpenti.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/gioco/ScaleESerpenti.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/gioco/Mazzo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/gioco/Mazzov1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/gioco/ScaleESerpenti.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/gioco/ScaleESerpentiMAK1.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +31,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -110,7 +121,12 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
-  <component name="RunManager" selected="Application.GUI">
+  <component name="RecentsManager">
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="it.niko.model" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.ScaleESerpenti">
     <configuration name="GUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="it.niko.GUI" />
       <module name="ScaleESerpenti" />
@@ -134,8 +150,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ScaleESerpenti" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="it.niko.model.ScaleESerpenti" />
+      <module name="ScaleESerpenti" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="it.niko.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ScaleESerpenti" />
         <item itemvalue="Application.GUI" />
         <item itemvalue="Application.Main" />
       </list>
@@ -151,7 +181,9 @@
       <updated>1632319786310</updated>
       <workItem from="1632319787700" duration="15536000" />
       <workItem from="1632392153381" duration="14433000" />
-      <workItem from="1632493083831" duration="10566000" />
+      <workItem from="1632493083831" duration="11036000" />
+      <workItem from="1632672214378" duration="50000" />
+      <workItem from="1632832819178" duration="18378000" />
     </task>
     <task id="LOCAL-00001" summary="commit 1">
       <created>1632333006179</created>
@@ -188,7 +220,14 @@
       <option name="project" value="LOCAL" />
       <updated>1632416995055</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="commit 4">
+      <created>1632505099564</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1632505099564</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
