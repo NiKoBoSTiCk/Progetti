@@ -6,8 +6,8 @@ import java.util.Map;
 public class Tabellone {
     private final int fine;
     private final int righe;
+    private final Map<Integer, CasellaSpeciale> caselleOccupate;
     private final Map<Integer, Integer> caselleRighe;
-    private final Map<Integer, CaselleSpeciali>  caselleOccupate;
     private final Map<Integer, Integer> serpenti;
     private final Map<Integer, Integer> scale;
 
@@ -35,8 +35,8 @@ public class Tabellone {
             return false;
         if(caselleOccupate.containsKey(testa) || caselleOccupate.containsKey(coda))
             return false;
-        caselleOccupate.put(testa, CaselleSpeciali.testa);
-        caselleOccupate.put(coda,  CaselleSpeciali.coda);
+        caselleOccupate.put(testa, CasellaSpeciale.testa);
+        caselleOccupate.put(coda,  CasellaSpeciale.coda);
         serpenti.put(testa, coda);
         return true;
     }
@@ -57,8 +57,8 @@ public class Tabellone {
             return false;
         if(caselleOccupate.containsKey(base) || caselleOccupate.containsKey(cima))
             return false;
-        caselleOccupate.put(base, CaselleSpeciali.base);
-        caselleOccupate.put(cima, CaselleSpeciali.cima);
+        caselleOccupate.put(base, CasellaSpeciale.base);
+        caselleOccupate.put(cima, CasellaSpeciale.cima);
         scale.put(base, cima);
         return true;
     }
@@ -72,7 +72,7 @@ public class Tabellone {
         return true;
     }
 
-    public boolean aggiungiCasellaSpeciale(int posizione, CaselleSpeciali tipo) {
+    public boolean aggiungiCasellaSpeciale(int posizione, CasellaSpeciale tipo) {
         if(caselleOccupate.containsKey(posizione))
             return false;
         caselleOccupate.put(posizione, tipo);
@@ -86,7 +86,7 @@ public class Tabellone {
         return true;
     }
 
-    public CaselleSpeciali contenutoCasella(int posizione) {
+    public CasellaSpeciale contenutoCasella(int posizione) {
         return caselleOccupate.get(posizione);
     }
 
