@@ -4,24 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4616484b-36ad-4982-a48c-16ab204d47fd" name="Changes" comment="commit 4">
-      <change afterPath="$PROJECT_DIR$/src/it/niko/model/Dado.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/it/niko/model/Giocatore.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/it/niko/model/Mazzo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/it/niko/model/MazzoIF.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/it/niko/model/Pesca.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/it/niko/model/Premio.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/it/niko/model/Scala.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/it/niko/model/ScaleESerpenti.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/it/niko/model/Serpente.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/it/niko/model/Sosta.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/it/niko/model/Tabellone.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/it/niko/model/TabelloneDecorator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/it/niko/model/TabelloneIF.java" afterDir="false" />
+    <list default="true" id="4616484b-36ad-4982-a48c-16ab204d47fd" name="Changes" comment="commit 5">
+      <change afterPath="$PROJECT_DIR$/src/it/niko/model/CaselleSpeciali.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/niko/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/niko/gioco/Mazzo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/gioco/Mazzov1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/niko/gioco/ScaleESerpenti.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/gioco/ScaleESerpentiMAK1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/model/Dado.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/model/Giocatore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/model/Giocatore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/model/Mazzo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/model/MazzoIF.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/model/Pesca.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/model/Premio.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/model/Scala.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/model/ScaleESerpenti.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/model/Serpente.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/model/Sosta.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/model/Tabellone.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/model/Tabellone.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/model/TabelloneDecorator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/model/TabelloneIF.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +31,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -183,7 +183,8 @@
       <workItem from="1632392153381" duration="14433000" />
       <workItem from="1632493083831" duration="11036000" />
       <workItem from="1632672214378" duration="50000" />
-      <workItem from="1632832819178" duration="18378000" />
+      <workItem from="1632832819178" duration="18830000" />
+      <workItem from="1632918676768" duration="13380000" />
     </task>
     <task id="LOCAL-00001" summary="commit 1">
       <created>1632333006179</created>
@@ -227,7 +228,14 @@
       <option name="project" value="LOCAL" />
       <updated>1632505099564</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="commit 5">
+      <created>1632851803259</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1632851803259</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -250,6 +258,7 @@
     <MESSAGE value="commit 2" />
     <MESSAGE value="commit 3" />
     <MESSAGE value="commit 4" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit 4" />
+    <MESSAGE value="commit 5" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit 5" />
   </component>
 </project>

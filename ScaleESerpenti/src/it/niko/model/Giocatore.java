@@ -1,39 +1,37 @@
 package it.niko.model;
 
 public class Giocatore {
-    private final String name;
+    private final String nome;
     private int posizione;
     private int soste;
-    private int divieti;
-    private int ultimoLancio;
+    private boolean divieto;
 
-
-    public Giocatore(String name) {
-        this.name = name;
-        this.posizione = 0;
+    public Giocatore(String nome) {
+        this.nome = nome;
+        this.posizione = 1;
         this.soste = 0;
-        this.divieti = 0;
     }
 
-    public String getName() { return name; }
-
-    public int getPosizione() { return posizione; }
-
-    public int getSoste() { return soste; }
-
-    public int getDivieti() { return divieti; }
-
-    public int getUltimoLancio() { return ultimoLancio; }
+    public void daiSosta(CaselleSpeciali tipo) {
+        switch(tipo) {
+            case panchina -> soste += 1;
+            case locanda  -> soste += 3;
+        }
+    }
 
     public void setPosizione(int posizione) { this.posizione = posizione; }
 
-    public void aggiungiDivieto() { this.divieti++; }
+    public int getPosizione() { return posizione; }
 
-    public void usaDivieto() { this.divieti--; }
+    public String getNome() { return nome; }
 
-    public void aggiungiSosta(int sosta) { this.soste += sosta; }
+    public void usaSosta() { soste--; }
 
-    public void scontaSosta() { this.soste--; }
+    public boolean haSoste() { return soste > 0; }
 
-    public void setUltimoLancio(int ultimoLancio) { this.ultimoLancio = ultimoLancio; }
+    public void daiDivieto() { divieto = true; }
+
+    public void usaDivieto() { divieto = false; }
+
+    public boolean haDivieto() { return divieto; }
 }
