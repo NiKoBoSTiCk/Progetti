@@ -3,7 +3,7 @@ package it.niko;
 import javax.swing.*;
 import java.awt.*;
 
-public class GUI {
+public class ScaleESerpentiApplication {
     public static void main(String[] args) {
 
         JFrame f = new JFrame();

@@ -4,13 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4616484b-36ad-4982-a48c-16ab204d47fd" name="Changes" comment="commit 6">
-      <change afterPath="$PROJECT_DIR$/src/it/niko/model/Carta.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/it/niko/model/Dado.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/it/niko/model/Mazzo.java" afterDir="false" />
+    <list default="true" id="4616484b-36ad-4982-a48c-16ab204d47fd" name="Changes" comment="commit 7">
+      <change afterPath="$PROJECT_DIR$/src/it/niko/model/Configurazione.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/it/niko/model/ScaleESerpenti.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/it/niko/model/TabelloneBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/it/niko/model/TabelloneNaive.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/niko/model/CaselleSpeciali.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/model/CasellaSpeciale.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/niko/model/Giocatore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/model/Giocatore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/Dado.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/Dado.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/Giocatore.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/Giocatore.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/Mazzo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/Mazzo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/MazzoIF.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/Pesca.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/Premio.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/Scala.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/ScaleESerpenti.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/ScaleESerpenti.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/Serpente.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/Sosta.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/Tabellone.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/Tabellone.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/TabelloneDecorator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/TabelloneIF.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/TabelloneIF.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/ScaleESerpentiApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/model/Dado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/model/Dado.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/niko/model/Tabellone.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/model/Tabellone.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -21,8 +35,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -117,20 +131,7 @@
       <recent name="it.niko.model" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ScaleESerpenti">
-    <configuration name="GUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="it.niko.GUI" />
-      <module name="ScaleESerpenti" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="it.niko.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Application.TabelloneBuilder">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="it.niko.Test" />
       <module name="ScaleESerpenti" />
@@ -154,10 +155,37 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ScaleESerpentiApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="it.niko.ScaleESerpentiApplication" />
+      <module name="ScaleESerpenti" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="it.niko.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TabelloneBuilder" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="it.niko.model.TabelloneBuilder" />
+      <module name="ScaleESerpenti" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="it.niko.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.TabelloneBuilder" />
         <item itemvalue="Application.ScaleESerpenti" />
-        <item itemvalue="Application.GUI" />
+        <item itemvalue="Application.ScaleESerpentiApplication" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -175,7 +203,8 @@
       <workItem from="1632493083831" duration="11036000" />
       <workItem from="1632672214378" duration="50000" />
       <workItem from="1632832819178" duration="18830000" />
-      <workItem from="1632918676768" duration="16759000" />
+      <workItem from="1632918676768" duration="17496000" />
+      <workItem from="1633005111420" duration="18161000" />
     </task>
     <task id="LOCAL-00001" summary="commit 1">
       <created>1632333006179</created>
@@ -233,7 +262,14 @@
       <option name="project" value="LOCAL" />
       <updated>1632933166049</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="commit 7">
+      <created>1632936323555</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1632936323555</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -258,6 +294,7 @@
     <MESSAGE value="commit 4" />
     <MESSAGE value="commit 5" />
     <MESSAGE value="commit 6" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit 6" />
+    <MESSAGE value="commit 7" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit 7" />
   </component>
 </project>
