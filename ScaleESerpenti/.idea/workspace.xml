@@ -4,28 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4616484b-36ad-4982-a48c-16ab204d47fd" name="Changes" comment="commit 7">
-      <change afterPath="$PROJECT_DIR$/src/it/niko/model/Configurazione.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/it/niko/model/ScaleESerpenti.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/it/niko/model/TabelloneBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/it/niko/model/TabelloneNaive.java" afterDir="false" />
+    <list default="true" id="4616484b-36ad-4982-a48c-16ab204d47fd" name="Changes" comment="commit 8">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/Dado.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/Dado.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/Giocatore.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/Giocatore.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/Mazzo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/Mazzo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/MazzoIF.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/Pesca.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/Premio.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/Scala.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/ScaleESerpenti.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/ScaleESerpenti.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/Serpente.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/Sosta.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/Tabellone.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/Tabellone.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/TabelloneDecorator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/TabelloneIF.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/TabelloneIF.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/niko/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/ScaleESerpentiApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/niko/model/Dado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/model/Dado.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/niko/model/Tabellone.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/model/Tabellone.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -204,7 +184,8 @@
       <workItem from="1632672214378" duration="50000" />
       <workItem from="1632832819178" duration="18830000" />
       <workItem from="1632918676768" duration="17496000" />
-      <workItem from="1633005111420" duration="18161000" />
+      <workItem from="1633005111420" duration="19165000" />
+      <workItem from="1633093889131" duration="593000" />
     </task>
     <task id="LOCAL-00001" summary="commit 1">
       <created>1632333006179</created>
@@ -269,7 +250,21 @@
       <option name="project" value="LOCAL" />
       <updated>1632936323555</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="commit 8">
+      <created>1633025951485</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1633025951485</updated>
+    </task>
+    <task id="LOCAL-00011" summary="commit 8">
+      <created>1633025961926</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1633025961926</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -295,6 +290,7 @@
     <MESSAGE value="commit 5" />
     <MESSAGE value="commit 6" />
     <MESSAGE value="commit 7" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit 7" />
+    <MESSAGE value="commit 8" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit 8" />
   </component>
 </project>
