@@ -1,11 +1,12 @@
 package it.niko.model;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TabelloneBuilder implements Tabellone {
+public class TabelloneBuilder implements Tabellone, Serializable {
     private final int numCaselle;
-    private final Map<Integer, CasellaSpeciale> caselleOccupate;
+    private final Map<Integer, Casella> caselleOccupate;
     private final Map<Integer, Integer> serpenti;
     private final Map<Integer, Integer> scale;
 
@@ -17,7 +18,7 @@ public class TabelloneBuilder implements Tabellone {
     }
 
     @Override
-    public CasellaSpeciale contenutoCasella(int posizione) {
+    public Casella contenutoCasella(int posizione) {
         return caselleOccupate.get(posizione);
     }
 
@@ -37,7 +38,7 @@ public class TabelloneBuilder implements Tabellone {
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for(Map.Entry<Integer, CasellaSpeciale> entry: caselleOccupate.entrySet()) {
+        for(Map.Entry<Integer, Casella> entry: caselleOccupate.entrySet()) {
             sb.append(entry.getKey()).append(" -> ").append(entry.getValue()).append("\n");
         }
         return sb.toString();
@@ -48,7 +49,7 @@ public class TabelloneBuilder implements Tabellone {
         private int righe = 10;
         private int colonne = 10;
 
-        private final Map<Integer, CasellaSpeciale> caselleOccupate = new HashMap<>();
+        private final Map<Integer, Casella> caselleOccupate = new HashMap<>();
         private final Map<Integer, Integer> caselleRighe = new HashMap<>();
         private final Map<Integer, Integer> serpenti = new HashMap<>();
         private final Map<Integer, Integer> scale = new HashMap<>();
@@ -57,7 +58,7 @@ public class TabelloneBuilder implements Tabellone {
             int x = 0;
             for(int i=righe-1; i>=0; i--)
                 for(int j=0; j<colonne; j++)
-                    caselleRighe.put(x++, i);
+                    caselleRighe.put(++x, i);
         }
 
         public Builder(int numCaselle, int righe, int colonne) {
@@ -69,8 +70,9 @@ public class TabelloneBuilder implements Tabellone {
 
             int x = 0;
             for(int i=righe-1; i>=0; i--)
-                for(int j=0; j<colonne; j++)
-                    caselleRighe.put(x++, i);
+                for(int j=0; j<colonne; j++) {
+                    caselleRighe.put(++x, i);
+                }
         }
 
         public Builder serpente(int testa, int coda) {
@@ -80,8 +82,8 @@ public class TabelloneBuilder implements Tabellone {
                 throw new IllegalArgumentException();
             if(caselleOccupate.containsKey(testa) || caselleOccupate.containsKey(coda))
                 throw new IllegalArgumentException();
-            caselleOccupate.put(testa, CasellaSpeciale.testa);
-            caselleOccupate.put(coda,  CasellaSpeciale.coda);
+            caselleOccupate.put(testa, Casella.testa);
+            caselleOccupate.put(coda,  Casella.coda);
             serpenti.put(testa, coda);
             return this;
         }
@@ -93,13 +95,13 @@ public class TabelloneBuilder implements Tabellone {
                 throw new IllegalArgumentException();
             if(caselleOccupate.containsKey(base) || caselleOccupate.containsKey(cima))
                 throw new IllegalArgumentException();
-            caselleOccupate.put(base, CasellaSpeciale.base);
-            caselleOccupate.put(cima, CasellaSpeciale.cima);
+            caselleOccupate.put(base, Casella.base);
+            caselleOccupate.put(cima, Casella.cima);
             scale.put(base, cima);
             return this;
         }
 
-        public Builder casellaSpeciale(int posizione, CasellaSpeciale tipo) {
+        public Builder casellaSpeciale(int posizione, Casella tipo) {
             if(caselleOccupate.containsKey(posizione))
                 throw new IllegalArgumentException();
             caselleOccupate.put(posizione, tipo);
@@ -114,8 +116,8 @@ public class TabelloneBuilder implements Tabellone {
                 .Builder(100, 10, 10)
                 .scala(3, 15)
                 .serpente(22, 12)
-                .casellaSpeciale(45, CasellaSpeciale.pesca)
-                .casellaSpeciale(99, CasellaSpeciale.locanda)
+                .casellaSpeciale(45, Casella.pesca)
+                .casellaSpeciale(99, Casella.locanda)
                 .build();
         System.out.println(tabellone);
     }

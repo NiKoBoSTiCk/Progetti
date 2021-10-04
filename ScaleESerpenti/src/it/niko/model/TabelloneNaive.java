@@ -1,12 +1,13 @@
 package it.niko.model;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TabelloneNaive implements Tabellone {
+public class TabelloneNaive implements Tabellone, Serializable {
     private final int numCaselle;
     private final int righe;
-    private final Map<Integer, CasellaSpeciale> caselleOccupate;
+    private final Map<Integer, Casella> caselleOccupate;
     private final Map<Integer, Integer> caselleRighe;
     private final Map<Integer, Integer> serpenti;
     private final Map<Integer, Integer> scale;
@@ -34,7 +35,7 @@ public class TabelloneNaive implements Tabellone {
     }
 
     @Override
-    public CasellaSpeciale contenutoCasella(int posizione) {
+    public Casella contenutoCasella(int posizione) {
         return caselleOccupate.get(posizione);
     }
 
@@ -54,8 +55,8 @@ public class TabelloneNaive implements Tabellone {
             return false;
         if(caselleOccupate.containsKey(testa) || caselleOccupate.containsKey(coda))
             return false;
-        caselleOccupate.put(testa, CasellaSpeciale.testa);
-        caselleOccupate.put(coda,  CasellaSpeciale.coda);
+        caselleOccupate.put(testa, Casella.testa);
+        caselleOccupate.put(coda,  Casella.coda);
         serpenti.put(testa, coda);
         return true;
     }
@@ -76,8 +77,8 @@ public class TabelloneNaive implements Tabellone {
             return false;
         if(caselleOccupate.containsKey(base) || caselleOccupate.containsKey(cima))
             return false;
-        caselleOccupate.put(base, CasellaSpeciale.base);
-        caselleOccupate.put(cima, CasellaSpeciale.cima);
+        caselleOccupate.put(base, Casella.base);
+        caselleOccupate.put(cima, Casella.cima);
         scale.put(base, cima);
         return true;
     }
@@ -91,7 +92,7 @@ public class TabelloneNaive implements Tabellone {
         return true;
     }
 
-    public boolean aggiungiCasellaSpeciale(int posizione, CasellaSpeciale tipo) {
+    public boolean aggiungiCasellaSpeciale(int posizione, Casella tipo) {
         if(caselleOccupate.containsKey(posizione))
             return false;
         caselleOccupate.put(posizione, tipo);

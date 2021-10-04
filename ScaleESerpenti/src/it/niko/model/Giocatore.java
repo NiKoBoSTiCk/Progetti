@@ -8,11 +8,11 @@ public class Giocatore {
 
     public Giocatore(String nome) {
         this.nome = nome;
-        this.posizione = 1;
+        this.posizione = 0;
         this.soste = 0;
     }
 
-    public void daiSosta(CasellaSpeciale tipo) {
+    public void daiSosta(Casella tipo) {
         switch(tipo) {
             case panchina -> soste += 1;
             case locanda  -> soste += 3;
