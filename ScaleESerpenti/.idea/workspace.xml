@@ -5,14 +5,64 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4616484b-36ad-4982-a48c-16ab204d47fd" name="Changes" comment="commit 10">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sudoku/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sudoku/.idea/codestream.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sudoku/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sudoku/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sudoku/.idea/runConfigurations.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sudoku/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sudoku/out/production/sudoku/poo/sudoku/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sudoku/out/production/sudoku/poo/sudoku/.idea/codestream.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sudoku/out/production/sudoku/poo/sudoku/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sudoku/out/production/sudoku/poo/sudoku/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sudoku/out/production/sudoku/poo/sudoku/.idea/runConfigurations.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sudoku/out/production/sudoku/poo/sudoku/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sudoku/out/production/sudoku/poo/sudoku/FrameGUI$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sudoku/out/production/sudoku/poo/sudoku/FrameGUI$AscoltatoreEventiAzione.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sudoku/out/production/sudoku/poo/sudoku/FrameGUI$Imposta$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sudoku/out/production/sudoku/poo/sudoku/FrameGUI$Imposta.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sudoku/out/production/sudoku/poo/sudoku/FrameGUI.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sudoku/out/production/sudoku/poo/sudoku/Sudoku$Impostazione.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sudoku/out/production/sudoku/poo/sudoku/Sudoku$Soluzione.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sudoku/out/production/sudoku/poo/sudoku/Sudoku.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sudoku/out/production/sudoku/poo/sudoku/SudokuGUI.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sudoku/out/production/sudoku/poo/sudoku/sudoku.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sudoku/sudoku.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/ScaleESerpentiApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/ScaleESerpentiApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/Test2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/Test2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/Carta.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/Casella.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/Dado.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/Dado.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/Giocatore$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/Giocatore$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/Giocatore.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/Giocatore.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/Mazzo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/Mazzo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/ScaleESerpenti$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/ScaleESerpenti$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/ScaleESerpenti.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/ScaleESerpenti.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/Tabellone.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/Tabellone.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/TabelloneBuilder$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/TabelloneBuilder$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/TabelloneBuilder$Builder.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/TabelloneBuilder$Builder.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/TabelloneBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/TabelloneBuilder.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/TabelloneNaive$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/TabelloneNaive$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/TabelloneNaive.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/model/TabelloneNaive.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/niko/ScaleESerpentiApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/ScaleESerpentiApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/gioco/icon/base.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/gioco/icon/cima.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/gioco/icon/coda.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/gioco/icon/dadi.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/gioco/icon/locanda.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/gioco/icon/molla.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/gioco/icon/panchina.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/gioco/icon/pesca.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/gioco/icon/testa.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/model/Carta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/model/ECarta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/model/Casella.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/model/ECasella.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/model/Dado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/model/Dado.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/model/Giocatore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/model/Giocatore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/model/Mazzo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/model/Mazzo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/model/ScaleESerpenti.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/model/ScaleESerpenti.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/model/Tabellone.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/model/Tabellone.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/model/TabelloneBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/model/TabelloneBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/model/TabelloneNaive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/model/TabelloneNaive.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,11 +153,12 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Unical/Ingegneria del Software/ObserverCommandFlyweigth" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../sudoku" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -116,6 +167,10 @@
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\User\Desktop\GitHub\Progetti\ScaleESerpenti\src\it\niko\gioco\icon" />
+      <recent name="C:\Users\User\Desktop\GitHub\Progetti\ScaleESerpenti\src\it\niko" />
+    </key>
     <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="it.niko.model" />
     </key>
@@ -186,10 +241,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.ScaleESerpentiApplication" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Test2" />
         <item itemvalue="Application.TabelloneBuilder" />
         <item itemvalue="Application.ScaleESerpenti" />
-        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -210,7 +265,9 @@
       <workItem from="1633005111420" duration="19165000" />
       <workItem from="1633093889131" duration="2975000" />
       <workItem from="1633340354616" duration="13973000" />
-      <workItem from="1633362475375" duration="2315000" />
+      <workItem from="1633362475375" duration="2452000" />
+      <workItem from="1633422891422" duration="12207000" />
+      <workItem from="1633444538788" duration="11234000" />
     </task>
     <task id="LOCAL-00001" summary="commit 1">
       <created>1632333006179</created>
@@ -310,7 +367,14 @@
       <option name="project" value="LOCAL" />
       <updated>1633346008965</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="commit 10">
+      <created>1633366835652</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1633366835652</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -329,6 +393,7 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="commit 1" />
     <MESSAGE value="commit 2" />
     <MESSAGE value="commit 3" />

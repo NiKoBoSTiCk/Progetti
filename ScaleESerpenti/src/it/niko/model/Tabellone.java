@@ -4,7 +4,7 @@ public interface Tabellone {
 
     int getNumCaselle();
 
-    Casella contenutoCasella(int posizione);
+    ECasella contenutoCasella(int posizione);
 
     int effettoCasella(int posizione);
 }

@@ -92,6 +92,14 @@ public class ScaleESerpenti {
         }
     }
 
+    public Tabellone getTabellone() {
+        return tabellone;
+    }
+
+    public Configurazione getConfigurazione() {
+        return configurazione;
+    }
+
     private void turno() {
         Giocatore g = giocatori.peek();
         if(g == null) throw new IllegalStateException();
@@ -136,11 +144,11 @@ public class ScaleESerpenti {
     }
 
     private int controllaCasella(Giocatore g, int nuovaPos, int lancio) {
-        Casella casella = tabellone.contenutoCasella(nuovaPos);
-        if(casella == null) return nuovaPos;
-        else switch(casella) {
-            case locanda -> { if(caselleSosta) g.daiSosta(Casella.locanda); }
-            case panchina -> { if(caselleSosta) g.daiSosta(Casella.panchina); }
+        ECasella ECasella = tabellone.contenutoCasella(nuovaPos);
+        if(ECasella == null) return nuovaPos;
+        else switch(ECasella) {
+            case locanda -> { if(caselleSosta) g.daiSosta(ECasella.locanda); }
+            case panchina -> { if(caselleSosta) g.daiSosta(ECasella.panchina); }
             case dadi -> { if(casellePremio) return nuovaPos + dado.lancia(); }
             case molla -> { if(casellePremio) return nuovaPos + lancio; }
             case pesca -> { if(casellePesca) return pescaCarta(g, nuovaPos, lancio); }
@@ -152,8 +160,8 @@ public class ScaleESerpenti {
 
     private int pescaCarta(Giocatore g, int nuovaPos, int lancio) {
         switch(mazzo.pescaCarta()) {
-            case panchina -> g.daiSosta(Casella.panchina);
-            case locanda -> g.daiSosta(Casella.locanda);
+            case panchina -> g.daiSosta(ECasella.panchina);
+            case locanda -> g.daiSosta(ECasella.locanda);
             case divieto -> { if(carteDivieto) g.daiDivieto(); }
             case dadi -> { return nuovaPos + dado.lancia(); }
             case molla -> { return nuovaPos + lancio; }

@@ -7,23 +7,23 @@ import java.util.Queue;
 
 public class Mazzo {
     private final int numCarte;
-    private final Queue<Carta> carte;
+    private final Queue<ECarta> carte;
 
     public Mazzo(int numCarte) {
         this.numCarte = numCarte;
         carte = new ArrayDeque<>(numCarte);
     }
 
-    public boolean aggiungiCarta(Carta carta) {
+    public boolean aggiungiCarta(ECarta carta) {
         if(carte.size() == numCarte)
             return false;
         return carte.offer(carta);
     }
 
-    public Carta pescaCarta() {
+    public ECarta pescaCarta() {
         if(carte.isEmpty()) throw new RuntimeException();
-        Carta carta = carte.poll();
-        if(carta != null && !carta.equals(Carta.divieto))
+        ECarta carta = carte.poll();
+        if(carta != null && !carta.equals(ECarta.divieto))
             carte.offer(carta);
         return carta;
     }

@@ -1,5 +1,5 @@
 package it.niko.model;
 
-public enum Carta {
+public enum ECarta {
     panchina, locanda, dadi, molla, divieto
 }

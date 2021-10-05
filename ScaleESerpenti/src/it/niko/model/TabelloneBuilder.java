@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class TabelloneBuilder implements Tabellone, Serializable {
     private final int numCaselle;
-    private final Map<Integer, Casella> caselleOccupate;
+    private final Map<Integer, ECasella> caselleOccupate;
     private final Map<Integer, Integer> serpenti;
     private final Map<Integer, Integer> scale;
 
@@ -18,7 +18,7 @@ public class TabelloneBuilder implements Tabellone, Serializable {
     }
 
     @Override
-    public Casella contenutoCasella(int posizione) {
+    public ECasella contenutoCasella(int posizione) {
         return caselleOccupate.get(posizione);
     }
 
@@ -38,7 +38,7 @@ public class TabelloneBuilder implements Tabellone, Serializable {
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for(Map.Entry<Integer, Casella> entry: caselleOccupate.entrySet()) {
+        for(Map.Entry<Integer, ECasella> entry: caselleOccupate.entrySet()) {
             sb.append(entry.getKey()).append(" -> ").append(entry.getValue()).append("\n");
         }
         return sb.toString();
@@ -49,7 +49,7 @@ public class TabelloneBuilder implements Tabellone, Serializable {
         private int righe = 10;
         private int colonne = 10;
 
-        private final Map<Integer, Casella> caselleOccupate = new HashMap<>();
+        private final Map<Integer, ECasella> caselleOccupate = new HashMap<>();
         private final Map<Integer, Integer> caselleRighe = new HashMap<>();
         private final Map<Integer, Integer> serpenti = new HashMap<>();
         private final Map<Integer, Integer> scale = new HashMap<>();
@@ -82,8 +82,8 @@ public class TabelloneBuilder implements Tabellone, Serializable {
                 throw new IllegalArgumentException();
             if(caselleOccupate.containsKey(testa) || caselleOccupate.containsKey(coda))
                 throw new IllegalArgumentException();
-            caselleOccupate.put(testa, Casella.testa);
-            caselleOccupate.put(coda,  Casella.coda);
+            caselleOccupate.put(testa, ECasella.testa);
+            caselleOccupate.put(coda,  ECasella.coda);
             serpenti.put(testa, coda);
             return this;
         }
@@ -95,13 +95,13 @@ public class TabelloneBuilder implements Tabellone, Serializable {
                 throw new IllegalArgumentException();
             if(caselleOccupate.containsKey(base) || caselleOccupate.containsKey(cima))
                 throw new IllegalArgumentException();
-            caselleOccupate.put(base, Casella.base);
-            caselleOccupate.put(cima, Casella.cima);
+            caselleOccupate.put(base, ECasella.base);
+            caselleOccupate.put(cima, ECasella.cima);
             scale.put(base, cima);
             return this;
         }
 
-        public Builder casellaSpeciale(int posizione, Casella tipo) {
+        public Builder casellaSpeciale(int posizione, ECasella tipo) {
             if(caselleOccupate.containsKey(posizione))
                 throw new IllegalArgumentException();
             caselleOccupate.put(posizione, tipo);
@@ -116,8 +116,8 @@ public class TabelloneBuilder implements Tabellone, Serializable {
                 .Builder(100, 10, 10)
                 .scala(3, 15)
                 .serpente(22, 12)
-                .casellaSpeciale(45, Casella.pesca)
-                .casellaSpeciale(99, Casella.locanda)
+                .casellaSpeciale(45, ECasella.pesca)
+                .casellaSpeciale(99, ECasella.locanda)
                 .build();
         System.out.println(tabellone);
     }

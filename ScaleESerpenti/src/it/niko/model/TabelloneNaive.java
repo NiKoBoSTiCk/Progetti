@@ -1,5 +1,8 @@
 package it.niko.model;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.geom.Line2D;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -7,7 +10,8 @@ import java.util.Map;
 public class TabelloneNaive implements Tabellone, Serializable {
     private final int numCaselle;
     private final int righe;
-    private final Map<Integer, Casella> caselleOccupate;
+    private final int colonne;
+    private final Map<Integer, ECasella> caselleOccupate;
     private final Map<Integer, Integer> caselleRighe;
     private final Map<Integer, Integer> serpenti;
     private final Map<Integer, Integer> scale;
@@ -17,6 +21,7 @@ public class TabelloneNaive implements Tabellone, Serializable {
         if(righe < 3 || colonne < 3) throw new IllegalArgumentException();
         this.numCaselle = numCaselle;
         this.righe = righe;
+        this.colonne = colonne;
 
         this.caselleRighe = new HashMap<>();
         int x = 0;
@@ -35,7 +40,7 @@ public class TabelloneNaive implements Tabellone, Serializable {
     }
 
     @Override
-    public Casella contenutoCasella(int posizione) {
+    public ECasella contenutoCasella(int posizione) {
         return caselleOccupate.get(posizione);
     }
 
@@ -55,8 +60,8 @@ public class TabelloneNaive implements Tabellone, Serializable {
             return false;
         if(caselleOccupate.containsKey(testa) || caselleOccupate.containsKey(coda))
             return false;
-        caselleOccupate.put(testa, Casella.testa);
-        caselleOccupate.put(coda,  Casella.coda);
+        caselleOccupate.put(testa, ECasella.testa);
+        caselleOccupate.put(coda,  ECasella.coda);
         serpenti.put(testa, coda);
         return true;
     }
@@ -77,8 +82,8 @@ public class TabelloneNaive implements Tabellone, Serializable {
             return false;
         if(caselleOccupate.containsKey(base) || caselleOccupate.containsKey(cima))
             return false;
-        caselleOccupate.put(base, Casella.base);
-        caselleOccupate.put(cima, Casella.cima);
+        caselleOccupate.put(base, ECasella.base);
+        caselleOccupate.put(cima, ECasella.cima);
         scale.put(base, cima);
         return true;
     }
@@ -92,7 +97,7 @@ public class TabelloneNaive implements Tabellone, Serializable {
         return true;
     }
 
-    public boolean aggiungiCasellaSpeciale(int posizione, Casella tipo) {
+    public boolean aggiungiCasellaSpeciale(int posizione, ECasella tipo) {
         if(caselleOccupate.containsKey(posizione))
             return false;
         caselleOccupate.put(posizione, tipo);
@@ -105,4 +110,47 @@ public class TabelloneNaive implements Tabellone, Serializable {
         caselleOccupate.remove(posizione);
         return true;
     }
+
+    public JPanel getGraphics() {
+        JPanel tabellone = new JPanel();
+        tabellone.setLayout(new GridLayout(righe, colonne));
+        JLabel[][] caselle = new JLabel[righe][colonne];
+       // HashMap<Integer, Point> posizioniCaselle = new HashMap<>();
+        boolean alternati = true;
+        int x = 0;
+        for(int i=righe-1; i>=0; i--) {
+            if(alternati) {
+                for(int j=0; j<colonne; j++) {
+                    caselle[i][j] = new JLabel("" + ++x);
+                    caselle[i][j].setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+                }
+                alternati = false;
+            }
+            else {
+                for(int j=colonne-1; j>=0; j--) {
+                    caselle[i][j] = new JLabel("" + ++x);
+                    caselle[i][j].setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+                }
+                alternati = true;
+            }
+        }
+        for(int i = 0; i<righe; i++) {
+            for(int j=0; j<colonne; j++) {
+                tabellone.add(caselle[i][j]);
+             //   posizioniCaselle.put(Integer.valueOf(caselle[i][j].getText()), caselle[i][j].getLocation());
+            }
+        }
+      //  drawSerpentiEScale(tabellone, posizioniCaselle, serpenti);
+      //  drawSerpentiEScale(tabellone, posizioniCaselle, scale);
+        return tabellone;
+    }
+
+    private void drawSerpentiEScale(JPanel tabellone, HashMap<Integer, Point> posizioniCaselle, Map<Integer, Integer> m) {
+        for(Map.Entry<Integer, Integer> entry : m.entrySet()) {
+            Point p1 = posizioniCaselle.get(entry.getKey());
+            Point p2 = posizioniCaselle.get(entry.getValue());
+            //TODO
+        }
+    }
 }
+

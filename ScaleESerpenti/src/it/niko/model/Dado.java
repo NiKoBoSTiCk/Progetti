@@ -5,11 +5,8 @@ import java.util.Random;
 public class Dado {
     private static Dado instance = null;
     private final int facce = 6;
-    private final Random r;
 
-    private Dado() {
-        r = new Random();
-    }
+    private Dado() {}
 
     public static synchronized Dado getInstance() {
         if(instance == null)
@@ -18,7 +15,7 @@ public class Dado {
     }
 
     public int lancia() {
-        return r.nextInt(6) + 1;
+        return new Random().nextInt(6) + 1;
     }
 
     public int getFacce() {

@@ -1,5 +1,5 @@
 package it.niko.model;
 
-public enum Casella {
+public enum ECasella {
     testa, coda, base, cima, panchina, locanda, dadi, molla, pesca
 }

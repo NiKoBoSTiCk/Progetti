@@ -12,7 +12,7 @@ public class Giocatore {
         this.soste = 0;
     }
 
-    public void daiSosta(Casella tipo) {
+    public void daiSosta(ECasella tipo) {
         switch(tipo) {
             case panchina -> soste += 1;
             case locanda  -> soste += 3;
