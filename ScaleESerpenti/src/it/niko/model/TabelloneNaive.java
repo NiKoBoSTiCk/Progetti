@@ -2,7 +2,6 @@ package it.niko.model;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.Line2D;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -27,7 +26,7 @@ public class TabelloneNaive implements Tabellone, Serializable {
         int x = 0;
         for(int i=righe-1; i>=0; i--)
             for(int j=0; j<colonne; j++)
-                caselleRighe.put(x++, i);
+                caselleRighe.put(++x, i);
 
         caselleOccupate = new HashMap<>();
         serpenti = new HashMap<>();
@@ -53,6 +52,7 @@ public class TabelloneNaive implements Tabellone, Serializable {
         };
     }
 
+    @Override
     public boolean aggiungiSerpente(int testa, int coda) {
         if(testa < coda || testa < righe || testa == numCaselle)
             return false;
@@ -66,6 +66,7 @@ public class TabelloneNaive implements Tabellone, Serializable {
         return true;
     }
 
+    @Override
     public boolean rimuoviSerpente(int testa, int coda) {
         if(!caselleOccupate.containsKey(testa) && !caselleOccupate.containsKey(coda))
             return false;
@@ -75,8 +76,9 @@ public class TabelloneNaive implements Tabellone, Serializable {
         return true;
     }
 
+    @Override
     public boolean aggiungiScala(int base, int cima) {
-        if(base > cima || cima < righe || base > numCaselle -righe)
+        if(base > cima || cima <= colonne || base > numCaselle - colonne)
             return false;
         if(caselleRighe.get(base).equals(caselleRighe.get(cima)))
             return false;
@@ -88,6 +90,7 @@ public class TabelloneNaive implements Tabellone, Serializable {
         return true;
     }
 
+    @Override
     public boolean rimuoviScala(int base, int cima) {
         if(!caselleOccupate.containsKey(base) && !caselleOccupate.containsKey(cima))
             return false;
@@ -97,6 +100,7 @@ public class TabelloneNaive implements Tabellone, Serializable {
         return true;
     }
 
+    @Override
     public boolean aggiungiCasellaSpeciale(int posizione, ECasella tipo) {
         if(caselleOccupate.containsKey(posizione))
             return false;
@@ -104,6 +108,7 @@ public class TabelloneNaive implements Tabellone, Serializable {
         return true;
     }
 
+    @Override
     public boolean rimuoviCasellaSpeciale(int posizione) {
         if(!caselleOccupate.containsKey(posizione))
             return false;
@@ -111,7 +116,8 @@ public class TabelloneNaive implements Tabellone, Serializable {
         return true;
     }
 
-    public JPanel getGraphics() {
+    @Override
+    public JPanel draw() {
         JPanel tabellone = new JPanel();
         tabellone.setLayout(new GridLayout(righe, colonne));
         JLabel[][] caselle = new JLabel[righe][colonne];

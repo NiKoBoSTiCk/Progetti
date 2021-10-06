@@ -1,11 +1,12 @@
 package it.niko.model;
 
+import java.io.Serializable;
 import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Queue;
 
-public class Mazzo {
+public class Mazzo implements Serializable {
     private final int numCarte;
     private final Queue<ECarta> carte;
 

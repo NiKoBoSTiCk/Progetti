@@ -31,7 +31,7 @@ public class Giocatore {
 
     public void daiDivieto() { divieto = true; }
 
-    public void usaDivieto() { divieto = false; }
+    public void usaDivieto() { soste = 0; divieto = false; }
 
     public boolean haDivieto() { return divieto; }
 }

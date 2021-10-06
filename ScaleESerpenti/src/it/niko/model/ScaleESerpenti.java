@@ -16,13 +16,15 @@ public class ScaleESerpenti {
     private boolean casellePremio;
     private boolean casellePesca;
     private boolean carteDivieto;
+    private boolean avanzamentoAutomatico;
     private boolean partitaTerminata;
+    private boolean config;
     private Tabellone tabellone;
     private Dado dado;
     private Mazzo mazzo;
     private Queue<Giocatore> giocatori;
     private Configurazione configurazione;
-    private boolean config;
+    private StringBuilder logTurno;
 
     public ScaleESerpenti() {
         config = false;
@@ -43,29 +45,30 @@ public class ScaleESerpenti {
         casellePremio = c.isCasellePremio();
         casellePesca = c.isCasellePesca();
         carteDivieto = c.isCarteDivieto();
+        avanzamentoAutomatico = c.isAvanzamentoAutomatico();
         dado = Dado.getInstance();
         giocatori = new ArrayDeque<>(c.getNumGiocatori());
         tabellone = c.getTabellone();
         mazzo = c.getMazzo();
         if(mazzo != null) mazzo.mescola();
+        for(int i=1; i<=c.getNumGiocatori(); i++) {
+            giocatori.add(new Giocatore("Giocatore " + i));
+        }
         partitaTerminata = false;
         config = true;
-        for(int i=1; i<=c.getNumGiocatori(); i++) {
-            giocatori.add(new Giocatore(String.valueOf(i)));
-        }
     }
 
-    public void avviaPartitaAutomatico() {
-        if(!config) throw new IllegalStateException("Carica una configurazione");
-        while(!partitaTerminata) {
-            turno();
-        }
-    }
-
-    public void avviaPartitaManuale() {
+    public String avviaPartita() {
         if(!config) throw new IllegalStateException("Carica una configurazione");
         if(partitaTerminata) throw new IllegalStateException();
-        turno();
+        if(avanzamentoAutomatico) {
+            StringBuilder logPartita = new StringBuilder();
+            while(!partitaTerminata) {
+                logPartita.append(turno());
+            }
+            return logPartita.toString();
+        }
+        return turno();
     }
 
     public void salva(String nomeFile) {
@@ -92,64 +95,69 @@ public class ScaleESerpenti {
         }
     }
 
-    public Tabellone getTabellone() {
-        return tabellone;
-    }
-
-    public Configurazione getConfigurazione() {
-        return configurazione;
-    }
-
-    private void turno() {
+    private String turno() {
+        logTurno = new StringBuilder();
         Giocatore g = giocatori.peek();
         if(g == null) throw new IllegalStateException();
+        logTurno.append("\n");
+        logTurno.append(String.format("Turno %s\n", g.getNome()));
         if(controllaSoste(g)) {
             giocatori.poll();
             giocatori.offer(g);
-            return;
+            return logTurno.toString();
         }
+
         int lancio = lanciaDadi(g);
+
         int nuovaPos = calcolaPosizione(g, lancio);
         g.setPosizione(nuovaPos);
         if(nuovaPos == numCaselle) {
+            logTurno.append(String.format("Fine Partita. Vince %s.\n", g.getNome()));
             partitaTerminata = true;
-            System.out.println(g.getNome() + "ha vinto");
+            return logTurno.toString();
         }
-        if(!doppioSei) {
+        if(doppioSei && lancio == 12) {
+            logTurno.append(String.format("%s ha realizzato un doppio sei, ripete il turno.\n", g.getNome()));
+            return logTurno.toString();
+        }
+        else {
+            logTurno.append(String.format("Fine Turno %s.\n", g.getNome()));
             giocatori.poll();
             giocatori.offer(g);
         }
-        else if(lancio != 12) {
-            giocatori.poll();
-            giocatori.offer(g);
-        }
+        return logTurno.toString();
     }
 
     private int calcolaPosizione(Giocatore g, int lancio) {
         int nuovaPos = g.getPosizione() + lancio;
-        if(nuovaPos > numCaselle) {
-            nuovaPos = numCaselle - (nuovaPos - numCaselle);
-        }
+        logTurno.append(String.format("%s si muove da %d a %d.\n", g.getNome(), g.getPosizione(), nuovaPos));
+        nuovaPos = verificaSuperamentoCaselle(g, nuovaPos);
         int vecchiaPos = nuovaPos;
-        nuovaPos = controllaCasella(g, nuovaPos, lancio);
         while(tabellone.contenutoCasella(nuovaPos) != null) {
-            if(nuovaPos == vecchiaPos) break;
-            vecchiaPos = nuovaPos;
             nuovaPos = controllaCasella(g, nuovaPos, lancio);
-            if(nuovaPos > numCaselle){
-                nuovaPos = numCaselle - (nuovaPos - numCaselle);
-            }
+            if(nuovaPos == vecchiaPos) break;
+            logTurno.append(String.format("%s si muove da %d a %d.\n", g.getNome(), vecchiaPos, nuovaPos));
+            nuovaPos = verificaSuperamentoCaselle(g, nuovaPos);
+            vecchiaPos = nuovaPos;
+        }
+        return nuovaPos;
+    }
+
+    private int verificaSuperamentoCaselle(Giocatore g, int nuovaPos) {
+        if(nuovaPos > numCaselle){
+            nuovaPos = numCaselle - (nuovaPos - numCaselle);
+            logTurno.append(String.format("%s ha superato il limite del tabellone, tornando alla posizione %d\n", g.getNome(), nuovaPos));
         }
         return nuovaPos;
     }
 
     private int controllaCasella(Giocatore g, int nuovaPos, int lancio) {
-        ECasella ECasella = tabellone.contenutoCasella(nuovaPos);
-        if(ECasella == null) return nuovaPos;
-        else switch(ECasella) {
-            case locanda -> { if(caselleSosta) g.daiSosta(ECasella.locanda); }
-            case panchina -> { if(caselleSosta) g.daiSosta(ECasella.panchina); }
-            case dadi -> { if(casellePremio) return nuovaPos + dado.lancia(); }
+        ECasella casella = tabellone.contenutoCasella(nuovaPos);
+        if(casella == null || casella == ECasella.cima || casella == ECasella.coda) return nuovaPos;
+        logTurno.append(String.format("%s è su una casella %s.\n", g.getNome(), casella));
+        switch(casella) {
+            case locanda, panchina -> { if(caselleSosta) g.daiSosta(casella); }
+            case dadi -> { if(casellePremio) return nuovaPos + lanciaDadi(g); }
             case molla -> { if(casellePremio) return nuovaPos + lancio; }
             case pesca -> { if(casellePesca) return pescaCarta(g, nuovaPos, lancio); }
             case base, testa -> { return tabellone.effettoCasella(nuovaPos); }
@@ -159,11 +167,13 @@ public class ScaleESerpenti {
     }
 
     private int pescaCarta(Giocatore g, int nuovaPos, int lancio) {
-        switch(mazzo.pescaCarta()) {
+        ECarta carta = mazzo.pescaCarta();
+        logTurno.append(String.format("%s pesca la carta %s.\n", g.getNome(), carta));
+        switch(carta) {
             case panchina -> g.daiSosta(ECasella.panchina);
             case locanda -> g.daiSosta(ECasella.locanda);
             case divieto -> { if(carteDivieto) g.daiDivieto(); }
-            case dadi -> { return nuovaPos + dado.lancia(); }
+            case dadi -> { return nuovaPos + lanciaDadi(g); }
             case molla -> { return nuovaPos + lancio; }
         }
         return nuovaPos;
@@ -171,13 +181,15 @@ public class ScaleESerpenti {
 
     private boolean controllaSoste(Giocatore g) {
         if(caselleSosta && g.haSoste()) {
+            logTurno.append(String.format("%s è in sosta.\n", g.getNome()));
             if(carteDivieto && g.haDivieto()) {
                 g.usaDivieto();
-                g.usaSosta();
+                logTurno.append(String.format("%s usa una carta divieto evitando la sosta.\n", g.getNome()));
                 return false;
             }
             else {
                 g.usaSosta();
+                logTurno.append(String.format("%s sconta la sosta.\n", g.getNome()));
                 return true;
             }
         }
@@ -185,10 +197,13 @@ public class ScaleESerpenti {
     }
 
     private int lanciaDadi(Giocatore g) {
+        int lancio;
         if(dadoSingolo)
-            return dado.lancia();
-        if(lancioSoloDado && g.getPosizione() >= numCaselle - dado.getFacce())
-            return dado.lancia();
-        else return dado.lancia() + dado.lancia();
+            lancio = dado.lancia();
+        else if(lancioSoloDado && g.getPosizione() >= numCaselle - dado.getFacce())
+            lancio = dado.lancia();
+        else lancio = dado.lancia() + dado.lancia();
+        logTurno.append(String.format("%s lancia i dadi e ottiene %d.\n", g.getNome(), lancio));
+        return lancio;
     }
 }
