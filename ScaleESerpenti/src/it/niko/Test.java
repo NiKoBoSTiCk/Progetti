@@ -1,58 +1,56 @@
 package it.niko;
 
-import it.niko.gioco.Mazzov1;
-import it.niko.gioco.ScaleESerpentiMAK1;
-import java.util.*;
+
+import it.niko.game.*;
 
 public class Test {
+
     public static void main(String[] args) {
-        HashMap<Integer, Integer> serpenti = new HashMap<>();
-        serpenti.put(98,79);
-        serpenti.put(95,75);
-        serpenti.put(93,73);
-        serpenti.put(87,24);
-        serpenti.put(64,60);
-        serpenti.put(62,19);
-        serpenti.put(54,34);
-        serpenti.put(17,7);
+        Configuration c = new Configuration.ConfigurationBuilder(8, 100, 10, 10)
+                .addSnake(98, 79)
+                .addSnake(95, 75)
+                .addSnake(93, 73)
+                .addSnake(87, 24)
+                .addSnake(64, 60)
+                .addSnake(62, 19)
+                .addSnake(54, 34)
+                .addSnake(17, 7)
+                .addLadder(80, 100)
+                .addLadder(71, 91)
+                .addLadder(28, 84)
+                .addLadder(51, 67)
+                .addLadder(21, 42)
+                .addLadder(1, 38)
+                .addLadder(9, 31)
+                .addLadder(4, 14)
+                .caselleSosta(true)
+                .addSpecialBox(99, GameBoxes.inn)
+                .addSpecialBox(2, GameBoxes.bench)
+                .casellePremio(true)
+                .addSpecialBox(90, GameBoxes.spring)
+                .addSpecialBox(97, GameBoxes.dice)
+                .doppioSei(true)
+                .casellePesca(true, 10)
+                .addSpecialBox(55, GameBoxes.drawCard)
+                .addSpecialBox(3, GameBoxes.drawCard)
+                .addSpecialBox(89, GameBoxes.drawCard)
+                .addCard(GameCards.ban)
+                .addCard(GameCards.spring)
+                .addCard(GameCards.ban)
+                .addCard(GameCards.inn)
+                .addCard(GameCards.dice)
+                .addCard(GameCards.ban)
+                .addCard(GameCards.ban)
+                .addCard(GameCards.bench)
+                .addCard(GameCards.spring)
+                .addCard(GameCards.dice)
+                .build();
 
-        HashMap<Integer, Integer> scale = new HashMap<>();
-        scale.put(1,38);
-        scale.put(4,14);
-        scale.put(9,31);
-        scale.put(21,42);
-        scale.put(28,84);
-        scale.put(51,67);
-        scale.put(71,91);
-        scale.put(80,100);
-
-        HashMap<Integer, String> caselleSpeciali = new HashMap<>();
-        caselleSpeciali.put(25, "molla");
-        caselleSpeciali.put(57, "locanda");
-        caselleSpeciali.put(61, "dadi");
-        caselleSpeciali.put(99, "panchina");
-        caselleSpeciali.put(13, "pesca");
-        caselleSpeciali.put(70, "pesca");
-        caselleSpeciali.put(97, "pesca");
-
-        String[] carte = {"molla", "locanda", "divieto" ,"panchina", "dadi", "molla", "divieto" ,"dadi", "divieto" ,"panchina", "locanda"};
-        Collections.shuffle(Arrays.asList(carte));
-        Mazzov1 mazzo = new Mazzov1(carte);
-
-        ScaleESerpentiMAK1 gioco = new ScaleESerpentiMAK1(
-                100,
-                5,
-                2,
-                serpenti,
-                scale,
-                caselleSpeciali,
-                mazzo,
-                true,
-                true
-        );
-
-        while(!gioco.eTerminata()){
-            System.out.println(gioco.prossimoTurno());
+        ScaleESerpentiGame game = new ScaleESerpentiGame(c);
+        while(!game.isGameFinish()){
+            game.nextRound();
+            System.out.println(game.getRoundLog());
+            System.out.println(game.getCurrentPlayerState());
         }
     }
 }
