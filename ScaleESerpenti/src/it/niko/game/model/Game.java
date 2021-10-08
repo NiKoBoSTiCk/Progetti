@@ -9,9 +9,13 @@ public interface Game {
 
     void removeGameListener(GameListener gl);
 
+    void configGame(Configuration config);
+
     void nextRound();
 
     boolean isFinish();
+
+    boolean isConfigurationSet();
 
     PlayerState getCurrentPlayerState();
 

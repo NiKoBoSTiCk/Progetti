@@ -1,9 +1,14 @@
 package it.niko.game.command;
 
 public class GameCommandHandler implements CommandHandler {
+	private static GameCommandHandler INSTANCE = null;
 
-	public GameCommandHandler() {
-		super();
+	private GameCommandHandler() {}
+
+	public static GameCommandHandler getINSTANCE() {
+		if(INSTANCE == null)
+			INSTANCE = new GameCommandHandler();
+		return INSTANCE;
 	}
 
 	public void handle(Command cmd) {

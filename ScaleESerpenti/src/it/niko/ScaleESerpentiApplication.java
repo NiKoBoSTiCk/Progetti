@@ -4,9 +4,7 @@ import it.niko.game.Configuration;
 import it.niko.game.GameBoxes;
 import it.niko.game.GameCards;
 import it.niko.game.ScaleESerpentiGame;
-import it.niko.game.command.AutoCommand;
-import it.niko.game.command.GameCommandHandler;
-import it.niko.game.command.ManualCommand;
+import it.niko.game.command.*;
 import it.niko.gui.GameConfigurationDialog;
 import it.niko.gui.GameLoggerPanel;
 import it.niko.gui.GameStatePanel;
@@ -18,8 +16,37 @@ public class ScaleESerpentiApplication {
     public static void main(String[] args) {
         JFrame f = new JFrame();
 
-        GameConfigurationDialog gcd = new GameConfigurationDialog(f);
+        ScaleESerpentiGame game = new ScaleESerpentiGame();
 
+        GameCommandHandler handler = GameCommandHandler.getINSTANCE();
+
+        JMenuBar menu = new JMenuBar();
+
+        JMenu configMenu = new JMenu("file");
+
+        JMenuItem create = new JMenuItem("create configuration");
+        JMenuItem save = new JMenuItem("save");
+        JMenuItem load = new JMenuItem("load");
+
+        create.addActionListener(e -> {
+            GameConfigurationDialog gcd = new GameConfigurationDialog(f, game);
+            gcd.setVisible(true);
+        });
+
+        save.addActionListener(e -> {
+            if(game.isConfigurationSet())
+                handler.handle(new SaveCommand());
+        });
+
+        load.addActionListener(e -> {
+            if(game.isConfigurationSet())
+                handler.handle(new LoadCommand());
+        });
+
+        configMenu.add(create);
+        configMenu.add(save);
+        configMenu.add(load);
+        menu.add(configMenu);
 
         Configuration c = new Configuration.ConfigurationBuilder(15, 100, 10, 10)
                 .addSnake(98, 79)
@@ -61,21 +88,15 @@ public class ScaleESerpentiApplication {
                 .addCard(GameCards.spring)
                 .addCard(GameCards.dice)
                 .build();
-
-        ScaleESerpentiGame game = new ScaleESerpentiGame(c);
-
-        f.setLayout(new GridLayout(1,3));
-
-        final GameCommandHandler handler = new GameCommandHandler();
+        game.configGame(c);
 
         GameStatePanel gsp = new GameStatePanel(c);
-        f.add(gsp);
+        game.addGameListener(gsp);
 
         GameLoggerPanel glp = new GameLoggerPanel();
-        f.add(glp);
+        game.addGameListener(glp);
 
         JPanel buttons = new JPanel();
-
         buttons.setLayout(new FlowLayout());
 
         JButton next = new JButton("MANUAL");
@@ -86,8 +107,11 @@ public class ScaleESerpentiApplication {
         finish.addActionListener(e -> handler.handle(new AutoCommand(gsp, glp, game)));
         buttons.add(finish);
 
+        f.setLayout(new GridLayout(1,3));
+        f.setJMenuBar(menu);
+        f.add(gsp);
+        f.add(glp);
         f.add(buttons);
-
         f.setSize(800, 800);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.pack();

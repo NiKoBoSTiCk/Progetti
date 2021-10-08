@@ -2,6 +2,8 @@ package it.niko.game;
 
 import it.niko.game.model.Board;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.Serializable;
 
 public class Configuration implements Serializable {

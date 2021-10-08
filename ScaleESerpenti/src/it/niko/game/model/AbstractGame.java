@@ -3,7 +3,7 @@ package it.niko.game.model;
 import java.util.LinkedList;
 import java.util.List;
 
-public abstract class GameAbstract implements Game {
+public abstract class AbstractGame implements Game {
 
     private final List<GameListener> listeners = new LinkedList<>();
 

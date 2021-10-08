@@ -1,11 +1,11 @@
 package it.niko.game;
 
 import it.niko.game.model.Board;
-import it.niko.game.model.GameAbstract;
+import it.niko.game.model.AbstractGame;
 
 import java.util.*;
 
-public class ScaleESerpentiGame extends GameAbstract {
+public class ScaleESerpentiGame extends AbstractGame {
     private int numBoxes;
     private boolean dadoSingolo;
     private boolean lancioSoloDado;
@@ -34,6 +34,7 @@ public class ScaleESerpentiGame extends GameAbstract {
         configGame(c);
     }
 
+    @Override
     public void configGame(Configuration c) {
         configuration = c;
         numBoxes = c.getNumCaselle();
@@ -83,6 +84,11 @@ public class ScaleESerpentiGame extends GameAbstract {
     @Override
     public Configuration getConfiguration() {
         return configuration; //immutabile
+    }
+
+    @Override
+    public boolean isConfigurationSet() {
+        return isConfigurationSet;
     }
 
     private void currentPlayerRound() {
