@@ -41,8 +41,8 @@ public class BoardConcrete implements Board, Serializable {
     @Override
     public int boxEffect(int pos) {
         return switch(boxesOccupied.get(pos)) {
-            case head -> snakes.get(pos);
-            case base -> ladders.get(pos);
+            case SnakeHead -> snakes.get(pos);
+            case LadderBase -> ladders.get(pos);
             default -> pos;
         };
     }
@@ -55,8 +55,8 @@ public class BoardConcrete implements Board, Serializable {
             return false;
         if(boxesOccupied.containsKey(head) || boxesOccupied.containsKey(tail))
             return false;
-        boxesOccupied.put(head, GameBoxes.head);
-        boxesOccupied.put(tail,  GameBoxes.tail);
+        boxesOccupied.put(head, GameBoxes.SnakeHead);
+        boxesOccupied.put(tail,  GameBoxes.SnakeTail);
         snakes.put(head, tail);
         return true;
     }
@@ -79,8 +79,8 @@ public class BoardConcrete implements Board, Serializable {
             return false;
         if(boxesOccupied.containsKey(base) || boxesOccupied.containsKey(top))
             return false;
-        boxesOccupied.put(base, GameBoxes.base);
-        boxesOccupied.put(top, GameBoxes.top);
+        boxesOccupied.put(base, GameBoxes.LadderBase);
+        boxesOccupied.put(top, GameBoxes.LadderTop);
         ladders.put(base, top);
         return true;
     }

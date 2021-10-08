@@ -1,5 +1,5 @@
 package it.niko.game;
 
 public enum GameBoxes {
-    head, tail, base, top, bench, inn, dice, spring, drawCard
+    SnakeHead, SnakeTail, LadderBase, LadderTop, Bench, Inn, Dice, Spring, DrawCard
 }

@@ -1,14 +1,16 @@
 package it.niko.gui;
 
+import it.niko.game.GameEvent;
+import it.niko.game.model.Game;
 import it.niko.game.model.GameListener;
 import javax.swing.*;
 import java.awt.*;
 
-public class GameLoggerPanel extends JPanel implements GameListener {
+public class LoggerGameListener extends JPanel implements GameListener {
 
     private final JTextArea textArea;
 
-    public GameLoggerPanel() {
+    public LoggerGameListener() {
         textArea = new JTextArea(20, 30);
         textArea.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(textArea);
@@ -17,13 +19,10 @@ public class GameLoggerPanel extends JPanel implements GameListener {
     }
 
     @Override
-    public void update() {
+    public void update(GameEvent e) {
+        Game game = e.getSrc();
+        textArea.append(game.getRoundLog());
         repaint();
         revalidate();
-    }
-
-    public void setLog(String log) {
-        System.out.println(log);
-        textArea.append(log);
     }
 }

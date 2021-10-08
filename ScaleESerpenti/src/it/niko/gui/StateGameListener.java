@@ -1,17 +1,19 @@
 package it.niko.gui;
 
 import it.niko.game.Configuration;
+import it.niko.game.GameEvent;
 import it.niko.game.PlayerState;
+import it.niko.game.model.Game;
 import it.niko.game.model.GameListener;
 import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
 
-public class GameStatePanel extends JPanel implements GameListener {
+public class StateGameListener extends JPanel implements GameListener {
 
     private final HashMap<String, JLabel[]> data;
 
-    public GameStatePanel(Configuration config) {
+    public StateGameListener(Configuration config) {
         data = new HashMap<>();
 
         setLayout(new GridLayout(config.getNumPlayers() + 1, 4));
@@ -33,16 +35,15 @@ public class GameStatePanel extends JPanel implements GameListener {
     }
 
     @Override
-    public void update() {
-        repaint();
-        revalidate();
-    }
-
-    public void setState(PlayerState state) {
+    public void update(GameEvent e) {
+        Game game = e.getSrc();
+        PlayerState state = game.getCurrentPlayerState();
         JLabel[] v = data.get(state.name());
         v[1].setText(String.valueOf(state.pos()));
         v[2].setText(String.valueOf(state.stops()));
         v[3].setText(state.ban()?"y":"n");
         data.put(state.name(), v);
+        repaint();
+        revalidate();
     }
 }

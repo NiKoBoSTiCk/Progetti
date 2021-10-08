@@ -1,5 +1,5 @@
 package it.niko.game;
 
 public enum GameCards {
-    bench, inn, dice, spring, ban
+    Bench, Inn, Dice, Spring, Ban
 }

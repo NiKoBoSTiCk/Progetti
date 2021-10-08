@@ -5,9 +5,9 @@ import it.niko.game.GameBoxes;
 import it.niko.game.GameCards;
 import it.niko.game.ScaleESerpentiGame;
 import it.niko.game.command.*;
-import it.niko.gui.GameConfigurationDialog;
-import it.niko.gui.GameLoggerPanel;
-import it.niko.gui.GameStatePanel;
+import it.niko.gui.ConfigurationDialog;
+import it.niko.gui.LoggerGameListener;
+import it.niko.gui.StateGameListener;
 import javax.swing.*;
 import java.awt.*;
 
@@ -29,7 +29,7 @@ public class ScaleESerpentiApplication {
         JMenuItem load = new JMenuItem("load");
 
         create.addActionListener(e -> {
-            GameConfigurationDialog gcd = new GameConfigurationDialog(f, game);
+            ConfigurationDialog gcd = new ConfigurationDialog(f, game);
             gcd.setVisible(true);
         });
 
@@ -65,46 +65,46 @@ public class ScaleESerpentiApplication {
                 .addLadder(1, 38)
                 .addLadder(9, 31)
                 .addLadder(4, 14)
-                .caselleSosta(true)
-                .addSpecialBox(99, GameBoxes.inn)
-                .addSpecialBox(2, GameBoxes.bench)
-                .casellePremio(true)
-                .addSpecialBox(90, GameBoxes.spring)
-                .addSpecialBox(97, GameBoxes.dice)
-                .doppioSei(true)
-                .casellePesca(true, 10)
-                .addSpecialBox(55, GameBoxes.drawCard)
-                .addSpecialBox(3, GameBoxes.drawCard)
-                .addSpecialBox(89, GameBoxes.drawCard)
-                .carteDivieto(true)
-                .addCard(GameCards.ban)
-                .addCard(GameCards.spring)
-                .addCard(GameCards.ban)
-                .addCard(GameCards.inn)
-                .addCard(GameCards.dice)
-                .addCard(GameCards.ban)
-                .addCard(GameCards.ban)
-                .addCard(GameCards.bench)
-                .addCard(GameCards.spring)
-                .addCard(GameCards.dice)
+                .stopBoxes(true)
+                .addSpecialBox(99, GameBoxes.Inn)
+                .addSpecialBox(2, GameBoxes.Bench)
+                .rewardBoxes(true)
+                .addSpecialBox(90, GameBoxes.Spring)
+                .addSpecialBox(97, GameBoxes.Dice)
+                .doubleSix(true)
+                .drawCardBoxes(true, 10)
+                .addSpecialBox(55, GameBoxes.DrawCard)
+                .addSpecialBox(3, GameBoxes.DrawCard)
+                .addSpecialBox(89, GameBoxes.DrawCard)
+                .banCards(true)
+                .addCard(GameCards.Ban)
+                .addCard(GameCards.Spring)
+                .addCard(GameCards.Ban)
+                .addCard(GameCards.Inn)
+                .addCard(GameCards.Dice)
+                .addCard(GameCards.Ban)
+                .addCard(GameCards.Ban)
+                .addCard(GameCards.Bench)
+                .addCard(GameCards.Spring)
+                .addCard(GameCards.Dice)
                 .build();
         game.configGame(c);
 
-        GameStatePanel gsp = new GameStatePanel(c);
+        StateGameListener gsp = new StateGameListener(c);
         game.addGameListener(gsp);
 
-        GameLoggerPanel glp = new GameLoggerPanel();
+        LoggerGameListener glp = new LoggerGameListener();
         game.addGameListener(glp);
 
         JPanel buttons = new JPanel();
         buttons.setLayout(new FlowLayout());
 
         JButton next = new JButton("MANUAL");
-        next.addActionListener(e -> handler.handle(new ManualCommand(gsp, glp, game)));
+        next.addActionListener(e -> handler.handle(new ManualCommand(game)));
         buttons.add(next);
 
         JButton finish = new JButton("AUTO");
-        finish.addActionListener(e -> handler.handle(new AutoCommand(gsp, glp, game)));
+        finish.addActionListener(e -> handler.handle(new AutoCommand(game)));
         buttons.add(finish);
 
         f.setLayout(new GridLayout(1,3));

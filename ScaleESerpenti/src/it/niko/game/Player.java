@@ -14,8 +14,8 @@ public class Player {
 
     public void giveStop(GameBoxes type) {
         switch(type) {
-            case bench -> stops += 1;
-            case inn -> stops += 3;
+            case Bench -> stops += 1;
+            case Inn -> stops += 3;
         }
     }
 

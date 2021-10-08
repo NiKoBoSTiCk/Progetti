@@ -2,25 +2,24 @@ package it.niko.game;
 
 import it.niko.game.model.Board;
 import it.niko.game.model.AbstractGame;
-
 import java.util.*;
 
 public class ScaleESerpentiGame extends AbstractGame {
     private int numBoxes;
-    private boolean dadoSingolo;
-    private boolean lancioSoloDado;
-    private boolean doppioSei;
-    private boolean caselleSosta;
-    private boolean casellePremio;
-    private boolean casellePesca;
-    private boolean carteDivieto;
-    private boolean isConfigurationSet;
+    private boolean isSingleDice;
+    private boolean isRollSingleDice;
+    private boolean isDoubleSix;
+    private boolean isStopBoxes;
+    private boolean isRewardBoxes;
+    private boolean isDrawCardBoxes;
+    private boolean isBanCards;
     private Board board;
     private Queue<Player> players;
     private Dice dice;
     private Deck deck;
 
     //STATO GIOCO
+    private boolean isConfigurationSet;
     private boolean isGameFinish;
     private Player currentPlayer;
     private Configuration configuration;
@@ -30,31 +29,35 @@ public class ScaleESerpentiGame extends AbstractGame {
         isConfigurationSet = false;
     }
 
-    public ScaleESerpentiGame(Configuration c) {
-        configGame(c);
-    }
-
     @Override
     public void configGame(Configuration c) {
+        if(c == null) {
+            isConfigurationSet = false;
+            return;
+        }
         configuration = c;
-        numBoxes = c.getNumCaselle();
-        dadoSingolo = c.isDadoSingolo();
-        lancioSoloDado = c.isLancioSoloDado();
-        doppioSei = c.isDoppioSei();
-        caselleSosta = c.isCaselleSosta();
-        casellePremio = c.isCasellePremio();
-        casellePesca = c.isCasellePesca();
-        carteDivieto = c.isCarteDivieto();
-        dice = Dice.getInstance();
-        players = new ArrayDeque<>(c.getNumPlayers());
+        isConfigurationSet = true;
+        isGameFinish = false;
+        isSingleDice = c.isSingleDice();
+        isRollSingleDice = c.isRollSingleDice();
+        isDoubleSix = c.isDoubleSix();
+        isStopBoxes = c.isStopBoxes();
+        isRewardBoxes = c.isRewardBoxes();
+        isDrawCardBoxes = c.isDrawCardBoxes();
+        isBanCards = c.isBanCards();
+        numBoxes = c.getNumBoxes();
         board = c.getBoard();
         deck = c.getDeck();
-        if(deck != null) deck.shuffle();
+
+        dice = Dice.getInstance();
+        players = new ArrayDeque<>(c.getNumPlayers());
+
+        if(deck != null)
+            deck.shuffle();
+
         for(int i = 1; i<=c.getNumPlayers(); i++) {
             players.add(new Player("Player " + i));
         }
-        isGameFinish = false;
-        isConfigurationSet = true;
     }
 
     @Override
@@ -62,17 +65,7 @@ public class ScaleESerpentiGame extends AbstractGame {
         if(!isConfigurationSet) throw new IllegalStateException();
         if(isGameFinish) throw new IllegalStateException();
         currentPlayerRound();
-        notifyListeners(); // notifico i listeners del cambiamento di stato del gioco
-    }
-
-    @Override
-    public boolean isFinish() {
-        return isGameFinish;
-    }
-
-    @Override
-    public String getRoundLog() {
-        return roundLog.toString();
+        notifyListeners(new GameEvent(this)); // notifico i listeners del cambiamento di stato del gioco
     }
 
     @Override
@@ -83,7 +76,17 @@ public class ScaleESerpentiGame extends AbstractGame {
 
     @Override
     public Configuration getConfiguration() {
-        return configuration; //immutabile
+        return configuration;
+    }
+
+    @Override
+    public boolean isFinish() {
+        return isGameFinish;
+    }
+
+    @Override
+    public String getRoundLog() {
+        return roundLog.toString();
     }
 
     @Override
@@ -110,7 +113,7 @@ public class ScaleESerpentiGame extends AbstractGame {
             isGameFinish = true;
             return;
         }
-        if(doppioSei && thr == 12) {
+        if(isDoubleSix && thr == 12) {
             roundLog.append(String.format("%s rolls a double six, repeats the round.\n", currentPlayer.getName()));
         }
         else {
@@ -145,25 +148,25 @@ public class ScaleESerpentiGame extends AbstractGame {
 
     private int checkBox(int newPos, int thr) {
         GameBoxes box = board.boxContent(newPos);
-        if(box == null || box == GameBoxes.top || box == GameBoxes.tail) return newPos;
+        if(box == null || box == GameBoxes.LadderTop || box == GameBoxes.SnakeTail) return newPos;
         roundLog.append(String.format("%s is on a [%s] box.\n", currentPlayer.getName(), box));
         switch(box) {
-            case inn, bench -> { if(caselleSosta) currentPlayer.giveStop(box); }
-            case dice -> { if(casellePremio) return newPos + throwDice(); }
-            case spring -> { if(casellePremio) return newPos + thr; }
-            case drawCard -> { if(casellePesca) return drawCard(newPos, thr); }
-            case base, head -> { return board.boxEffect(newPos); }
+            case Inn, Bench -> { if(isStopBoxes) currentPlayer.giveStop(box); }
+            case Dice -> { if(isRewardBoxes) return newPos + throwDice(); }
+            case Spring -> { if(isRewardBoxes) return newPos + thr; }
+            case DrawCard -> { if(isDrawCardBoxes) return drawCard(newPos, thr); }
+            case LadderBase, SnakeHead -> { return board.boxEffect(newPos); }
             default -> { return newPos; }
         }
         return newPos;
     }
 
     private boolean checkStops() {
-        if(caselleSosta && currentPlayer.hasStops()) {
+        if(isStopBoxes && currentPlayer.hasStops()) {
             roundLog.append(String.format("%s has a stop.\n", currentPlayer.getName()));
-            if(carteDivieto && currentPlayer.hasBanCard()) {
+            if(isBanCards && currentPlayer.hasBanCard()) {
                 currentPlayer.usesBanCard();
-                deck.addCard(GameCards.ban); // rimetti la carta nel mazzo
+                deck.addCard(GameCards.Ban); // rimetti la carta nel mazzo
                 roundLog.append(String.format("%s uses a ban card to avoid the stop.\n", currentPlayer.getName()));
                 return false;
             }
@@ -184,20 +187,20 @@ public class ScaleESerpentiGame extends AbstractGame {
         }
         roundLog.append(String.format("%s draws the card [%s].\n", currentPlayer.getName(), card));
         switch(card) {
-            case bench -> currentPlayer.giveStop(GameBoxes.bench);
-            case inn -> currentPlayer.giveStop(GameBoxes.inn);
-            case ban -> { if(carteDivieto) currentPlayer.giveBanCard(); }
-            case dice -> { return newPos + throwDice(); }
-            case spring -> { return newPos + thr; }
+            case Bench -> currentPlayer.giveStop(GameBoxes.Bench);
+            case Inn -> currentPlayer.giveStop(GameBoxes.Inn);
+            case Ban -> { if(isBanCards) currentPlayer.giveBanCard(); }
+            case Dice -> { return newPos + throwDice(); }
+            case Spring -> { return newPos + thr; }
         }
         return newPos;
     }
     
     private int throwDice() {
         int thr;
-        if(dadoSingolo)
+        if(isSingleDice)
             thr = dice.throwDice();
-        else if(lancioSoloDado && currentPlayer.getPos() >= numBoxes - dice.getFaces())
+        else if(isRollSingleDice && currentPlayer.getPos() >= numBoxes - dice.getFaces())
             thr = dice.throwDice();
         else thr = dice.throwDice() + dice.throwDice();
         roundLog.append(String.format("%s throws %d.\n", currentPlayer.getName(), thr));

@@ -4,9 +4,9 @@ import it.niko.game.model.Game;
 import javax.swing.*;
 import java.awt.*;
 
-public class GameConfigurationDialog extends JDialog {
+public class ConfigurationDialog extends JDialog {
 
-    public GameConfigurationDialog(Frame parent, Game game) {
+    public ConfigurationDialog(Frame parent, Game game) {
         super(parent, "Game Configuration", true);
 
         Point loc = parent.getLocation();

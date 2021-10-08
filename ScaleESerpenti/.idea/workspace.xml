@@ -4,27 +4,37 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4616484b-36ad-4982-a48c-16ab204d47fd" name="Changes" comment="commit 15">
-      <change afterPath="$PROJECT_DIR$/src/it/niko/game/command/LoadCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/it/niko/game/command/SaveCommand.java" afterDir="false" />
+    <list default="true" id="4616484b-36ad-4982-a48c-16ab204d47fd" name="Changes" comment="commit 16">
+      <change afterPath="$PROJECT_DIR$/src/it/niko/game/GameEvent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/ScaleESerpentiApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/ScaleESerpentiApplication.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/game/Configuration$ConfigurationBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/game/Configuration$ConfigurationBuilder.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/game/Configuration.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/game/Configuration.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/game/Dice.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/game/Dice.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/game/ScaleESerpentiGame$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/game/ScaleESerpentiGame$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/game/ScaleESerpentiGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/game/ScaleESerpentiGame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/game/command/GameCommandHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/game/command/GameCommandHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/game/model/GameAbstract.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/gui/GameConfigurationDialog.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/gui/GameConfigurationDialog.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/game/command/AutoCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/game/command/AutoCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/game/command/ManualCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/game/command/ManualCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/game/command/SaveCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/game/command/SaveCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/game/model/GameListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/game/model/GameListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/gui/GameConfigurationDialog.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/gui/GameLoggerPanel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/gui/GameStatePanel.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/niko/ScaleESerpentiApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/ScaleESerpentiApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/game/BoardConcrete.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/game/BoardConcrete.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/niko/game/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/game/Configuration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/niko/game/Dice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/game/Dice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/game/Deck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/game/Deck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/game/GameBoxes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/game/GameBoxes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/game/GameCards.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/game/GameCards.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/game/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/game/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/niko/game/ScaleESerpentiGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/game/ScaleESerpentiGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/niko/game/command/GameCommandHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/game/command/GameCommandHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/niko/game/model/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/game/model/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/niko/game/model/GameAbstract.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/game/model/AbstractGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/niko/gui/GameConfigurationDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/gui/GameConfigurationDialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/game/command/AutoCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/game/command/AutoCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/game/command/ManualCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/game/command/ManualCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/game/command/SaveCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/game/command/SaveCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/game/model/AbstractGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/game/model/AbstractGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/game/model/GameListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/game/model/GameListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/gui/GameConfigurationDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/gui/ConfigurationDialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/gui/GameLoggerPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/gui/LoggerGameListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/gui/GameStatePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/gui/StateGameListener.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -237,7 +247,7 @@
       <workItem from="1633598646892" duration="16293000" />
       <workItem from="1633681162074" duration="18566000" />
       <workItem from="1633704284742" duration="450000" />
-      <workItem from="1633704757351" duration="6983000" />
+      <workItem from="1633704757351" duration="10409000" />
     </task>
     <task id="LOCAL-00001" summary="commit 1">
       <created>1632333006179</created>
@@ -393,7 +403,14 @@
       <option name="project" value="LOCAL" />
       <updated>1633706628705</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="commit 16">
+      <created>1633712006395</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1633712006395</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -428,6 +445,7 @@
     <MESSAGE value="commit 13" />
     <MESSAGE value="commit 14" />
     <MESSAGE value="commit 15" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit 15" />
+    <MESSAGE value="commit 16" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit 16" />
   </component>
 </project>

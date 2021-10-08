@@ -1,9 +1,6 @@
 package it.niko.game;
 
 import it.niko.game.model.Board;
-
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.Serializable;
 
 public class Configuration implements Serializable {
@@ -11,13 +8,13 @@ public class Configuration implements Serializable {
     private final int numBoxes;
     private final int row;
     private final int column;
-    private final boolean dadoSingolo;
-    private final boolean lancioSoloDado;
-    private final boolean doppioSei;
-    private final boolean caselleSosta;
-    private final boolean casellePremio;
-    private final boolean casellePesca;
-    private final boolean carteDivieto;
+    private final boolean singleDice;
+    private final boolean rollSingleDice;
+    private final boolean doubleSix;
+    private final boolean stopBoxes;
+    private final boolean rewardBoxes;
+    private final boolean drawCardBoxes;
+    private final boolean banCards;
     private final Board board;
     private final Deck deck;
 
@@ -26,28 +23,28 @@ public class Configuration implements Serializable {
         numBoxes = builder.numBoxes;
         row = builder.row;
         column = builder.column;
-        dadoSingolo = builder.dadoSingolo;
-        lancioSoloDado = builder.lancioSoloDado;
-        doppioSei = builder.doppioSei;
-        caselleSosta = builder.caselleSosta;
-        casellePremio = builder.casellePremio;
-        casellePesca = builder.casellePesca;
-        carteDivieto = builder.carteDivieto;
+        singleDice = builder.singleDice;
+        rollSingleDice = builder.rollSingleDice;
+        doubleSix = builder.doubleSix;
+        stopBoxes = builder.stopBoxes;
+        rewardBoxes = builder.rewardBoxes;
+        drawCardBoxes = builder.drawCardBoxes;
+        banCards = builder.banCards;
         board = builder.board;
         deck = builder.deck;
     }
 
     public int getNumPlayers() { return numPlayers; }
-    public int getNumCaselle() { return numBoxes; }
+    public int getNumBoxes() { return numBoxes; }
     public int getRow() { return row; }
     public int getColumn() { return column; }
-    public boolean isDadoSingolo() { return dadoSingolo; }
-    public boolean isLancioSoloDado() { return lancioSoloDado; }
-    public boolean isDoppioSei() { return doppioSei; }
-    public boolean isCaselleSosta() { return caselleSosta; }
-    public boolean isCasellePremio() { return casellePremio; }
-    public boolean isCasellePesca() { return casellePesca; }
-    public boolean isCarteDivieto() { return carteDivieto; }
+    public boolean isSingleDice() { return singleDice; }
+    public boolean isRollSingleDice() { return rollSingleDice; }
+    public boolean isDoubleSix() { return doubleSix; }
+    public boolean isStopBoxes() { return stopBoxes; }
+    public boolean isRewardBoxes() { return rewardBoxes; }
+    public boolean isDrawCardBoxes() { return drawCardBoxes; }
+    public boolean isBanCards() { return banCards; }
     public Board getBoard() { return board; }
     public Deck getDeck() { return deck; }
 
@@ -59,13 +56,13 @@ public class Configuration implements Serializable {
         private final int column;
         private final Board board;
         //optional
-        private boolean dadoSingolo = false;
-        private boolean lancioSoloDado = false;
-        private boolean doppioSei = false;
-        private boolean caselleSosta = false;
-        private boolean casellePremio = false;
-        private boolean casellePesca = false;
-        private boolean carteDivieto = false;
+        private boolean singleDice = false;
+        private boolean rollSingleDice = false;
+        private boolean doubleSix = false;
+        private boolean stopBoxes = false;
+        private boolean rewardBoxes = false;
+        private boolean drawCardBoxes = false;
+        private boolean banCards = false;
         private Deck deck = null;
 
         public ConfigurationBuilder(int numPlayers, int numBoxes, int row, int column) {
@@ -112,50 +109,50 @@ public class Configuration implements Serializable {
             return this;
         }
 
-        public ConfigurationBuilder dadoSingolo(boolean dadoSingolo) {
-            if(lancioSoloDado || doppioSei)
+        public ConfigurationBuilder singleDice(boolean singleDice) {
+            if(rollSingleDice || doubleSix)
                 throw new IllegalArgumentException();
-            this.dadoSingolo = dadoSingolo;
+            this.singleDice = singleDice;
             return this;
         }
 
-        public ConfigurationBuilder lancioSoloDado(boolean lancioSoloDado) {
-            if(dadoSingolo) throw new IllegalStateException();
-            this.lancioSoloDado = lancioSoloDado;
+        public ConfigurationBuilder rollSingleDice(boolean rollSingleDice) {
+            if(singleDice) throw new IllegalStateException();
+            this.rollSingleDice = rollSingleDice;
             return this;
         }
 
-        public ConfigurationBuilder doppioSei(boolean doppioSei) {
-            if(dadoSingolo) throw new IllegalStateException();
-            this.doppioSei = doppioSei;
+        public ConfigurationBuilder doubleSix(boolean doubleSix) {
+            if(singleDice) throw new IllegalStateException();
+            this.doubleSix = doubleSix;
             return this;
         }
 
-        public ConfigurationBuilder caselleSosta(boolean caselleSosta) {
-            this.caselleSosta = caselleSosta;
+        public ConfigurationBuilder stopBoxes(boolean stopBoxes) {
+            this.stopBoxes = stopBoxes;
             return this;
         }
 
-        public ConfigurationBuilder casellePremio(boolean casellePremio) {
-            this.casellePremio = casellePremio;
+        public ConfigurationBuilder rewardBoxes(boolean rewardBoxes) {
+            this.rewardBoxes = rewardBoxes;
             return this;
         }
 
-        public ConfigurationBuilder casellePesca(boolean casellePesca, int numCarte) {
-            this.casellePesca = casellePesca;
-            deck = new Deck(numCarte);
+        public ConfigurationBuilder drawCardBoxes(boolean drawCardBoxes, int numCards) {
+            this.drawCardBoxes = drawCardBoxes;
+            deck = new Deck(numCards);
             return this;
         }
 
-        public ConfigurationBuilder addCard(GameCards carta) {
-            if(!casellePesca) throw new IllegalStateException();
-            if(!deck.addCard(carta)) throw new RuntimeException();
+        public ConfigurationBuilder addCard(GameCards card) {
+            if(!drawCardBoxes) throw new IllegalStateException();
+            if(!deck.addCard(card)) throw new RuntimeException();
             return this;
         }
 
-        public ConfigurationBuilder carteDivieto(boolean carteDivieto) {
-            if(!casellePesca) throw new IllegalStateException();
-            this.carteDivieto = carteDivieto;
+        public ConfigurationBuilder banCards(boolean banCards) {
+            if(!drawCardBoxes) throw new IllegalStateException();
+            this.banCards = banCards;
             return this;
         }
 
