@@ -22,7 +22,7 @@ public class ScaleESerpentiGame extends GameAbstract {
 
     //STATO GIOCO
     private boolean isGameFinish;
-    private Player currentPlayer; //posizione, soste e divieti
+    private Player currentPlayer;
     private Configuration configuration;
     private StringBuilder roundLog;
 
@@ -50,7 +50,7 @@ public class ScaleESerpentiGame extends GameAbstract {
         deck = c.getDeck();
         if(deck != null) deck.shuffle();
         for(int i = 1; i<=c.getNumPlayers(); i++) {
-            players.add(new Player("Giocatore " + i));
+            players.add(new Player("Player " + i));
         }
         isGameFinish = false;
         isConfigurationSet = true;
@@ -61,11 +61,11 @@ public class ScaleESerpentiGame extends GameAbstract {
         if(!isConfigurationSet) throw new IllegalStateException();
         if(isGameFinish) throw new IllegalStateException();
         currentPlayerRound();
-        notify(new GameEvent(this)); // notifico i listeners del cambiamento di stato del gioco
+        notifyListeners(); // notifico i listeners del cambiamento di stato del gioco
     }
 
     @Override
-    public boolean isGameFinish() {
+    public boolean isFinish() {
         return isGameFinish;
     }
 
@@ -75,11 +75,9 @@ public class ScaleESerpentiGame extends GameAbstract {
     }
 
     @Override
-    public String getCurrentPlayerState() {
-        return currentPlayer.getName()
-                + " Posizione = " + currentPlayer.getPos()
-                + " Soste = " + currentPlayer.getStops()
-                + " Divieto = " + (currentPlayer.hasBanCard()?"si":"no");
+    public PlayerState getCurrentPlayerState() {
+        return new PlayerState(currentPlayer.getName(), currentPlayer.getPos(),
+                currentPlayer.getStops(), currentPlayer.hasBanCard());
     }
 
     @Override
@@ -92,7 +90,7 @@ public class ScaleESerpentiGame extends GameAbstract {
         currentPlayer = players.peek();
         if(currentPlayer == null) throw new IllegalStateException();
         roundLog.append("\n");
-        roundLog.append(String.format("Turno %s\n", currentPlayer.getName()));
+        roundLog.append(String.format("Round %s\n", currentPlayer.getName()));
         if(checkStops()) {
             players.poll();
             players.offer(currentPlayer);
@@ -102,15 +100,15 @@ public class ScaleESerpentiGame extends GameAbstract {
         int newPos = calculatePosition(thr);
         currentPlayer.setPos(newPos);
         if(newPos == numBoxes) {
-            roundLog.append(String.format("Fine Partita. Vince %s.\n", currentPlayer.getName()));
+            roundLog.append(String.format("End of Game. %s wins.\n", currentPlayer.getName()));
             isGameFinish = true;
             return;
         }
         if(doppioSei && thr == 12) {
-            roundLog.append(String.format("%s ha realizzato un doppio sei, ripete il turno.\n", currentPlayer.getName()));
+            roundLog.append(String.format("%s rolls a double six, repeats the round.\n", currentPlayer.getName()));
         }
         else {
-            roundLog.append(String.format("Fine Turno %s.\n", currentPlayer.getName()));
+            roundLog.append(String.format("End %s's Round.\n", currentPlayer.getName()));
             players.poll();
             players.offer(currentPlayer);
         }
@@ -118,23 +116,23 @@ public class ScaleESerpentiGame extends GameAbstract {
 
     private int calculatePosition(int thr) {
         int newPos = currentPlayer.getPos() + thr;
-        roundLog.append(String.format("%s si muove da %d a %d.\n", currentPlayer.getName(), currentPlayer.getPos(), newPos));
-        newPos = checkNumBoxesExceeded(newPos);
+        roundLog.append(String.format("%s move from %d to %d.\n", currentPlayer.getName(), currentPlayer.getPos(), newPos));
+        newPos = checkBoardLimit(newPos);
         int oldPos = newPos;
         while(board.boxContent(newPos) != null) {
             newPos = checkBox(newPos, thr);
             if(newPos == oldPos) break;
-            roundLog.append(String.format("%s si muove da %d a %d.\n", currentPlayer.getName(), oldPos, newPos));
-            newPos = checkNumBoxesExceeded(newPos);
+            roundLog.append(String.format("%s move from %d to %d.\n", currentPlayer.getName(), oldPos, newPos));
+            newPos = checkBoardLimit(newPos);
             oldPos = newPos;
         }
         return newPos;
     }
 
-    private int checkNumBoxesExceeded(int newPos) {
+    private int checkBoardLimit(int newPos) {
         if(newPos > numBoxes){
             newPos = numBoxes - (newPos - numBoxes);
-            roundLog.append(String.format("%s ha superato il limite del tabellone, tornando alla posizione %d\n", currentPlayer.getName(), newPos));
+            roundLog.append(String.format("%s exceeded the board limit, going back to %d\n", currentPlayer.getName(), newPos));
         }
         return newPos;
     }
@@ -142,7 +140,7 @@ public class ScaleESerpentiGame extends GameAbstract {
     private int checkBox(int newPos, int thr) {
         GameBoxes box = board.boxContent(newPos);
         if(box == null || box == GameBoxes.top || box == GameBoxes.tail) return newPos;
-        roundLog.append(String.format("%s è su una casella %s.\n", currentPlayer.getName(), box));
+        roundLog.append(String.format("%s is on a [%s] box.\n", currentPlayer.getName(), box));
         switch(box) {
             case inn, bench -> { if(caselleSosta) currentPlayer.giveStop(box); }
             case dice -> { if(casellePremio) return newPos + throwDice(); }
@@ -156,15 +154,15 @@ public class ScaleESerpentiGame extends GameAbstract {
 
     private boolean checkStops() {
         if(caselleSosta && currentPlayer.hasStops()) {
-            roundLog.append(String.format("%s è in sosta.\n", currentPlayer.getName()));
+            roundLog.append(String.format("%s has a stop.\n", currentPlayer.getName()));
             if(carteDivieto && currentPlayer.hasBanCard()) {
                 currentPlayer.usesBanCard();
-                roundLog.append(String.format("%s usa una carta divieto evitando la sosta.\n", currentPlayer.getName()));
+                roundLog.append(String.format("%s uses a ban card to avoid the stop.\n", currentPlayer.getName()));
                 return false;
             }
             else {
                 currentPlayer.makeStop();
-                roundLog.append(String.format("%s sconta la sosta.\n", currentPlayer.getName()));
+                roundLog.append(String.format("%s makes the stop.\n", currentPlayer.getName()));
                 return true;
             }
         }
@@ -173,7 +171,7 @@ public class ScaleESerpentiGame extends GameAbstract {
 
     private int drawCard(int newPos, int thr) {
         GameCards card = deck.drawCard();
-        roundLog.append(String.format("%s pesca la carta %s.\n", currentPlayer.getName(), card));
+        roundLog.append(String.format("%s draws the card [%s].\n", currentPlayer.getName(), card));
         switch(card) {
             case bench -> currentPlayer.giveStop(GameBoxes.bench);
             case inn -> currentPlayer.giveStop(GameBoxes.inn);
@@ -191,7 +189,7 @@ public class ScaleESerpentiGame extends GameAbstract {
         else if(lancioSoloDado && currentPlayer.getPos() >= numBoxes - dice.getFaces())
             thr = dice.throwDice();
         else thr = dice.throwDice() + dice.throwDice();
-        roundLog.append(String.format("%s lancia i dadi e ottiene %d.\n", currentPlayer.getName(), thr));
+        roundLog.append(String.format("%s throws %d.\n", currentPlayer.getName(), thr));
         return thr;
     }
 }

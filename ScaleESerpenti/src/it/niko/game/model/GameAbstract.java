@@ -1,7 +1,5 @@
 package it.niko.game.model;
 
-import it.niko.game.GameEvent;
-
 import java.util.LinkedList;
 import java.util.List;
 
@@ -21,8 +19,8 @@ public abstract class GameAbstract implements Game {
         listeners.remove(gl);
     }
 
-    protected void notify(GameEvent ge) {
+    protected void notifyListeners() {
         for(GameListener gl : listeners)
-            gl.update(ge);
+            gl.update();
     }
 }

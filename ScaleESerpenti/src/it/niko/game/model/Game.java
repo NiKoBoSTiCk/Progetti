@@ -1,6 +1,7 @@
 package it.niko.game.model;
 
 import it.niko.game.Configuration;
+import it.niko.game.PlayerState;
 
 public interface Game {
 
@@ -10,9 +11,9 @@ public interface Game {
 
     void nextRound();
 
-    boolean isGameFinish();
+    boolean isFinish();
 
-    String getCurrentPlayerState();
+    PlayerState getCurrentPlayerState();
 
     String getRoundLog();
 
