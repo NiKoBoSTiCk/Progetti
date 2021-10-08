@@ -7,9 +7,9 @@ import it.niko.game.ScaleESerpentiGame;
 import it.niko.game.command.AutoCommand;
 import it.niko.game.command.GameCommandHandler;
 import it.niko.game.command.ManualCommand;
+import it.niko.gui.GameConfigurationDialog;
 import it.niko.gui.GameLoggerPanel;
 import it.niko.gui.GameStatePanel;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -17,6 +17,9 @@ public class ScaleESerpentiApplication {
 
     public static void main(String[] args) {
         JFrame f = new JFrame();
+
+        GameConfigurationDialog gcd = new GameConfigurationDialog(f);
+
 
         Configuration c = new Configuration.ConfigurationBuilder(15, 100, 10, 10)
                 .addSnake(98, 79)
@@ -46,6 +49,7 @@ public class ScaleESerpentiApplication {
                 .addSpecialBox(55, GameBoxes.drawCard)
                 .addSpecialBox(3, GameBoxes.drawCard)
                 .addSpecialBox(89, GameBoxes.drawCard)
+                .carteDivieto(true)
                 .addCard(GameCards.ban)
                 .addCard(GameCards.spring)
                 .addCard(GameCards.ban)

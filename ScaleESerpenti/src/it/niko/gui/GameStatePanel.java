@@ -42,7 +42,7 @@ public class GameStatePanel extends JPanel implements GameListener {
         JLabel[] v = data.get(state.name());
         v[1].setText(String.valueOf(state.pos()));
         v[2].setText(String.valueOf(state.stops()));
-        v[3].setText(String.valueOf(state.ban()));
+        v[3].setText(state.ban()?"y":"n");
         data.put(state.name(), v);
     }
 }

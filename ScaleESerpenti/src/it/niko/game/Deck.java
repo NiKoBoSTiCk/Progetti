@@ -22,7 +22,7 @@ public class Deck implements Serializable {
     }
 
     public GameCards drawCard() {
-        if(cards.isEmpty()) throw new RuntimeException();
+        if(cards.isEmpty()) return null;
         GameCards carta = cards.poll();
         if(carta != null && !carta.equals(GameCards.ban))
             cards.offer(carta);

@@ -157,6 +157,7 @@ public class ScaleESerpentiGame extends GameAbstract {
             roundLog.append(String.format("%s has a stop.\n", currentPlayer.getName()));
             if(carteDivieto && currentPlayer.hasBanCard()) {
                 currentPlayer.usesBanCard();
+                deck.addCard(GameCards.ban); // rimetti la carta nel mazzo
                 roundLog.append(String.format("%s uses a ban card to avoid the stop.\n", currentPlayer.getName()));
                 return false;
             }
@@ -171,6 +172,10 @@ public class ScaleESerpentiGame extends GameAbstract {
 
     private int drawCard(int newPos, int thr) {
         GameCards card = deck.drawCard();
+        if(card == null) {
+            roundLog.append(String.format("%s doesn't draw because the cards are out.\n", currentPlayer.getName()));
+            return newPos;
+        }
         roundLog.append(String.format("%s draws the card [%s].\n", currentPlayer.getName(), card));
         switch(card) {
             case bench -> currentPlayer.giveStop(GameBoxes.bench);
