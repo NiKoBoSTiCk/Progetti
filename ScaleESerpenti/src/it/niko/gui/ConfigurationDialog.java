@@ -8,17 +8,8 @@ import java.awt.*;
 public class ConfigurationDialog extends JDialog {
 
     private final Game game;
-    private final JTextField numPlayersText;
-    private final JTextField numBoxesText;
-    private final JTextField columnText;
-    private final JTextField rowText;
-    private final JCheckBox singleDice;
-    private final JCheckBox rollSingleDice;
-    private final JCheckBox doubleSix ;
-    private final JCheckBox stopBoxes;
-    private final JCheckBox rewardBoxes;
-    private final JCheckBox drawCardBoxes;
-    private final JCheckBox banCards;
+    private final JTextField numPlayersText, numBoxesText, columnText, rowText;
+    private final JCheckBox singleDice, rollSingleDice, doubleSix, stopBoxes, rewardBoxes, drawCardBoxes, banCards;
 
     public ConfigurationDialog(Frame parent, Game game) {
         super(parent, "Game Configuration", true);
