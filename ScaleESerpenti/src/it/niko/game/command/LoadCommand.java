@@ -1,6 +1,5 @@
 package it.niko.game.command;
 
-
 public class LoadCommand implements Command {
 
     public LoadCommand() {

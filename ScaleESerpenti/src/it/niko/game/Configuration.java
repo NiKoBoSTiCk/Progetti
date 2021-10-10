@@ -110,20 +110,19 @@ public class Configuration implements Serializable {
         }
 
         public ConfigurationBuilder singleDice(boolean singleDice) {
-            if(rollSingleDice || doubleSix)
-                throw new IllegalArgumentException();
+            if(rollSingleDice || doubleSix) throw new IllegalArgumentException();
             this.singleDice = singleDice;
             return this;
         }
 
         public ConfigurationBuilder rollSingleDice(boolean rollSingleDice) {
-            if(singleDice) throw new IllegalStateException();
+            if(singleDice && rollSingleDice) throw new IllegalStateException();
             this.rollSingleDice = rollSingleDice;
             return this;
         }
 
         public ConfigurationBuilder doubleSix(boolean doubleSix) {
-            if(singleDice) throw new IllegalStateException();
+            if(singleDice && doubleSix) throw new IllegalStateException();
             this.doubleSix = doubleSix;
             return this;
         }
@@ -146,12 +145,13 @@ public class Configuration implements Serializable {
 
         public ConfigurationBuilder addCard(GameCards card) {
             if(!drawCardBoxes) throw new IllegalStateException();
+            if(!banCards && card == GameCards.Ban) throw new IllegalStateException();
             if(!deck.addCard(card)) throw new RuntimeException();
             return this;
         }
 
         public ConfigurationBuilder banCards(boolean banCards) {
-            if(!drawCardBoxes) throw new IllegalStateException();
+            if(!drawCardBoxes && banCards) throw new IllegalStateException();
             this.banCards = banCards;
             return this;
         }

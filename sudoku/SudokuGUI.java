@@ -265,8 +265,8 @@ class FrameGUI extends JFrame{
 				risolvi.setEnabled(false);
 				risolvi.setBackground(bianco);
 				board.risolvi();
-				if(board.numeroSoluzioni()==0) JOptionPane.showMessageDialog(null,"Nessuna Soluzione!", 
-						"ERRORE", JOptionPane.ERROR_MESSAGE); 
+				if(board.numeroSoluzioni()==0)
+					JOptionPane.showMessageDialog(null,"Nessuna Soluzione!", "ERRORE", JOptionPane.ERROR_MESSAGE);
 				else {
 					setMatrice(board.getSoluzione(0));
 					if(board.numeroSoluzioni()>1) {

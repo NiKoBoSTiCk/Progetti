@@ -4,37 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4616484b-36ad-4982-a48c-16ab204d47fd" name="Changes" comment="commit 16">
-      <change afterPath="$PROJECT_DIR$/src/it/niko/game/GameEvent.java" afterDir="false" />
+    <list default="true" id="4616484b-36ad-4982-a48c-16ab204d47fd" name="Changes" comment="commit 17">
+      <change afterPath="$PROJECT_DIR$/src/it/niko/game/EventType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/ScaleESerpentiApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/ScaleESerpentiApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/game/Configuration$ConfigurationBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/game/Configuration$ConfigurationBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/game/Configuration.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/game/Configuration.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/game/GameEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/game/GameEvent.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/game/ScaleESerpentiGame$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/game/ScaleESerpentiGame$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/game/ScaleESerpentiGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/game/ScaleESerpentiGame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/game/command/AutoCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/game/command/AutoCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/game/command/ManualCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/game/command/ManualCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/game/command/LoadCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/game/command/LoadCommand.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/game/command/SaveCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/game/command/SaveCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/game/model/GameListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/game/model/GameListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/gui/GameConfigurationDialog.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/gui/GameLoggerPanel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/gui/GameStatePanel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/gui/ConfigurationDialog.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/gui/ConfigurationDialog.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/gui/LoggerGameListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/gui/LoggerGameListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/gui/StateGameListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/gui/StateGameListener.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/niko/ScaleESerpentiApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/ScaleESerpentiApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/niko/game/BoardConcrete.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/game/BoardConcrete.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/niko/game/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/game/Configuration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/niko/game/Deck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/game/Deck.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/niko/game/GameBoxes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/game/GameBoxes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/niko/game/GameCards.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/game/GameCards.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/niko/game/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/game/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/game/GameEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/game/GameEvent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/niko/game/ScaleESerpentiGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/game/ScaleESerpentiGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/niko/game/command/AutoCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/game/command/AutoCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/niko/game/command/ManualCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/game/command/ManualCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/game/command/LoadCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/game/command/LoadCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/niko/game/command/SaveCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/game/command/SaveCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/niko/game/model/AbstractGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/game/model/AbstractGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/niko/game/model/GameListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/game/model/GameListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/niko/gui/GameConfigurationDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/gui/ConfigurationDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/niko/gui/GameLoggerPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/gui/LoggerGameListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/niko/gui/GameStatePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/gui/StateGameListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/gui/ConfigurationDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/gui/ConfigurationDialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/gui/LoggerGameListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/gui/LoggerGameListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/gui/StateGameListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/gui/StateGameListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sudoku/SudokuGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sudoku/SudokuGUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,9 +35,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -247,7 +238,10 @@
       <workItem from="1633598646892" duration="16293000" />
       <workItem from="1633681162074" duration="18566000" />
       <workItem from="1633704284742" duration="450000" />
-      <workItem from="1633704757351" duration="10409000" />
+      <workItem from="1633704757351" duration="10638000" />
+      <workItem from="1633716767367" duration="287000" />
+      <workItem from="1633718950579" duration="1531000" />
+      <workItem from="1633873133906" duration="8872000" />
     </task>
     <task id="LOCAL-00001" summary="commit 1">
       <created>1632333006179</created>
@@ -410,7 +404,21 @@
       <option name="project" value="LOCAL" />
       <updated>1633712006395</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="commit 17">
+      <created>1633715453873</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1633715453873</updated>
+    </task>
+    <task id="LOCAL-00025" summary="commit 17">
+      <created>1633715470411</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1633715470411</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -446,6 +454,7 @@
     <MESSAGE value="commit 14" />
     <MESSAGE value="commit 15" />
     <MESSAGE value="commit 16" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit 16" />
+    <MESSAGE value="commit 17" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit 17" />
   </component>
 </project>

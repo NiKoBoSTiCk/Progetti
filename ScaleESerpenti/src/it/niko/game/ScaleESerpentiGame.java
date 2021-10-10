@@ -58,6 +58,8 @@ public class ScaleESerpentiGame extends AbstractGame {
         for(int i = 1; i<=c.getNumPlayers(); i++) {
             players.add(new Player("Player " + i));
         }
+
+        notifyListeners(new GameEvent(this, EventType.CONFIG));
     }
 
     @Override
@@ -65,7 +67,7 @@ public class ScaleESerpentiGame extends AbstractGame {
         if(!isConfigurationSet) throw new IllegalStateException();
         if(isGameFinish) throw new IllegalStateException();
         currentPlayerRound();
-        notifyListeners(new GameEvent(this)); // notifico i listeners del cambiamento di stato del gioco
+        notifyListeners(new GameEvent(this, EventType.ROUND)); // notifico i listeners del cambiamento di stato del gioco
     }
 
     @Override
