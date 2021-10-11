@@ -24,13 +24,18 @@ public class BoardConcrete implements Board, Serializable {
 
         this.boxesRow = new HashMap<>();
         int x = 0;
-        for(int i = row -1; i>=0; i--)
-            for(int j = 0; j< column; j++)
+        for(int i=row-1; i>=0; i--)
+            for(int j=0; j<column; j++)
                 boxesRow.put(++x, i);
 
         boxesOccupied = new HashMap<>();
         snakes = new HashMap<>();
         ladders = new HashMap<>();
+    }
+
+    @Override
+    public int getNumBoxes() {
+        return numBoxes;
     }
 
     @Override

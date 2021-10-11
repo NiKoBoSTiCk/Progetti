@@ -4,6 +4,8 @@ import it.niko.game.GameBoxes;
 
 public interface Board {
 
+    int getNumBoxes();
+
     int boxEffect(int pos);
 
     GameBoxes boxContent(int pos);

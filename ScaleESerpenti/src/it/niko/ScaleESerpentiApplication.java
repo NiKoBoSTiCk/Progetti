@@ -3,6 +3,7 @@ package it.niko;
 import it.niko.game.Configuration;
 import it.niko.game.ScaleESerpentiGame;
 import it.niko.game.command.*;
+import it.niko.gui.BoardGameListener;
 import it.niko.gui.ConfigurationDialog;
 import it.niko.gui.LoggerGameListener;
 import it.niko.gui.StateGameListener;
@@ -21,6 +22,9 @@ public class ScaleESerpentiApplication {
 
         LoggerGameListener glp = new LoggerGameListener();
         game.addGameListener(glp);
+
+        BoardGameListener bgl = new BoardGameListener();
+        game.addGameListener(bgl);
 
         GameCommandHandler handler = GameCommandHandler.getINSTANCE();
 
@@ -57,6 +61,7 @@ public class ScaleESerpentiApplication {
                     game.configGame(new Configuration.ConfigurationBuilder(players, 100, 10, 10).build());
                     break;
                 } catch(Exception e) {
+                    e.printStackTrace();
                     JOptionPane.showConfirmDialog(null, "Number of Players is not valid!",
                             "ERROR", JOptionPane.DEFAULT_OPTION);
                 }
@@ -74,9 +79,10 @@ public class ScaleESerpentiApplication {
         finish.addActionListener(e -> handler.handle(new AutoCommand(game)));
         buttons.add(finish);
 
-        f.setLayout(new GridLayout(1,3));
+        f.setLayout(new GridLayout(1,4));
         f.setJMenuBar(menu);
         f.add(gsp);
+        f.add(bgl);
         f.add(glp);
         f.add(buttons);
         f.setSize(800, 800);

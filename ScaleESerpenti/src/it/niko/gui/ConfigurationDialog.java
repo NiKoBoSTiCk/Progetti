@@ -37,8 +37,8 @@ public class ConfigurationDialog extends JDialog {
         panel.setLayout(new GridLayout(8, 2));
         JLabel numPlayersLabel = new JLabel("Players");
         JLabel numBoxesLabel = new JLabel("Board Boxes");
-        JLabel rowLabel = new JLabel("Board row");
-        JLabel columnLabel = new JLabel("Board column");
+        JLabel rowLabel = new JLabel("Board Rows");
+        JLabel columnLabel = new JLabel("Board Columns");
         numPlayersText = new JTextField();
         numBoxesText = new JTextField();
         rowText = new JTextField();

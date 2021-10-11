@@ -20,7 +20,7 @@ public class LoggerGameListener extends JPanel implements GameListener {
 
     @Override
     public void update(GameEvent e) {
-        switch (e.getEventType()) {
+        switch(e.getEventType()) {
             case CONFIG -> textArea.setText("");
             case ROUND -> {
                 Game game = e.getSrc();
