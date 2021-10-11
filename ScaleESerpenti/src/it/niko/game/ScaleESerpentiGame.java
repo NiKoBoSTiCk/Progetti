@@ -39,6 +39,8 @@ public class ScaleESerpentiGame extends AbstractGame {
             isConfigurationSet = false;
             return;
         }
+        if(c.getNumPlayers() <= 0 || c.getNumPlayers() > 30)
+            throw new IllegalStateException();
         configuration = c;
         isConfigurationSet = true;
         isGameFinish = false;

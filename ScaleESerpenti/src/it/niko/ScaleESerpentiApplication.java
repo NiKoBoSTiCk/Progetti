@@ -51,8 +51,16 @@ public class ScaleESerpentiApplication {
         menu.add(configMenu);
 
         if(!game.isConfigurationSet()) {
-            int players = Integer.parseInt(JOptionPane.showInputDialog("Giocatori"));
-            game.configGame(new Configuration.ConfigurationBuilder(players, 100, 10, 10).build());
+            for(;;) {
+                try {
+                    int players = Integer.parseInt(JOptionPane.showInputDialog("Number of Players"));
+                    game.configGame(new Configuration.ConfigurationBuilder(players, 100, 10, 10).build());
+                    break;
+                } catch(Exception e) {
+                    JOptionPane.showConfirmDialog(null, "Number of Players is not valid!",
+                            "ERROR", JOptionPane.DEFAULT_OPTION);
+                }
+            }
         }
 
         JPanel buttons = new JPanel();

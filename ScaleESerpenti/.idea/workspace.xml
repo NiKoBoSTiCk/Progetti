@@ -4,20 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4616484b-36ad-4982-a48c-16ab204d47fd" name="Changes" comment="commit 18">
-      <change afterPath="$PROJECT_DIR$/src/Test.java" afterDir="false" />
+    <list default="true" id="4616484b-36ad-4982-a48c-16ab204d47fd" name="Changes" comment="commit 19">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/ScaleESerpentiApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/ScaleESerpentiApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/game/ScaleESerpentiGame$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/game/ScaleESerpentiGame$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/game/ScaleESerpentiGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/game/ScaleESerpentiGame.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/game/command/LoadCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/game/command/LoadCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/game/command/SaveCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/game/command/SaveCommand.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/gui/ConfigurationDialog.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/gui/ConfigurationDialog.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/gui/StateGameListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/gui/StateGameListener.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/niko/ScaleESerpentiApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/ScaleESerpentiApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/niko/game/ScaleESerpentiGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/game/ScaleESerpentiGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/niko/game/command/LoadCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/game/command/LoadCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/niko/game/command/SaveCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/game/command/SaveCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/niko/game/model/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/game/model/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/gui/ConfigurationDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/gui/ConfigurationDialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/gui/StateGameListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/gui/StateGameListener.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -229,7 +226,7 @@
       <workItem from="1633716767367" duration="287000" />
       <workItem from="1633718950579" duration="1531000" />
       <workItem from="1633873133906" duration="10314000" />
-      <workItem from="1633946491796" duration="2284000" />
+      <workItem from="1633946491796" duration="12169000" />
     </task>
     <task id="LOCAL-00001" summary="commit 1">
       <created>1632333006179</created>
@@ -427,7 +424,14 @@
       <option name="project" value="LOCAL" />
       <updated>1633882342412</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="commit 19">
+      <created>1633949968326</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1633949968326</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -465,6 +469,7 @@
     <MESSAGE value="commit 16" />
     <MESSAGE value="commit 17" />
     <MESSAGE value="commit 18" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit 18" />
+    <MESSAGE value="commit 19" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit 19" />
   </component>
 </project>

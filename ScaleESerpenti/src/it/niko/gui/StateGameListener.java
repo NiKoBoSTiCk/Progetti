@@ -20,10 +20,10 @@ public class StateGameListener extends JPanel implements GameListener {
         JPanel panel = new JPanel();
         setLayout(new BorderLayout());
         panel.setLayout(new GridLayout(1, 4));
-        panel.add(new JLabel("Player"), BorderLayout.CENTER);
-        panel.add(new JLabel("Position"), BorderLayout.CENTER);
-        panel.add(new JLabel("Stops"), BorderLayout.CENTER);
-        panel.add(new JLabel("Ban"), BorderLayout.CENTER);
+        panel.add(new JLabel("Player"));
+        panel.add(new JLabel("Position"));
+        panel.add(new JLabel("Stops"));
+        panel.add(new JLabel("Ban"));
         add(panel, BorderLayout.NORTH);
         add(statePanel, BorderLayout.CENTER);
     }
@@ -35,7 +35,7 @@ public class StateGameListener extends JPanel implements GameListener {
             case CONFIG -> {
                 Configuration config = game.getConfiguration();
                 statePanel.removeAll();
-                statePanel.setLayout(new GridLayout(config.getNumPlayers() + 1, 4));
+                statePanel.setLayout(new GridLayout(config.getNumPlayers() , 4));
                 for(int i=1; i<=config.getNumPlayers(); i++) {
                     JLabel[] state = new JLabel[4];
                     state[0] = new JLabel("Player" + i);
