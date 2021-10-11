@@ -22,4 +22,8 @@ public interface Game {
     String getRoundLog();
 
     Configuration getConfiguration();
+
+    void save(String fileName);
+
+    void load(String fileName);
 }

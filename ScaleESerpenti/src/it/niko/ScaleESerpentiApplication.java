@@ -1,8 +1,6 @@
 package it.niko;
 
 import it.niko.game.Configuration;
-import it.niko.game.GameBoxes;
-import it.niko.game.GameCards;
 import it.niko.game.ScaleESerpentiGame;
 import it.niko.game.command.*;
 import it.niko.gui.ConfigurationDialog;
@@ -39,19 +37,18 @@ public class ScaleESerpentiApplication {
 
         save.addActionListener(e -> {
             if(game.isConfigurationSet())
-                handler.handle(new SaveCommand());
+                handler.handle(new SaveCommand(f, game));
         });
 
         load.addActionListener(e -> {
             if(game.isConfigurationSet())
-                handler.handle(new LoadCommand());
+                handler.handle(new LoadCommand(f, game));
         });
 
         configMenu.add(create);
         configMenu.add(save);
         configMenu.add(load);
         menu.add(configMenu);
-
 
         if(!game.isConfigurationSet()) {
             int players = Integer.parseInt(JOptionPane.showInputDialog("Giocatori"));

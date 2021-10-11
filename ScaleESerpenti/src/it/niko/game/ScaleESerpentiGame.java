@@ -2,6 +2,10 @@ package it.niko.game;
 
 import it.niko.game.model.Board;
 import it.niko.game.model.AbstractGame;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.*;
 
 public class ScaleESerpentiGame extends AbstractGame {
@@ -52,8 +56,7 @@ public class ScaleESerpentiGame extends AbstractGame {
         dice = Dice.getInstance();
         players = new ArrayDeque<>(c.getNumPlayers());
 
-        if(deck != null)
-            deck.shuffle();
+        if(deck != null) deck.shuffle();
 
         for(int i = 1; i<=c.getNumPlayers(); i++) {
             players.add(new Player("Player " + i));
@@ -94,6 +97,32 @@ public class ScaleESerpentiGame extends AbstractGame {
     @Override
     public boolean isConfigurationSet() {
         return isConfigurationSet;
+    }
+
+    @Override
+    public void save(String fileName) {
+        ObjectOutputStream oss;
+        try{
+            oss = new ObjectOutputStream(new FileOutputStream(fileName));
+            oss.writeObject(configuration);
+            oss.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void load(String nomeFile){
+        ObjectInputStream ois;
+        try{
+            ois = new ObjectInputStream(new FileInputStream(nomeFile));
+            configuration = (Configuration) ois.readObject();
+            configGame(configuration);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     private void currentPlayerRound() {

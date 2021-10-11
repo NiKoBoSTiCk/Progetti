@@ -18,21 +18,20 @@ public class StateGameListener extends JPanel implements GameListener {
         data = new HashMap<>();
         statePanel = new JPanel();
         JPanel panel = new JPanel();
-
-        setLayout(new GridLayout(2, 1));
+        setLayout(new BorderLayout());
         panel.setLayout(new GridLayout(1, 4));
         panel.add(new JLabel("Player"), BorderLayout.CENTER);
         panel.add(new JLabel("Position"), BorderLayout.CENTER);
         panel.add(new JLabel("Stops"), BorderLayout.CENTER);
         panel.add(new JLabel("Ban"), BorderLayout.CENTER);
-        add(panel);
-        add(statePanel);
+        add(panel, BorderLayout.NORTH);
+        add(statePanel, BorderLayout.CENTER);
     }
 
     @Override
     public void update(GameEvent e) {
         Game game = e.getSrc();
-        switch (e.getEventType()) {
+        switch(e.getEventType()) {
             case CONFIG -> {
                 Configuration config = game.getConfiguration();
                 statePanel.removeAll();
