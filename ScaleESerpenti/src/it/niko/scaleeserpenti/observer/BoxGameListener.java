@@ -2,7 +2,6 @@ package it.niko.scaleeserpenti.observer;
 
 import it.niko.scaleeserpenti.game.GameBoxes;
 import it.niko.scaleeserpenti.game.Board;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -10,15 +9,14 @@ public class BoxGameListener extends JPanel implements GameListener {
     private final JPanel configState;
 
     public BoxGameListener() {
-        setLayout(new BorderLayout());
         configState = new JPanel();
-        JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(1, 2));
-        panel.add(new JLabel("Box", SwingConstants.CENTER));
-        panel.add(new JLabel("Content", SwingConstants.CENTER));
-        add(panel, BorderLayout.NORTH);
+        JPanel title = new JPanel();
+        title.setLayout(new GridLayout(1, 2));
+        title.add(new JLabel("Box", SwingConstants.CENTER));
+        title.add(new JLabel("Content", SwingConstants.CENTER));
+        setLayout(new BorderLayout());
+        add(title, BorderLayout.NORTH);
         add(configState, BorderLayout.CENTER);
-
     }
 
     @Override

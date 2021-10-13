@@ -1,4 +1,4 @@
-package it.niko.scaleeserpenti.config;
+package it.niko.scaleeserpenti.builder;
 
 import it.niko.scaleeserpenti.game.GameBoxes;
 import it.niko.scaleeserpenti.game.GameCards;
@@ -34,10 +34,10 @@ public class ConfigurationDialog extends JDialog {
 
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(8, 2));
-        JLabel numPlayersLabel = new JLabel("Players");
-        JLabel numBoxesLabel = new JLabel("Board Boxes");
-        JLabel rowLabel = new JLabel("Board Rows");
-        JLabel columnLabel = new JLabel("Board Columns");
+        JLabel numPlayersLabel = new JLabel("Players", SwingConstants.CENTER);
+        JLabel numBoxesLabel = new JLabel("Board Boxes", SwingConstants.CENTER);
+        JLabel rowLabel = new JLabel("Board Rows", SwingConstants.CENTER);
+        JLabel columnLabel = new JLabel("Board Columns", SwingConstants.CENTER);
         numPlayersText = new JTextField();
         numBoxesText = new JTextField();
         rowText = new JTextField();
@@ -48,9 +48,13 @@ public class ConfigurationDialog extends JDialog {
             String headS = JOptionPane.showInputDialog("Head Position");
             String tailS = JOptionPane.showInputDialog("Tail Position");
             if(headS != null && tailS != null) {
-                int head = Integer.parseInt(headS);
-                int tail = Integer.parseInt(tailS);
-                snakes.add(new Snake(head, tail));
+                try {
+                    int head = Integer.parseInt(headS);
+                    int tail = Integer.parseInt(tailS);
+                    snakes.add(new Snake(head, tail));
+                } catch(Exception ex) {
+                    JOptionPane.showMessageDialog(null, "input not valid!", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
 
@@ -59,9 +63,13 @@ public class ConfigurationDialog extends JDialog {
             String baseS = JOptionPane.showInputDialog("Base Position");
             String topS = JOptionPane.showInputDialog("Top Position");
             if(baseS != null && topS != null) {
-                int base = Integer.parseInt(baseS);
-                int top = Integer.parseInt(topS);
-                ladders.add(new Ladder(base, top));
+                try {
+                    int base = Integer.parseInt(baseS);
+                    int top = Integer.parseInt(topS);
+                    ladders.add(new Ladder(base, top));
+                } catch(Exception ex) {
+                    JOptionPane.showMessageDialog(null, "input not valid!", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
 
@@ -69,11 +77,15 @@ public class ConfigurationDialog extends JDialog {
         specialBoxButton.addActionListener(e -> {
             String posS = JOptionPane.showInputDialog("Box Position");
             if(posS != null) {
-                int pos = Integer.parseInt(posS);
-                GameBoxes[] values = { GameBoxes.Bench, GameBoxes.Inn, GameBoxes.Dice, GameBoxes.Spring, GameBoxes.DrawCard};
-                GameBoxes type = (GameBoxes) JOptionPane.showInputDialog(null, "Type",
-                        "", JOptionPane.QUESTION_MESSAGE, null, values, GameBoxes.Bench);
-                specialBoxes.add(new SpecialBox(pos, type));
+                try {
+                    int pos = Integer.parseInt(posS);
+                    GameBoxes[] values = { GameBoxes.Bench, GameBoxes.Inn, GameBoxes.Dice, GameBoxes.Spring, GameBoxes.DrawCard };
+                    GameBoxes type = (GameBoxes) JOptionPane.showInputDialog(null, "Type",
+                            "", JOptionPane.QUESTION_MESSAGE, null, values, GameBoxes.Bench);
+                    specialBoxes.add(new SpecialBox(pos, type));
+                } catch(Exception ex) {
+                    JOptionPane.showMessageDialog(null, "input not valid!", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
 
@@ -92,7 +104,7 @@ public class ConfigurationDialog extends JDialog {
 
         JPanel variants = new JPanel();
         variants.setLayout(new GridLayout(3, 3));
-        JLabel selectVariantsLabel = new JLabel("Variants");
+        JLabel selectVariantsLabel = new JLabel("Variants", SwingConstants.CENTER);
         singleDice = new JCheckBox("Single Dice");
         rollSingleDice = new JCheckBox("Roll Single Dice");
         doubleSix = new JCheckBox("Double Six");

@@ -1,11 +1,10 @@
 package it.niko;
 
-import it.niko.scaleeserpenti.config.Configuration;
-import it.niko.scaleeserpenti.game.ScaleESerpentiGame;
+import it.niko.scaleeserpenti.builder.Configuration;
+import it.niko.scaleeserpenti.observer.ScaleESerpentiGame;
 import it.niko.scaleeserpenti.command.*;
 import it.niko.scaleeserpenti.observer.*;
-import it.niko.scaleeserpenti.config.ConfigurationDialog;
-
+import it.niko.scaleeserpenti.builder.ConfigurationDialog;
 import javax.swing.*;
 import java.awt.*;
 
@@ -34,25 +33,25 @@ public class ScaleESerpentiApplication {
         GameCommandHandler handler = GameCommandHandler.getINSTANCE();
 
         JMenuBar menu = new JMenuBar();
-        JMenu configMenu = new JMenu("file");
+        JMenu configMenu = new JMenu("File");
         menu.setBorderPainted(true);
         menu.add(configMenu);
 
-        JMenuItem create = new JMenuItem("create configuration");
+        JMenuItem create = new JMenuItem("Create Configuration");
         create.addActionListener(e -> {
             ConfigurationDialog gcd = new ConfigurationDialog(f, game);
             gcd.setVisible(true);
         });
         configMenu.add(create);
 
-        JMenuItem save = new JMenuItem("save");
+        JMenuItem save = new JMenuItem("Save");
         save.addActionListener(e -> {
             if(game.isConfigurationSet())
                 handler.handle(new SaveCommand(f, game));
         });
         configMenu.add(save);
 
-        JMenuItem load = new JMenuItem("load");
+        JMenuItem load = new JMenuItem("Load");
         load.addActionListener(e -> {
             if(game.isConfigurationSet())
                 handler.handle(new LoadCommand(f, game));
@@ -62,28 +61,27 @@ public class ScaleESerpentiApplication {
         JPanel buttons = new JPanel();
         buttons.setLayout(new FlowLayout());
 
-        JButton manual = new JButton("MANUAL");
+        JButton manual = new JButton("Manual Advance");
         manual.addActionListener(e -> handler.handle(new ManualCommand(game)));
         buttons.add(manual);
 
-        JButton auto = new JButton("AUTO");
+        JButton auto = new JButton("Auto Advance");
         auto.addActionListener(e -> handler.handle(new AutoCommand(game)));
         buttons.add(auto);
 
-        if(!game.isConfigurationSet()) {
-            for(;;) {
-                try {
-                    int players = Integer.parseInt(JOptionPane.showInputDialog("Number of Players"));
-                    game.configGame(new Configuration.ConfigurationBuilder(players, 100, 10, 10).build());
-                    break;
-                } catch(Exception e) {
-                    JOptionPane.showConfirmDialog(null, "Number of Players is not valid!",
-                            "ERROR", JOptionPane.DEFAULT_OPTION);
-                }
+        for(;;) {
+            try {
+                String value = JOptionPane.showInputDialog(f, "Number of Players", "Set Players", JOptionPane.QUESTION_MESSAGE);
+                if(value == null) System.exit(0);
+                int players = Integer.parseInt(value);
+                game.configGame(new Configuration.ConfigurationBuilder(players, 100, 10, 10).build());
+                break;
+            } catch(Exception e) {
+                JOptionPane.showMessageDialog(null, "Number of Players is not valid!", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
         }
 
-        f.setLayout(new GridLayout(2,3));
+        f.setLayout(new GridLayout(2,3, 5, 5));
         f.setJMenuBar(menu);
         f.add(stateGameListener);
         f.add(boardGameListener);

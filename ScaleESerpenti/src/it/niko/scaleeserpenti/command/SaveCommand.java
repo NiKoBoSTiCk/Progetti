@@ -24,7 +24,7 @@ public class SaveCommand implements Command {
                 return true;
             }
         } catch(Exception e) {
-            JOptionPane.showConfirmDialog(null, "Game not saved!", "ERROR", JOptionPane.DEFAULT_OPTION);
+            JOptionPane.showMessageDialog(null, "Game not saved!", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
         return false;
     }

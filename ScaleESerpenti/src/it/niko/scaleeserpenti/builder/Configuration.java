@@ -1,4 +1,4 @@
-package it.niko.scaleeserpenti.config;
+package it.niko.scaleeserpenti.builder;
 
 import it.niko.scaleeserpenti.game.*;
 import java.io.Serializable;
@@ -66,6 +66,7 @@ public class Configuration implements Serializable {
         private Deck deck = null;
 
         public ConfigurationBuilder(int numPlayers, int numBoxes, int row, int column) {
+            if(numPlayers < 1 || numPlayers > 20) throw new IllegalArgumentException();
             this.numPlayers = numPlayers;
             this.numBoxes = numBoxes;
             this.row = row;
@@ -74,20 +75,17 @@ public class Configuration implements Serializable {
         }
 
         public ConfigurationBuilder addSnake(int head, int tail) {
-            if(!board.addSnake(head, tail))
-                throw new IllegalArgumentException();
+            if(!board.addSnake(head, tail)) throw new IllegalArgumentException();
             return this;
         }
 
         public ConfigurationBuilder addLadder(int base, int top) {
-            if(!board.addLadder(base, top))
-                throw new IllegalArgumentException();
+            if(!board.addLadder(base, top)) throw new IllegalArgumentException();
             return this;
         }
 
         public ConfigurationBuilder addSpecialBox(int pos, GameBoxes type) {
-            if(!board.addSpecialBox(pos, type))
-                throw new IllegalArgumentException();
+            if(!board.addSpecialBox(pos, type)) throw new IllegalArgumentException();
             return this;
         }
 

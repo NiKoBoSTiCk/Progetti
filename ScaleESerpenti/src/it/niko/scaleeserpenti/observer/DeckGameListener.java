@@ -12,10 +12,10 @@ public class DeckGameListener extends JPanel implements GameListener {
 
     public DeckGameListener() {
         cardsPanel = new JPanel();
-        JPanel panel = new JPanel();
+        JPanel title = new JPanel();
         setLayout(new BorderLayout());
-        panel.add(new JLabel("Deck"), SwingConstants.CENTER);
-        add(panel, BorderLayout.NORTH);
+        title.add(new JLabel("Deck", SwingConstants.CENTER));
+        add(title, BorderLayout.NORTH);
         add(cardsPanel, BorderLayout.CENTER);
     }
 
@@ -27,8 +27,7 @@ public class DeckGameListener extends JPanel implements GameListener {
         cardsPanel.setLayout(new GridLayout(deck.numCard(), 1));
         List<GameCards> cards = deck.getCards();
         for(int i=0; i<deck.numCard(); i++) {
-            JLabel card = new JLabel("" + cards.get(i), SwingConstants.CENTER);
-            cardsPanel.add(card);
+            cardsPanel.add(new JLabel("" + cards.get(i), SwingConstants.CENTER));
         }
         repaint();
         revalidate();

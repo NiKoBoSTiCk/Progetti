@@ -1,6 +1,6 @@
 package it.niko.scaleeserpenti.observer;
 
-import it.niko.scaleeserpenti.config.Configuration;
+import it.niko.scaleeserpenti.builder.Configuration;
 import it.niko.scaleeserpenti.game.PlayerState;
 
 public interface Game {

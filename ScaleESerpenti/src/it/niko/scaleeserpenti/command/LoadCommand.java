@@ -23,11 +23,8 @@ public class LoadCommand implements Command {
                 game.load(f.getAbsolutePath());
                 return true;
             }
-            else {
-                JOptionPane.showMessageDialog(null,"File not exists.", "ERROR", JOptionPane.ERROR_MESSAGE);
-            }
         } catch(Exception e) {
-            JOptionPane.showConfirmDialog(null, "Game not loaded!", "ERROR", JOptionPane.DEFAULT_OPTION);
+            JOptionPane.showMessageDialog(null, "Game not loaded!", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
         return false;
     }

@@ -1,7 +1,6 @@
 package it.niko.scaleeserpenti.observer;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class LoggerGameListener extends JPanel implements GameListener {
 

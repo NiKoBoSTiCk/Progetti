@@ -1,6 +1,7 @@
 package it.niko.scaleeserpenti.command;
 
 public class GameCommandHandler implements CommandHandler {
+
 	private static GameCommandHandler INSTANCE = null;
 
 	private GameCommandHandler() {}

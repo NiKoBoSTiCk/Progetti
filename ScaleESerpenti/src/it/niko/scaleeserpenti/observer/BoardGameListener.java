@@ -1,7 +1,6 @@
 package it.niko.scaleeserpenti.observer;
 
-import it.niko.scaleeserpenti.config.Configuration;
-
+import it.niko.scaleeserpenti.builder.Configuration;
 import javax.swing.*;
 import javax.swing.border.MatteBorder;
 import java.awt.*;
@@ -12,7 +11,7 @@ public class BoardGameListener extends JPanel implements GameListener {
 
     public BoardGameListener() {
         JPanel title = new JPanel();
-        title.add(new JLabel("Board"), SwingConstants.CENTER);
+        title.add(new JLabel("Board", SwingConstants.CENTER));
         boardPanel = new JPanel();
         setLayout(new BorderLayout());
         add(title, BorderLayout.NORTH);
@@ -37,8 +36,8 @@ public class BoardGameListener extends JPanel implements GameListener {
                     for(int j=0; j<column; j++) {
                         JLabel box = new JLabel("" + ++x, SwingConstants.CENTER);
                         box.setOpaque(true);
-                        if(x % 2 == 0) box.setBackground(Color.RED);
-                        else box.setBackground(Color.GREEN);
+                        if(x % 2 == 0) box.setBackground(Color.LIGHT_GRAY);
+                        else box.setBackground(Color.WHITE);
                         boxes[i][j] = box;
                     }
                     alternati = false;
@@ -47,7 +46,7 @@ public class BoardGameListener extends JPanel implements GameListener {
                     for(int j=column-1; j>=0; j--) {
                         JLabel box = new JLabel("" + ++x, SwingConstants.CENTER);
                         box.setOpaque(true);
-                        if(x % 2 == 0) box.setBackground(Color.BLUE);
+                        if(x % 2 == 0) box.setBackground(Color.LIGHT_GRAY);
                         else box.setBackground(Color.WHITE);
                         boxes[i][j] = box;
                     }

@@ -1,7 +1,7 @@
-import it.niko.scaleeserpenti.config.Configuration;
+import it.niko.scaleeserpenti.builder.Configuration;
 import it.niko.scaleeserpenti.game.GameBoxes;
 import it.niko.scaleeserpenti.game.GameCards;
-import it.niko.scaleeserpenti.game.ScaleESerpentiGame;
+import it.niko.scaleeserpenti.observer.ScaleESerpentiGame;
 
 public class Test {
     public static void main(String[] args) {

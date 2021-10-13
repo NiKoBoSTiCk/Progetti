@@ -1,9 +1,7 @@
-package it.niko.scaleeserpenti.game;
+package it.niko.scaleeserpenti.observer;
 
-import it.niko.scaleeserpenti.observer.AbstractGame;
-import it.niko.scaleeserpenti.config.Configuration;
-import it.niko.scaleeserpenti.observer.EventType;
-import it.niko.scaleeserpenti.observer.GameEvent;
+import it.niko.scaleeserpenti.game.*;
+import it.niko.scaleeserpenti.builder.Configuration;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -41,8 +39,6 @@ public class ScaleESerpentiGame extends AbstractGame {
             isConfigurationSet = false;
             return;
         }
-        if(c.getNumPlayers() <= 0 || c.getNumPlayers() > 20)
-            throw new IllegalStateException();
         configuration = c;
         isConfigurationSet = true;
         isGameFinish = false;
@@ -74,7 +70,7 @@ public class ScaleESerpentiGame extends AbstractGame {
         if(!isConfigurationSet) throw new IllegalStateException();
         if(isGameFinish) throw new IllegalStateException();
         currentPlayerRound();
-        notifyListeners(new GameEvent(this, EventType.ROUND)); // notifico i listeners del cambiamento di stato del gioco
+        notifyListeners(new GameEvent(this, EventType.ROUND));
     }
 
     @Override
