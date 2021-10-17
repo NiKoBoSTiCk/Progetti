@@ -1,7 +1,7 @@
 package it.niko;
 
 import it.niko.scaleeserpenti.builder.Configuration;
-import it.niko.scaleeserpenti.observer.ScaleESerpentiGame;
+import it.niko.scaleeserpenti.game.ScaleESerpentiGame;
 import it.niko.scaleeserpenti.command.*;
 import it.niko.scaleeserpenti.observer.*;
 import it.niko.scaleeserpenti.builder.ConfigurationDialog;

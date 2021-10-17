@@ -28,7 +28,7 @@ public class DeckConcrete implements Deck, Serializable {
     }
 
     @Override
-    public int numCard() {
+    public int numCards() {
         return cards.size();
     }
 

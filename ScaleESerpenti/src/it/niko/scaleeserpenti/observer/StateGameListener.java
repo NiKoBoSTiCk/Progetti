@@ -28,10 +28,9 @@ public class StateGameListener extends JPanel implements GameListener {
 
     @Override
     public void update(GameEvent e) {
-        Game game = e.getSrc();
         switch(e.getEventType()) {
             case CONFIG -> {
-                Configuration config = game.getConfiguration();
+                Configuration config = e.getSrc().getConfiguration();
                 statePanel.removeAll();
                 statePanel.setLayout(new GridLayout(config.getNumPlayers() , 4, 2, 2));
                 statePanel.setBackground(Color.BLACK);
@@ -68,7 +67,7 @@ public class StateGameListener extends JPanel implements GameListener {
                 }
             }
             case ROUND -> {
-                PlayerState playerState = game.getCurrentPlayerState();
+                PlayerState playerState =  e.getSrc().getCurrentPlayerState();
                 JLabel[] state = data.get(playerState.name());
                 state[1].setText(String.valueOf(playerState.pos()));
                 state[2].setText(String.valueOf(playerState.stops()));
@@ -85,7 +84,7 @@ public class StateGameListener extends JPanel implements GameListener {
 
                 data.put(playerState.name(), state);
 
-                if(game.isFinish())
+                if( e.getSrc().isFinish())
                     for(int i=0; i<4; i++)
                         state[i].setBackground(Color.GREEN);
             }

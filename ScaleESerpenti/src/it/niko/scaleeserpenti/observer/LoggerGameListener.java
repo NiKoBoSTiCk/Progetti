@@ -18,8 +18,7 @@ public class LoggerGameListener extends JPanel implements GameListener {
         switch(e.getEventType()) {
             case CONFIG -> textArea.setText("");
             case ROUND -> {
-                Game game = e.getSrc();
-                textArea.append(game.getRoundLog());
+                textArea.append(e.getSrc().getRoundLog());
                 repaint();
                 revalidate();
             }

@@ -8,7 +8,7 @@ public interface Deck {
 
     GameCards drawCard();
 
-    int numCard();
+    int numCards();
 
     List<GameCards> getCards();
 

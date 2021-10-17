@@ -139,3 +139,4 @@ public class Configuration implements Serializable {
         public Configuration build() { return new Configuration(this); }
     }
 }
+

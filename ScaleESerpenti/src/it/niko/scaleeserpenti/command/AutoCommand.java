@@ -1,6 +1,6 @@
 package it.niko.scaleeserpenti.command;
 
-import it.niko.scaleeserpenti.observer.Game;
+import it.niko.scaleeserpenti.game.Game;
 
 public class AutoCommand implements Command {
     private final Game game;

@@ -2,7 +2,7 @@ package it.niko.scaleeserpenti.builder;
 
 import it.niko.scaleeserpenti.game.GameBoxes;
 import it.niko.scaleeserpenti.game.GameCards;
-import it.niko.scaleeserpenti.observer.Game;
+import it.niko.scaleeserpenti.game.Game;
 import javax.swing.*;
 import java.awt.*;
 import java.util.LinkedList;

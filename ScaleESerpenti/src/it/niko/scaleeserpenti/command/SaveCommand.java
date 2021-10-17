@@ -1,6 +1,6 @@
 package it.niko.scaleeserpenti.command;
 
-import it.niko.scaleeserpenti.observer.Game;
+import it.niko.scaleeserpenti.game.Game;
 import javax.swing.*;
 import java.io.File;
 

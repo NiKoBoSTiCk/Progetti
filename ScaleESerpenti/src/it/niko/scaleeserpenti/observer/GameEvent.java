@@ -1,5 +1,7 @@
 package it.niko.scaleeserpenti.observer;
 
+import it.niko.scaleeserpenti.game.Game;
+
 public class GameEvent {
     private final Game src;
     private final EventType eventType;

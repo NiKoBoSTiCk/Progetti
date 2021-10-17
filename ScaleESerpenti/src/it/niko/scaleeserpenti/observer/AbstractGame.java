@@ -1,5 +1,7 @@
 package it.niko.scaleeserpenti.observer;
 
+import it.niko.scaleeserpenti.game.Game;
+
 import java.util.LinkedList;
 import java.util.List;
 

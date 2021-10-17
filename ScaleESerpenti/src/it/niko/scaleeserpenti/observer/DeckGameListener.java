@@ -24,9 +24,9 @@ public class DeckGameListener extends JPanel implements GameListener {
         Deck deck = e.getSrc().getConfiguration().getDeck();
         if(deck == null) return;
         cardsPanel.removeAll();
-        cardsPanel.setLayout(new GridLayout(deck.numCard(), 1));
+        cardsPanel.setLayout(new GridLayout(deck.numCards(), 1));
         List<GameCards> cards = deck.getCards();
-        for(int i=0; i<deck.numCard(); i++) {
+        for(int i = 0; i<deck.numCards(); i++) {
             cardsPanel.add(new JLabel("" + cards.get(i), SwingConstants.CENTER));
         }
         repaint();
