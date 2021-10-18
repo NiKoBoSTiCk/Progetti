@@ -232,9 +232,7 @@ public class ScaleESerpentiGame extends AbstractGame {
     
     private int throwDice() {
         int thr;
-        if(isSingleDice)
-            thr = dice.throwDice();
-        else if(isRollSingleDice && currentPlayer.getPos() >= numBoxes - dice.getFaces())
+        if(isSingleDice || (isRollSingleDice && currentPlayer.getPos() >= numBoxes - dice.getFaces()))
             thr = dice.throwDice();
         else thr = dice.throwDice() + dice.throwDice();
         roundLog.append(String.format("%s throws %d.\n", currentPlayer.getName(), thr));

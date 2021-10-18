@@ -39,9 +39,9 @@ public class ConfigurationDialog extends JDialog {
         JLabel rowLabel = new JLabel("Board Rows", SwingConstants.CENTER);
         JLabel columnLabel = new JLabel("Board Columns", SwingConstants.CENTER);
         numPlayersText = new JTextField();
-        numBoxesText = new JTextField();
-        rowText = new JTextField();
-        columnText = new JTextField();
+        numBoxesText = new JTextField("100");
+        rowText = new JTextField("10");
+        columnText = new JTextField("10");
 
         JButton snakeButton = new JButton("Add Snake");
         snakeButton.addActionListener(e -> {

@@ -4,25 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4616484b-36ad-4982-a48c-16ab204d47fd" name="Changes" comment="v1.1">
+    <list default="true" id="4616484b-36ad-4982-a48c-16ab204d47fd" name="Changes" comment="v1.2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/niko/ScaleESerpentiApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/ScaleESerpentiApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/niko/scaleeserpenti/builder/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/scaleeserpenti/builder/Configuration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/niko/scaleeserpenti/builder/ConfigurationDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/scaleeserpenti/builder/ConfigurationDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/niko/scaleeserpenti/command/AutoCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/scaleeserpenti/command/AutoCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/niko/scaleeserpenti/command/LoadCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/scaleeserpenti/command/LoadCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/niko/scaleeserpenti/command/ManualCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/scaleeserpenti/command/ManualCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/niko/scaleeserpenti/command/SaveCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/scaleeserpenti/command/SaveCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/niko/scaleeserpenti/game/Deck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/scaleeserpenti/game/Deck.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/niko/scaleeserpenti/game/DeckConcrete.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/scaleeserpenti/game/DeckConcrete.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/niko/scaleeserpenti/observer/AbstractGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/scaleeserpenti/observer/AbstractGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/niko/scaleeserpenti/observer/DeckGameListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/scaleeserpenti/observer/DeckGameListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/niko/scaleeserpenti/observer/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/scaleeserpenti/game/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/niko/scaleeserpenti/observer/GameEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/scaleeserpenti/observer/GameEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/niko/scaleeserpenti/observer/LoggerGameListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/scaleeserpenti/observer/LoggerGameListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/niko/scaleeserpenti/observer/ScaleESerpentiGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/scaleeserpenti/game/ScaleESerpentiGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/niko/scaleeserpenti/observer/StateGameListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/scaleeserpenti/observer/StateGameListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/niko/scaleeserpenti/game/ScaleESerpentiGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/niko/scaleeserpenti/game/ScaleESerpentiGame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -203,10 +188,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ScaleESerpentiApplication" />
         <item itemvalue="Application.Test (1)" />
         <item itemvalue="Application.TabelloneBuilder" />
         <item itemvalue="Application.ScaleESerpentiGame" />
-        <item itemvalue="Application.ScaleESerpentiApplication" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -247,7 +232,8 @@
       <workItem from="1634306986675" duration="418000" />
       <workItem from="1634307423012" duration="281000" />
       <workItem from="1634307726567" duration="15604000" />
-      <workItem from="1634477031281" duration="4684000" />
+      <workItem from="1634477031281" duration="5948000" />
+      <workItem from="1634547535786" duration="17106000" />
     </task>
     <task id="LOCAL-00001" summary="commit 1">
       <created>1632333006179</created>
@@ -501,7 +487,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634135372578</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="v1.2">
+      <created>1634484534040</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1634484534040</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -544,6 +537,7 @@
     <MESSAGE value="commit 21" />
     <MESSAGE value="v1.0" />
     <MESSAGE value="v1.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="v1.1" />
+    <MESSAGE value="v1.2" />
+    <option name="LAST_COMMIT_MESSAGE" value="v1.2" />
   </component>
 </project>
