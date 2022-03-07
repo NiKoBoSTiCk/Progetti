@@ -4,7 +4,6 @@ import it.niko.scaleeserpenti.builder.Configuration;
 import it.niko.scaleeserpenti.observer.AbstractGame;
 import it.niko.scaleeserpenti.observer.EventType;
 import it.niko.scaleeserpenti.observer.GameEvent;
-
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;

@@ -33,7 +33,7 @@ public class ScaleESerpentiApplication {
         GameCommandHandler handler = GameCommandHandler.getINSTANCE();
 
         JMenuBar menu = new JMenuBar();
-        JMenu configMenu = new JMenu("File");
+        JMenu configMenu = new JMenu("Settings");
         menu.setBorderPainted(true);
         menu.add(configMenu);
 

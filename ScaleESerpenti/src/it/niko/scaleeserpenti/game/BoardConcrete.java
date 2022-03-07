@@ -65,16 +65,6 @@ public class BoardConcrete implements Board, Serializable {
     }
 
     @Override
-    public boolean removeSnake(int head, int tail) {
-        if(!boxesOccupied.containsKey(head) && !boxesOccupied.containsKey(tail))
-            return false;
-        boxesOccupied.remove(head);
-        boxesOccupied.remove(tail);
-        snakes.remove(head);
-        return true;
-    }
-
-    @Override
     public boolean addLadder(int base, int top) {
         if(base > top || top <= column || base > numBoxes - column)
             return false;
@@ -89,28 +79,10 @@ public class BoardConcrete implements Board, Serializable {
     }
 
     @Override
-    public boolean removeLadder(int base, int top) {
-        if(!boxesOccupied.containsKey(base) && !boxesOccupied.containsKey(top))
-            return false;
-        boxesOccupied.remove(base);
-        boxesOccupied.remove(top);
-        ladders.remove(base);
-        return true;
-    }
-
-    @Override
     public boolean addSpecialBox(int pos, GameBoxes type) {
         if(boxesOccupied.containsKey(pos))
             return false;
         boxesOccupied.put(pos, type);
-        return true;
-    }
-
-    @Override
-    public boolean removeSpecialBox(int pos) {
-        if(!boxesOccupied.containsKey(pos))
-            return false;
-        boxesOccupied.remove(pos);
         return true;
     }
 }

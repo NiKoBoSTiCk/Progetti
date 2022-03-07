@@ -1,5 +1,10 @@
 package it.niko.scaleeserpenti.game;
-
+/*
+interfaccia di un tabellone del gioco Scale e Serpenti, che permette
+di sapere il contenuto di una casella,
+il suo “effetto” ovvero il cambiamento alla posizione che subisce un giocatore su quella casella
+e di aggiungere scale, serpenti e caselle speciali.
+ */
 public interface Board {
 
     int getNumBoxes();
@@ -10,13 +15,7 @@ public interface Board {
 
     boolean addSnake(int head, int tail);
 
-    boolean removeSnake(int head, int tail);
-
     boolean addLadder(int base, int top);
 
-    boolean removeLadder(int base, int top);
-
     boolean addSpecialBox(int pos, GameBoxes type);
-
-    boolean removeSpecialBox(int pos);
 }

@@ -4,10 +4,7 @@ import it.niko.scaleeserpenti.game.*;
 import java.io.Serializable;
 
 public class Configuration implements Serializable {
-    private final int numPlayers;
-    private final int numBoxes;
-    private final int row;
-    private final int column;
+    private final int numPlayers, numBoxes, row, column;
     private final boolean singleDice;
     private final boolean rollSingleDice;
     private final boolean doubleSix;

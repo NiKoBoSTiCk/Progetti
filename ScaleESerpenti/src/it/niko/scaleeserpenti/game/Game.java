@@ -3,8 +3,14 @@ package it.niko.scaleeserpenti.game;
 import it.niko.scaleeserpenti.builder.Configuration;
 import it.niko.scaleeserpenti.observer.GameListener;
 
+/*
+interfaccia di un gioco configurabile a turni su tabellone con dei giocatori
+che cambiano stato e che permette il salvataggio/caricamento */
 public interface Game {
 
+    /*
+       metodo che aggiunge un ascoltatore di eventi al gioco
+     */
     void addGameListener(GameListener gl);
 
     void removeGameListener(GameListener gl);
