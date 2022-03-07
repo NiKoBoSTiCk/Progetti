@@ -44,7 +44,7 @@ public class StateGameListener extends JPanel implements GameListener {
                     player.setBackground(Color.CYAN);
                     state[0] = player;
 
-                    JLabel pos = new JLabel("0", SwingConstants.CENTER);
+                    JLabel pos = new JLabel("1", SwingConstants.CENTER);
                     pos.setOpaque(true);
                     pos.setBackground(Color.YELLOW);
                     state[1] = pos;

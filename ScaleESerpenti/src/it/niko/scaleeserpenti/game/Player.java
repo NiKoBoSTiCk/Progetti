@@ -8,7 +8,7 @@ public class Player {
 
     public Player(String name) {
         this.name = name;
-        this.pos = 0;
+        this.pos = 1;
         this.stops = 0;
     }
 
