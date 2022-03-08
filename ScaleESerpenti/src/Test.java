@@ -8,7 +8,7 @@ Test di salvataggio di una configurazione
 public class Test {
     public static void main(String[] args) {
         ScaleESerpentiGame game = new ScaleESerpentiGame();
-        Configuration c = new Configuration.ConfigurationBuilder(15, 100, 10, 10)
+        Configuration c = new Configuration.ConfigurationBuilder(15, 10, 10)
                 .addSnake(98, 79)
                 .addSnake(95, 75)
                 .addSnake(93, 73)

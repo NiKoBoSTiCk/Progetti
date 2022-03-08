@@ -74,7 +74,7 @@ public class ScaleESerpentiApplication {
                 String value = JOptionPane.showInputDialog(f, "Number of Players", "Set Players", JOptionPane.QUESTION_MESSAGE);
                 if(value == null) System.exit(0);
                 int players = Integer.parseInt(value);
-                game.configGame(new Configuration.ConfigurationBuilder(players, 100, 10, 10).build());
+                game.configGame(new Configuration.ConfigurationBuilder(players, 10, 10).build());
                 break;
             } catch(Exception e) {
                 JOptionPane.showMessageDialog(null, "Number of Players is not valid!", "ERROR", JOptionPane.ERROR_MESSAGE);

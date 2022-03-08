@@ -14,7 +14,7 @@ public class ConfigurationDialog extends JDialog {
     private record SpecialBox(int pos, GameBoxes type) {}
 
     private final Game game;
-    private final JTextField numPlayersText, numBoxesText, columnText, rowText;
+    private final JTextField numPlayersText, columnText, rowText;
     private final JCheckBox singleDice, rollSingleDice, doubleSix, stopBoxes, rewardBoxes, drawCardBoxes, banCards;
     private final LinkedList<Snake> snakes;
     private final LinkedList<Ladder> ladders;
@@ -34,13 +34,12 @@ public class ConfigurationDialog extends JDialog {
 
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(8, 2));
+
         JLabel numPlayersLabel = new JLabel("Players", SwingConstants.CENTER);
-        JLabel numBoxesLabel = new JLabel("Board Boxes", SwingConstants.CENTER);
-        JLabel rowLabel = new JLabel("Board Rows", SwingConstants.CENTER);
-        JLabel columnLabel = new JLabel("Board Columns", SwingConstants.CENTER);
         numPlayersText = new JTextField();
-        numBoxesText = new JTextField("100");
+        JLabel rowLabel = new JLabel("Board Rows", SwingConstants.CENTER);
         rowText = new JTextField("10");
+        JLabel columnLabel = new JLabel("Board Columns", SwingConstants.CENTER);
         columnText = new JTextField("10");
 
         JButton snakeButton = new JButton("Add Snake");
@@ -123,8 +122,6 @@ public class ConfigurationDialog extends JDialog {
 
         panel.add(numPlayersLabel);
         panel.add(numPlayersText);
-        panel.add(numBoxesLabel);
-        panel.add(numBoxesText);
         panel.add(rowLabel);
         panel.add(rowText);
         panel.add(columnLabel);
@@ -143,11 +140,10 @@ public class ConfigurationDialog extends JDialog {
     private void setConfiguration() {
         try {
             int numPlayers = Integer.parseInt(numPlayersText.getText());
-            int numBoxes= Integer.parseInt(numBoxesText.getText());
             int row = Integer.parseInt(rowText.getText());
             int column = Integer.parseInt(columnText.getText());
 
-            Configuration.ConfigurationBuilder builder = new Configuration.ConfigurationBuilder(numPlayers, numBoxes, row, column);
+            Configuration.ConfigurationBuilder builder = new Configuration.ConfigurationBuilder(numPlayers, row, column);
             builder.singleDice(singleDice.isSelected());
             builder.rollSingleDice(rollSingleDice.isSelected());
             builder.doubleSix(doubleSix.isSelected());

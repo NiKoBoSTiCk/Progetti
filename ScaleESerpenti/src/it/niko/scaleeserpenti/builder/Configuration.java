@@ -4,7 +4,7 @@ import it.niko.scaleeserpenti.game.*;
 import java.io.Serializable;
 
 public class Configuration implements Serializable {
-    private final int numPlayers, numBoxes, row, column;
+    private final int numPlayers, row, column;
     private final boolean singleDice;
     private final boolean rollSingleDice;
     private final boolean doubleSix;
@@ -17,7 +17,6 @@ public class Configuration implements Serializable {
 
     private Configuration(ConfigurationBuilder builder) {
         numPlayers = builder.numPlayers;
-        numBoxes = builder.numBoxes;
         row = builder.row;
         column = builder.column;
         singleDice = builder.singleDice;
@@ -32,7 +31,6 @@ public class Configuration implements Serializable {
     }
 
     public int getNumPlayers() { return numPlayers; }
-    public int getNumBoxes() { return numBoxes; }
     public int getRow() { return row; }
     public int getColumn() { return column; }
     public boolean isSingleDice() { return singleDice; }
@@ -48,7 +46,6 @@ public class Configuration implements Serializable {
     public static class ConfigurationBuilder {
         //required
         private final int numPlayers;
-        private final int numBoxes;
         private final int row;
         private final int column;
         private final Board board;
@@ -62,13 +59,12 @@ public class Configuration implements Serializable {
         private boolean banCards = false;
         private Deck deck = null;
 
-        public ConfigurationBuilder(int numPlayers, int numBoxes, int row, int column) {
+        public ConfigurationBuilder(int numPlayers, int row, int column) {
             if(numPlayers < 1 || numPlayers > 20) throw new IllegalArgumentException();
             this.numPlayers = numPlayers;
-            this.numBoxes = numBoxes;
             this.row = row;
             this.column = column;
-            board = new BoardConcrete(numBoxes, row, column);
+            board = new BoardConcrete(row, column);
         }
 
         public ConfigurationBuilder addSnake(int head, int tail) {

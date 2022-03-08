@@ -13,10 +13,9 @@ public class BoardConcrete implements Board, Serializable {
     private final Map<Integer, Integer> snakes;
     private final Map<Integer, Integer> ladders;
 
-    public BoardConcrete(int numBoxes, int row, int column) {
-        if(row * column != numBoxes) throw new IllegalArgumentException();
-        if(row < 3 || column < 3) throw new IllegalArgumentException();
-        this.numBoxes = numBoxes;
+    public BoardConcrete(int row, int column) {
+        if(row < 4 || column < 4) throw new IllegalArgumentException();
+        this.numBoxes = row * column;
         this.row = row;
         this.column = column;
 
