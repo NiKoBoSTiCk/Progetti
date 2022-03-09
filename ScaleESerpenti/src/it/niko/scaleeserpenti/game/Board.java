@@ -1,9 +1,9 @@
 package it.niko.scaleeserpenti.game;
 /*
-interfaccia di un tabellone del gioco Scale e Serpenti, che permette
-di sapere il contenuto di una casella,
-il suo “effetto” ovvero il cambiamento alla posizione che subisce un giocatore su quella casella
-e di aggiungere scale, serpenti e caselle speciali.
+  Interfaccia di un tabellone del gioco Scale e Serpenti, che permette
+  di sapere il contenuto di una casella,
+  il suo “effetto” ovvero il cambiamento alla posizione che subisce un giocatore su quella casella
+  e di aggiungere scale, serpenti e caselle speciali.
  */
 public interface Board {
 

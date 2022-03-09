@@ -1,14 +1,11 @@
 package it.niko.scaleeserpenti.game;
 
-import it.niko.scaleeserpenti.game.Game;
 import it.niko.scaleeserpenti.observer.GameEvent;
 import it.niko.scaleeserpenti.observer.GameListener;
-
 import java.util.LinkedList;
 import java.util.List;
 
 public abstract class AbstractGame implements Game {
-
     private final List<GameListener> listeners = new LinkedList<>();
 
     @Override

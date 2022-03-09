@@ -15,17 +15,15 @@ public class SaveCommand implements Command {
     }
 
     @Override
-    public boolean execute() {
+    public void execute() {
         JFileChooser fileChooser = new JFileChooser();
         try {
             if(fileChooser.showSaveDialog(frame) == JFileChooser.APPROVE_OPTION) {
                 File f = fileChooser.getSelectedFile();
                 game.save(f.getAbsolutePath());
-                return true;
             }
         } catch(Exception e) {
-            JOptionPane.showMessageDialog(null, "Game not saved!", "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Save failed!", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
-        return false;
     }
 }

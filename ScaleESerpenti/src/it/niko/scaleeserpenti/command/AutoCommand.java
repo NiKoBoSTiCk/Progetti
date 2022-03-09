@@ -10,10 +10,9 @@ public class AutoCommand implements Command {
     }
 
     @Override
-    public boolean execute() {
+    public void execute() {
         while(!game.isFinish()) {
             game.nextRound();
         }
-        return game.isFinish();
     }
 }

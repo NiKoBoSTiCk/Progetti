@@ -7,6 +7,9 @@ import javax.swing.border.MatteBorder;
 import java.awt.*;
 import java.util.HashMap;
 
+/*
+  Rappresentazione dello stato dei giocatori
+ */
 public class StateGameListener extends JPanel implements GameListener {
 
     private final HashMap<String, JLabel[]> data;
@@ -63,11 +66,11 @@ public class StateGameListener extends JPanel implements GameListener {
                     statePanel.add(state[1]);
                     statePanel.add(state[2]);
                     statePanel.add(state[3]);
-                    data.put("Player " + i, state);
+                    data.put("Player" + i, state);
                 }
             }
             case ROUND -> {
-                PlayerState playerState =  e.getSrc().getCurrentPlayerState();
+                PlayerState playerState = e.getSrc().getCurrentPlayerState();
                 JLabel[] state = data.get(playerState.name());
                 state[1].setText(String.valueOf(playerState.pos()));
                 state[2].setText(String.valueOf(playerState.stops()));

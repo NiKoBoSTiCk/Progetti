@@ -5,6 +5,9 @@ import it.niko.scaleeserpenti.game.Board;
 import javax.swing.*;
 import java.awt.*;
 
+/*
+  Rappresentazione del contenuto delle caselle del tabellone
+ */
 public class BoxGameListener extends JPanel implements GameListener {
     private final JPanel configState;
 

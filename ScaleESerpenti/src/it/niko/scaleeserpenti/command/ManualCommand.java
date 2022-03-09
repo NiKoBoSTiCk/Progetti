@@ -11,10 +11,9 @@ public class ManualCommand implements Command {
     }
 
     @Override
-    public boolean execute() {
+    public void execute() {
         if(game.isFinish())
-            return false;
+            return;
         game.nextRound();
-        return true;
     }
 }

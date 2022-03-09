@@ -9,27 +9,26 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ScaleESerpentiApplication {
-
     public static void main(String[] args) {
         JFrame f = new JFrame();
 
         ScaleESerpentiGame game = new ScaleESerpentiGame();
-
         StateGameListener stateGameListener = new StateGameListener();
-        game.addGameListener(stateGameListener);
-
         LoggerGameListener loggerGameListener = new LoggerGameListener();
-        game.addGameListener(loggerGameListener);
-
         BoxGameListener boxGameListener = new BoxGameListener();
-        game.addGameListener(boxGameListener);
-
         BoardGameListener boardGameListener = new BoardGameListener();
-        game.addGameListener(boardGameListener);
-
         DeckGameListener deckGameListener = new DeckGameListener();
+
+        game.addGameListener(stateGameListener);
+        game.addGameListener(loggerGameListener);
+        game.addGameListener(boxGameListener);
+        game.addGameListener(boardGameListener);
         game.addGameListener(deckGameListener);
 
+        SaveCommand save = new SaveCommand(f, game);
+        LoadCommand load = new LoadCommand(f, game);
+        AutoCommand auto = new AutoCommand(game);
+        ManualCommand manual = new ManualCommand(game);
         GameCommandHandler handler = GameCommandHandler.getINSTANCE();
 
         JMenuBar menu = new JMenuBar();
@@ -44,30 +43,24 @@ public class ScaleESerpentiApplication {
         });
         configMenu.add(create);
 
-        JMenuItem save = new JMenuItem("Save");
-        save.addActionListener(e -> {
-            if(game.isConfigurationSet())
-                handler.handle(new SaveCommand(f, game));
-        });
-        configMenu.add(save);
+        JMenuItem saveMenu = new JMenuItem("Save");
+        saveMenu.addActionListener(e -> handler.handle(save));
+        configMenu.add(saveMenu);
 
-        JMenuItem load = new JMenuItem("Load");
-        load.addActionListener(e -> {
-            if(game.isConfigurationSet())
-                handler.handle(new LoadCommand(f, game));
-        });
-        configMenu.add(load);
+        JMenuItem loadMenu = new JMenuItem("Load");
+        loadMenu.addActionListener(e -> handler.handle(load));
+        configMenu.add(loadMenu);
 
         JPanel buttons = new JPanel();
         buttons.setLayout(new FlowLayout());
 
-        JButton manual = new JButton("Manual Advance");
-        manual.addActionListener(e -> handler.handle(new ManualCommand(game)));
-        buttons.add(manual);
+        JButton manualButton = new JButton("Manual Advance");
+        manualButton.addActionListener(e -> handler.handle(manual));
+        buttons.add(manualButton);
 
-        JButton auto = new JButton("Auto Advance");
-        auto.addActionListener(e -> handler.handle(new AutoCommand(game)));
-        buttons.add(auto);
+        JButton autoButton= new JButton("Auto Advance");
+        autoButton.addActionListener(e -> handler.handle(auto));
+        buttons.add(autoButton);
 
         for(;;) {
             try {

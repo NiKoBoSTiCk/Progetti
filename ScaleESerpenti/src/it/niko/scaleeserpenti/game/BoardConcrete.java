@@ -19,6 +19,11 @@ public class BoardConcrete implements Board, Serializable {
         this.row = row;
         this.column = column;
 
+        /*
+        Creo una mappa che associa a ogni casella il numero di riga dove risiede, in modo tale
+        da evitare di avere la coda di un serpente nella stessa riga della testa o
+        una base di una scala nella stessa riga della cima.
+         */
         this.boxesRow = new HashMap<>();
         int x = 0;
         for(int i=row-1; i>=0; i--)

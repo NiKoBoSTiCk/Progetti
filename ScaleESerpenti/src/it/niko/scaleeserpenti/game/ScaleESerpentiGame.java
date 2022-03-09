@@ -3,10 +3,7 @@ package it.niko.scaleeserpenti.game;
 import it.niko.scaleeserpenti.builder.Configuration;
 import it.niko.scaleeserpenti.observer.EventType;
 import it.niko.scaleeserpenti.observer.GameEvent;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.*;
 
 public class ScaleESerpentiGame extends AbstractGame {
@@ -60,7 +57,7 @@ public class ScaleESerpentiGame extends AbstractGame {
         if(deck != null) deck.shuffle();
 
         for(int i = 1; i<=c.getNumPlayers(); i++) {
-            players.add(new Player("Player " + i));
+            players.add(new Player("Player" + i));
         }
 
         notifyListeners(new GameEvent(this, EventType.CONFIG));
@@ -101,29 +98,19 @@ public class ScaleESerpentiGame extends AbstractGame {
     }
 
     @Override
-    public void save(String fileName) {
+    public void save(String fileName) throws IOException {
         ObjectOutputStream oss;
-        try{
-            oss = new ObjectOutputStream(new FileOutputStream(fileName));
-            oss.writeObject(configuration);
-            oss.close();
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
+        oss = new ObjectOutputStream(new FileOutputStream(fileName));
+        oss.writeObject(configuration);
+        oss.close();
     }
 
     @Override
-    public void load(String nomeFile){
+    public void load(String nomeFile) throws IOException, ClassNotFoundException {
         ObjectInputStream ois;
-        try{
-            ois = new ObjectInputStream(new FileInputStream(nomeFile));
-            configuration = (Configuration) ois.readObject();
-            configGame(configuration);
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
+        ois = new ObjectInputStream(new FileInputStream(nomeFile));
+        configuration = (Configuration) ois.readObject();
+        configGame(configuration);
     }
 
     private void currentPlayerRound() {
@@ -131,7 +118,8 @@ public class ScaleESerpentiGame extends AbstractGame {
         currentPlayer = players.peek();
         if(currentPlayer == null) throw new IllegalStateException();
         roundLog.append("\n");
-        roundLog.append(String.format("Round %s\n", currentPlayer.getName()));
+        roundLog.append(String.format("%s's round\n", currentPlayer.getName()));
+        roundLog.append(String.format("%s is on box %s\n", currentPlayer.getName(), currentPlayer.getPos()));
         if(checkStops()) {
             players.poll();
             players.offer(currentPlayer);
@@ -141,7 +129,7 @@ public class ScaleESerpentiGame extends AbstractGame {
         int newPos = calculatePosition(thr);
         currentPlayer.setPos(newPos);
         if(newPos == numBoxes) {
-            roundLog.append(String.format("End of Game. %s wins.\n", currentPlayer.getName()));
+            roundLog.append(String.format("Game over. %s wins.\n", currentPlayer.getName()));
             isGameFinish = true;
             return;
         }

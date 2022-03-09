@@ -6,8 +6,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
+/*
+   Rappresentazione del mazzo di gioco
+ */
 public class DeckGameListener extends JPanel implements GameListener {
-
     private final JPanel cardsPanel;
 
     public DeckGameListener() {

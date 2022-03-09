@@ -2,11 +2,14 @@ import it.niko.scaleeserpenti.builder.Configuration;
 import it.niko.scaleeserpenti.game.GameBoxes;
 import it.niko.scaleeserpenti.game.GameCards;
 import it.niko.scaleeserpenti.game.ScaleESerpentiGame;
+
+import java.io.IOException;
+
 /*
 Test di salvataggio di una configurazione
  */
 public class Test {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         ScaleESerpentiGame game = new ScaleESerpentiGame();
         Configuration c = new Configuration.ConfigurationBuilder(15, 10, 10)
                 .addSnake(98, 79)

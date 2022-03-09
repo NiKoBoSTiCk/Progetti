@@ -2,8 +2,10 @@ package it.niko.scaleeserpenti.observer;
 
 import javax.swing.*;
 
+/*
+  Visualizza gli eventi avvenuti nei vari round del gioco
+ */
 public class LoggerGameListener extends JPanel implements GameListener {
-
     private final JTextArea textArea;
 
     public LoggerGameListener() {

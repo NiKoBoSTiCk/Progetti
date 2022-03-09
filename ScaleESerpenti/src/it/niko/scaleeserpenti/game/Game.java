@@ -3,9 +3,13 @@ package it.niko.scaleeserpenti.game;
 import it.niko.scaleeserpenti.builder.Configuration;
 import it.niko.scaleeserpenti.observer.GameListener;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 /*
-interfaccia di un gioco configurabile a turni su tabellone con dei giocatori
-che cambiano stato e che permette il salvataggio/caricamento */
+  Interfaccia di un gioco configurabile a turni su tabellone con dei giocatori
+  che cambiano stato e che permette il salvataggio/caricamento
+*/
 public interface Game {
 
     /*
@@ -29,7 +33,7 @@ public interface Game {
 
     Configuration getConfiguration();
 
-    void save(String fileName);
+    void save(String fileName) throws IOException;
 
-    void load(String fileName);
+    void load(String fileName) throws IOException, ClassNotFoundException;
 }

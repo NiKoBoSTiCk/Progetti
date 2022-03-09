@@ -8,7 +8,6 @@ import java.awt.*;
 import java.util.LinkedList;
 
 public class ConfigurationDialog extends JDialog {
-
     private record Snake(int head, int tail) {}
     private record Ladder(int base, int top) {}
     private record SpecialBox(int pos, GameBoxes type) {}

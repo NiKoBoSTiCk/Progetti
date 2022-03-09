@@ -5,8 +5,10 @@ import javax.swing.*;
 import javax.swing.border.MatteBorder;
 import java.awt.*;
 
+/*
+  Rappresentazione del tabellone di gioco
+*/
 public class BoardGameListener extends JPanel implements GameListener {
-
     private final JPanel boardPanel;
 
     public BoardGameListener() {
@@ -28,6 +30,7 @@ public class BoardGameListener extends JPanel implements GameListener {
             boardPanel.setLayout(new GridLayout(row, column, 2, 2));
             boardPanel.setBackground(Color.BLACK);
             boardPanel.setBorder(new MatteBorder(2, 2, 2, 2, Color.BLACK));
+
             JLabel[][] boxes = new JLabel[row][column];
             int x = 0;
             boolean alternati = true;

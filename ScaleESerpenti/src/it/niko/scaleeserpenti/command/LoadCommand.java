@@ -5,7 +5,6 @@ import javax.swing.*;
 import java.io.File;
 
 public class LoadCommand implements Command {
-
     private final JFrame frame;
     private final Game game;
 
@@ -15,17 +14,15 @@ public class LoadCommand implements Command {
     }
 
     @Override
-    public boolean execute() {
+    public void execute() {
         JFileChooser fileChooser = new JFileChooser();
         try {
             if(fileChooser.showOpenDialog(frame) == JFileChooser.APPROVE_OPTION && fileChooser.getSelectedFile().exists()) {
                 File f = fileChooser.getSelectedFile();
                 game.load(f.getAbsolutePath());
-                return true;
             }
         } catch(Exception e) {
-            JOptionPane.showMessageDialog(null, "Game not loaded!", "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Load failed!", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
-        return false;
     }
 }
