@@ -1,7 +1,10 @@
 package it.niko.scaleeserpenti.observer;
 
+import it.niko.scaleeserpenti.game.EventType;
 import it.niko.scaleeserpenti.game.GameBoxes;
 import it.niko.scaleeserpenti.game.Board;
+import it.niko.scaleeserpenti.game.GameEvent;
+
 import javax.swing.*;
 import java.awt.*;
 

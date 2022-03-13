@@ -1,6 +1,9 @@
 package it.niko.scaleeserpenti.observer;
 
 import it.niko.scaleeserpenti.builder.Configuration;
+import it.niko.scaleeserpenti.game.EventType;
+import it.niko.scaleeserpenti.game.GameEvent;
+
 import javax.swing.*;
 import javax.swing.border.MatteBorder;
 import java.awt.*;

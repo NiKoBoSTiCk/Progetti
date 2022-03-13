@@ -1,8 +1,7 @@
 package it.niko.scaleeserpenti.game;
 
 import it.niko.scaleeserpenti.builder.Configuration;
-import it.niko.scaleeserpenti.observer.EventType;
-import it.niko.scaleeserpenti.observer.GameEvent;
+
 import java.io.*;
 import java.util.*;
 

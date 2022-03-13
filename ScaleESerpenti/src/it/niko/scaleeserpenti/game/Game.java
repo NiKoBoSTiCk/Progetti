@@ -3,7 +3,6 @@ package it.niko.scaleeserpenti.game;
 import it.niko.scaleeserpenti.builder.Configuration;
 import it.niko.scaleeserpenti.observer.GameListener;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /*

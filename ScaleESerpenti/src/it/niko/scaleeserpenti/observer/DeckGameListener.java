@@ -2,6 +2,8 @@ package it.niko.scaleeserpenti.observer;
 
 import it.niko.scaleeserpenti.game.Deck;
 import it.niko.scaleeserpenti.game.GameCards;
+import it.niko.scaleeserpenti.game.GameEvent;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
