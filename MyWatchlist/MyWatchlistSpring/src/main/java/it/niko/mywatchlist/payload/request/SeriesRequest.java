@@ -9,6 +9,7 @@ import java.util.Set;
 @Getter
 @Setter
 public class SeriesRequest {
+
     @NotBlank
     @Size(max = 50)
     private String title;
