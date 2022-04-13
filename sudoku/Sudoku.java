@@ -70,9 +70,7 @@ public class Sudoku {
 		if(v<1 || v>9) return false;
 		if(i<0 || j<0 || i>8 || j>8) return false;
 		if(matriceImp[i][j]!=0) return false;
-		if(!controllaSottomatrice(i, j, v) || !controllaRigheColonne(i, j, v))
-			return false;		
-		return true;
+		return controllaSottomatrice(i, j, v) && controllaRigheColonne(i, j, v);
 	}//assegnabile
 	
 	private boolean controllaRigheColonne(int riga, int colonna, int v) {
@@ -110,7 +108,7 @@ public class Sudoku {
 		boolean eOK = true;
 		for(Soluzione s:soluzioni)
 			if(s.getSoluzione().equals(sol)) eOK = false;
-		if(eOK) soluzioni.add(new Soluzione(sol));		
+		if(eOK) soluzioni.add(new Soluzione(sol));
 	}//scriviSoluzione
 	
 	public int numeroSoluzioni() {

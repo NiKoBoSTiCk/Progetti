@@ -9,17 +9,44 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5def54f6-f09e-4655-b414-f25c6cad7578" name="Default Changelist" comment="initial commit">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/it/niko/mywatchlistandroid/LoginActivity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/it/niko/mywatchlistandroid/SignupActivity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_signup.xml" afterDir="false" />
+    <list default="true" id="5def54f6-f09e-4655-b414-f25c6cad7578" name="Default Changelist" comment="added login and signup form">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/it/niko/mywatchlistandroid/model/Series.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/it/niko/mywatchlistandroid/model/SeriesRepository.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../polinomi/polinomi.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ScaleESerpenti/.idea/codestream.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../ScaleESerpenti/.idea/codestream.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ScaleESerpenti/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../ScaleESerpenti/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ScaleESerpenti/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../ScaleESerpenti/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ScaleESerpenti/out/production/ScaleESerpenti/it/niko/scaleeserpenti/game/AbstractGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../ScaleESerpenti/out/production/ScaleESerpenti/it/niko/scaleeserpenti/game/AbstractGame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ScaleESerpenti/out/production/ScaleESerpenti/it/niko/scaleeserpenti/game/ScaleESerpentiGame$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../ScaleESerpenti/out/production/ScaleESerpenti/it/niko/scaleeserpenti/game/ScaleESerpentiGame$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ScaleESerpenti/out/production/ScaleESerpenti/it/niko/scaleeserpenti/game/ScaleESerpentiGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../ScaleESerpenti/out/production/ScaleESerpenti/it/niko/scaleeserpenti/game/ScaleESerpentiGame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ScaleESerpenti/out/production/ScaleESerpenti/it/niko/scaleeserpenti/observer/BoardGameListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../ScaleESerpenti/out/production/ScaleESerpenti/it/niko/scaleeserpenti/observer/BoardGameListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ScaleESerpenti/out/production/ScaleESerpenti/it/niko/scaleeserpenti/observer/BoxGameListener$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../ScaleESerpenti/out/production/ScaleESerpenti/it/niko/scaleeserpenti/observer/BoxGameListener$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ScaleESerpenti/out/production/ScaleESerpenti/it/niko/scaleeserpenti/observer/BoxGameListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../ScaleESerpenti/out/production/ScaleESerpenti/it/niko/scaleeserpenti/observer/BoxGameListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ScaleESerpenti/out/production/ScaleESerpenti/it/niko/scaleeserpenti/observer/DeckGameListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../ScaleESerpenti/out/production/ScaleESerpenti/it/niko/scaleeserpenti/observer/DeckGameListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ScaleESerpenti/out/production/ScaleESerpenti/it/niko/scaleeserpenti/observer/EventType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ScaleESerpenti/out/production/ScaleESerpenti/it/niko/scaleeserpenti/observer/GameEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ScaleESerpenti/out/production/ScaleESerpenti/it/niko/scaleeserpenti/observer/GameListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../ScaleESerpenti/out/production/ScaleESerpenti/it/niko/scaleeserpenti/observer/GameListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ScaleESerpenti/out/production/ScaleESerpenti/it/niko/scaleeserpenti/observer/LoggerGameListener$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../ScaleESerpenti/out/production/ScaleESerpenti/it/niko/scaleeserpenti/observer/LoggerGameListener$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ScaleESerpenti/out/production/ScaleESerpenti/it/niko/scaleeserpenti/observer/LoggerGameListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../ScaleESerpenti/out/production/ScaleESerpenti/it/niko/scaleeserpenti/observer/LoggerGameListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ScaleESerpenti/out/production/ScaleESerpenti/it/niko/scaleeserpenti/observer/StateGameListener$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../ScaleESerpenti/out/production/ScaleESerpenti/it/niko/scaleeserpenti/observer/StateGameListener$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ScaleESerpenti/out/production/ScaleESerpenti/it/niko/scaleeserpenti/observer/StateGameListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../ScaleESerpenti/out/production/ScaleESerpenti/it/niko/scaleeserpenti/observer/StateGameListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../sudoku/.idea/codestream.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../sudoku/.idea/codestream.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../sudoku/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../sudoku/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../sudoku/Sudoku.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../sudoku/Sudoku.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../sudoku/out/production/sudoku/poo/sudoku/.idea/codestream.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../sudoku/out/production/sudoku/poo/sudoku/.idea/codestream.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../sudoku/out/production/sudoku/poo/sudoku/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../sudoku/out/production/sudoku/poo/sudoku/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../sudoku/out/production/sudoku/poo/sudoku/FrameGUI$AscoltatoreEventiAzione.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../sudoku/out/production/sudoku/poo/sudoku/FrameGUI$AscoltatoreEventiAzione.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../sudoku/out/production/sudoku/poo/sudoku/Sudoku$Impostazione.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../sudoku/out/production/sudoku/poo/sudoku/Sudoku$Impostazione.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../sudoku/out/production/sudoku/poo/sudoku/Sudoku$Soluzione.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../sudoku/out/production/sudoku/poo/sudoku/Sudoku$Soluzione.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../sudoku/out/production/sudoku/poo/sudoku/Sudoku.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../sudoku/out/production/sudoku/poo/sudoku/Sudoku.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,20 +59,43 @@
       <ProjectState />
     </projectState>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin Data Class" />
+        <option value="Kotlin Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="GitToolBoxStore">
+    <option name="projectConfigVersion" value="5" />
+  </component>
   <component name="ProjectId" id="27NslAFvB2Vq7xkPUfXfo8W8mb9" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
     <property name="cidr.known.project.marker" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
     <key name="android.template.616824611">
@@ -136,7 +186,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649172262978</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="added login and signup form">
+      <created>1649175636362</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1649175636362</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -149,9 +206,12 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="initial commit" />
+    <MESSAGE value="added login and signup form" />
+    <option name="LAST_COMMIT_MESSAGE" value="added login and signup form" />
   </component>
 </project>

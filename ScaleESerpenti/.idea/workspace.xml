@@ -5,7 +5,43 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4616484b-36ad-4982-a48c-16ab204d47fd" name="Changes" comment="v1.7">
+      <change afterPath="$PROJECT_DIR$/../MyWatchlist/MyWatchlistAndroid/app/src/main/java/it/niko/mywatchlistandroid/model/Series.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MyWatchlist/MyWatchlistAndroid/app/src/main/java/it/niko/mywatchlistandroid/model/SeriesRepository.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../polinomi/polinomi.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyWatchlist/MyWatchlistAndroid/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../MyWatchlist/MyWatchlistAndroid/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyWatchlist/MyWatchlistAndroid/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../MyWatchlist/MyWatchlistAndroid/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyWatchlist/MyWatchlistAndroid/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MyWatchlist/MyWatchlistAndroid/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyWatchlist/MyWatchlistAndroid/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MyWatchlist/MyWatchlistAndroid/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyWatchlist/MyWatchlistAndroid/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MyWatchlist/MyWatchlistAndroid/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyWatchlist/MyWatchlistAndroid/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../MyWatchlist/MyWatchlistAndroid/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyWatchlist/MyWatchlistAndroid/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MyWatchlist/MyWatchlistAndroid/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyWatchlist/MyWatchlistAndroid/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../MyWatchlist/MyWatchlistAndroid/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codestream.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codestream.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/scaleeserpenti/game/AbstractGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/scaleeserpenti/game/AbstractGame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/scaleeserpenti/game/ScaleESerpentiGame$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/scaleeserpenti/game/ScaleESerpentiGame$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/scaleeserpenti/game/ScaleESerpentiGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/scaleeserpenti/game/ScaleESerpentiGame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/scaleeserpenti/observer/BoardGameListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/scaleeserpenti/observer/BoardGameListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/scaleeserpenti/observer/BoxGameListener$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/scaleeserpenti/observer/BoxGameListener$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/scaleeserpenti/observer/BoxGameListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/scaleeserpenti/observer/BoxGameListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/scaleeserpenti/observer/DeckGameListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/scaleeserpenti/observer/DeckGameListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/scaleeserpenti/observer/EventType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/scaleeserpenti/observer/GameEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/scaleeserpenti/observer/GameListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/scaleeserpenti/observer/GameListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/scaleeserpenti/observer/LoggerGameListener$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/scaleeserpenti/observer/LoggerGameListener$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/scaleeserpenti/observer/LoggerGameListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/scaleeserpenti/observer/LoggerGameListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/scaleeserpenti/observer/StateGameListener$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/scaleeserpenti/observer/StateGameListener$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/scaleeserpenti/observer/StateGameListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ScaleESerpenti/it/niko/scaleeserpenti/observer/StateGameListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sudoku/.idea/codestream.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../sudoku/.idea/codestream.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sudoku/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../sudoku/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sudoku/Sudoku.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sudoku/Sudoku.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sudoku/out/production/sudoku/poo/sudoku/.idea/codestream.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../sudoku/out/production/sudoku/poo/sudoku/.idea/codestream.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sudoku/out/production/sudoku/poo/sudoku/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../sudoku/out/production/sudoku/poo/sudoku/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sudoku/out/production/sudoku/poo/sudoku/FrameGUI$AscoltatoreEventiAzione.class" beforeDir="false" afterPath="$PROJECT_DIR$/../sudoku/out/production/sudoku/poo/sudoku/FrameGUI$AscoltatoreEventiAzione.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sudoku/out/production/sudoku/poo/sudoku/Sudoku$Impostazione.class" beforeDir="false" afterPath="$PROJECT_DIR$/../sudoku/out/production/sudoku/poo/sudoku/Sudoku$Impostazione.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sudoku/out/production/sudoku/poo/sudoku/Sudoku$Soluzione.class" beforeDir="false" afterPath="$PROJECT_DIR$/../sudoku/out/production/sudoku/poo/sudoku/Sudoku$Soluzione.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sudoku/out/production/sudoku/poo/sudoku/Sudoku.class" beforeDir="false" afterPath="$PROJECT_DIR$/../sudoku/out/production/sudoku/poo/sudoku/Sudoku.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -256,6 +292,9 @@
       <workItem from="1647445046049" duration="5000" />
       <workItem from="1647535059100" duration="119000" />
       <workItem from="1647536789698" duration="624000" />
+      <workItem from="1649187418624" duration="113000" />
+      <workItem from="1649188177478" duration="550000" />
+      <workItem from="1649855644190" duration="50000" />
     </task>
     <task id="LOCAL-00001" summary="commit 1">
       <created>1632333006179</created>

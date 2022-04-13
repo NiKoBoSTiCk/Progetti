@@ -3,37 +3,34 @@ package it.niko.mywatchlistandroid
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
+import it.niko.mywatchlistandroid.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityLoginBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val username = findViewById<EditText>(R.id.edUsernameLogin)
-        val password = findViewById<EditText>(R.id.edPasswordLogin)
-        val loginButton = findViewById<Button>(R.id.btnLogin)
-        val signupLink = findViewById<TextView>(R.id.tvSignup)
+        binding.apply {
+            btnLogin.setOnClickListener {
+                //TODO
+                Toast.makeText(
+                    this@LoginActivity,
+                    "Welcome ${edUsernameLogin.text}",
+                    Toast.LENGTH_SHORT
+                ).show()
 
-        loginButton.setOnClickListener {
-            //TODO
-            Toast.makeText(
-                this@LoginActivity,
-                "Welcome ${username.text}",
-                Toast.LENGTH_SHORT
-            ).show()
-
-            val intent = Intent(this, MainActivity::class.java)
-            intent.putExtra("USERNAME", username.text.toString())
-            startActivity(intent)
-        }
-
-        signupLink.setOnClickListener {
-            val intent = Intent(this, SignupActivity::class.java)
-            startActivity(intent)
+                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                intent.putExtra("USERNAME", edUsernameLogin.text.toString())
+                startActivity(intent)
+            }
+            tvSignup.setOnClickListener {
+                val intent = Intent(this@LoginActivity, SignupActivity::class.java)
+                startActivity(intent)
+            }
         }
     }
 }
