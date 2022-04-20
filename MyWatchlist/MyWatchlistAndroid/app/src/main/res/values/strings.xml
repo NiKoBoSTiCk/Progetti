@@ -1,9 +1,11 @@
 <resources>
     <string name="app_name">MyWatchlistAndroid</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="password">Password</string>
-    <string name="username">Username</string>
     <string name="login">Login</string>
     <string name="or_signup">or signup</string>
+    <string name="username">Username</string>
     <string name="signup">Signup</string>
     <string name="or_login">or login</string>
     <string name="email">Email</string>
