@@ -9,4 +9,8 @@
     <string name="signup">Signup</string>
     <string name="or_login">or login</string>
     <string name="email">Email</string>
+    <string name="plot">Plot:</string>
+    <string name="episodes">Episodes:</string>
+    <string name="rating">Rating:</string>
+    <string name="views">Views:</string>
 </resources>

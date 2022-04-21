@@ -9,7 +9,8 @@ import java.util.concurrent.TimeUnit
 
 class RetrofitInstance {
     companion object {
-        private const val BASE_URL = "http://172.29.112.1:8000/"
+        private const val BASE_URL = "http://172.24.160.1:8000/"
+
 
         private val interceptor = HttpLoggingInterceptor().apply {
             this.level = HttpLoggingInterceptor.Level.BODY
@@ -17,9 +18,9 @@ class RetrofitInstance {
 
         private val client = OkHttpClient.Builder().apply {
             this.addInterceptor(interceptor)
-                .connectTimeout(30, TimeUnit.SECONDS)
-                .readTimeout(20, TimeUnit.SECONDS)
-                .writeTimeout(25, TimeUnit.SECONDS)
+                //.connectTimeout(30, TimeUnit.SECONDS)
+                //.readTimeout(20, TimeUnit.SECONDS)
+                //.writeTimeout(25, TimeUnit.SECONDS)
         }.build()
 
         fun getRetrofitInstance(): Retrofit {
