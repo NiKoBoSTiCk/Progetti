@@ -13,4 +13,6 @@
     <string name="episodes">Episodes:</string>
     <string name="rating">Rating:</string>
     <string name="views">Views:</string>
+    <string name="profile">Profile</string>
+    <string name="add_series_to_watchlist">Add Series to Watchlist</string>
 </resources>

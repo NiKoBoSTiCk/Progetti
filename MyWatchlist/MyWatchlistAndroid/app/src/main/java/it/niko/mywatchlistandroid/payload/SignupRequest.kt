@@ -1,8 +1,11 @@
-package it.niko.mywatchlistandroid.model
+package it.niko.mywatchlistandroid.payload
 
 import com.google.gson.annotations.SerializedName
 
-data class LoginRequest (
+data class SignupRequest (
+
+    @SerializedName("email")
+    var email: String,
 
     @SerializedName("username")
     var username: String,

@@ -1,20 +1,21 @@
-package it.niko.mywatchlistandroid
+package it.niko.mywatchlistandroid.fragment
 
-import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import androidx.navigation.findNavController
+import it.niko.mywatchlistandroid.R
+import it.niko.mywatchlistandroid.RetrofitInstance
+import it.niko.mywatchlistandroid.SessionManager
 import it.niko.mywatchlistandroid.databinding.FragmentLoginBinding
-import it.niko.mywatchlistandroid.model.LoginRequest
-import it.niko.mywatchlistandroid.model.LoginResponse
+import it.niko.mywatchlistandroid.payload.LoginRequest
+import it.niko.mywatchlistandroid.payload.LoginResponse
+import it.niko.mywatchlistandroid.services.AuthService
 import retrofit2.Response
 
 class LoginFragment : Fragment() {
@@ -52,7 +53,7 @@ class LoginFragment : Fragment() {
         responseLiveData.observe(viewLifecycleOwner) {
             if (it.isSuccessful) {
                 val token = it.body()?.token!!
-                sessionManager.saveAuthToken(token)
+                sessionManager.saveAuthToken(loginRequest.username, token)
                 binding.apply {
                     view?.findNavController()?.navigate(R.id.action_loginFragment_to_seriesFragment)
                 }

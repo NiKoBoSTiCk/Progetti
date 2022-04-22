@@ -1,14 +1,14 @@
-package it.niko.mywatchlistandroid
+package it.niko.mywatchlistandroid.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import it.niko.mywatchlistandroid.databinding.FragmentWatchlistBinding
+import it.niko.mywatchlistandroid.databinding.FragmentSignupBinding
 
-class WatchlistFragment : Fragment() {
-    private lateinit var binding: FragmentWatchlistBinding
+class SignupFragment : Fragment() {
+    private lateinit var binding: FragmentSignupBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,8 +16,7 @@ class WatchlistFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = FragmentWatchlistBinding.inflate(inflater, container, false)
+        binding = FragmentSignupBinding.inflate(inflater, container, false)
         return binding.root
     }
-
 }
