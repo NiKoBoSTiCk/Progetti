@@ -15,4 +15,10 @@
     <string name="views">Views:</string>
     <string name="profile">Profile</string>
     <string name="add_series_to_watchlist">Add Series to Watchlist</string>
+    <string name="title">Title</string>
+    <string name="progress">Progress:</string>
+    <string name="status">Status:</string>
+    <string name="score">Score:</string>
+    <string name="comment">Comment:</string>
+    <string name="edit">Edit</string>
 </resources>

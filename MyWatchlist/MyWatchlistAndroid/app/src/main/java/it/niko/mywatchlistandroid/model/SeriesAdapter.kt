@@ -13,7 +13,9 @@ class SeriesAdapter(
         val binding = SeriesListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return SeriesViewHolder(binding)
     }
+
     override fun onBindViewHolder(holder: SeriesViewHolder, position: Int) = holder.bind(seriesList[position], clickListener)
+
     override fun getItemCount(): Int = seriesList.size
 }
 

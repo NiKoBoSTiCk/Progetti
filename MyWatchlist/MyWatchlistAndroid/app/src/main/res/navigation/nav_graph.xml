@@ -58,8 +58,5 @@
         <action
             android:id="@+id/action_userFragment_to_watchlistFragment"
             app:destination="@id/watchlistFragment" />
-        <action
-            android:id="@+id/action_userFragment_to_seriesFragment"
-            app:destination="@id/seriesFragment" />
     </fragment>
 </navigation>

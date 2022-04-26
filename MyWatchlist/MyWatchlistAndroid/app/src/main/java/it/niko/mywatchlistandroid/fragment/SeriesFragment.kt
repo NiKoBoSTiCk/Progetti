@@ -1,7 +1,6 @@
 package it.niko.mywatchlistandroid.fragment
 
 import android.os.Bundle
-import android.os.Message
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -70,6 +69,7 @@ class SeriesFragment : Fragment() {
         val responseLiveData: LiveData<Response<MessageResponse>> = liveData {
             val username = sessionManager.fetchUsername()!!
             val response = watchlistService.addWatchlist(
+                token = "Bearer ${sessionManager.fetchAuthToken()}",
                 WatchlistRequest(
                     series.title,
                     username,
@@ -81,7 +81,6 @@ class SeriesFragment : Fragment() {
             )
             emit(response)
         }
-
         responseLiveData.observe(viewLifecycleOwner) {
             val body = it.body()
             if (body != null) {
