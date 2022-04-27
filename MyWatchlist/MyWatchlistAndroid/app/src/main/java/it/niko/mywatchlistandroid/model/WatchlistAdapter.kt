@@ -15,8 +15,9 @@ class WatchlistAdapter(private val watchlists: ArrayList<Watchlist>,
         return WatchlistViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: WatchlistViewHolder, position: Int)
-    = holder.bind(watchlists[position], updateListener, deleteListener)
+    override fun onBindViewHolder(holder: WatchlistViewHolder, position: Int) {
+        holder.bind(watchlists[position], updateListener, deleteListener)
+    }
 
     override fun getItemCount(): Int = watchlists.size
 }

@@ -54,12 +54,9 @@ class SeriesFragment : Fragment() {
             emit(response)
         }
         responseLiveData.observe(viewLifecycleOwner) {
-            val body = it.body()
-            if (body != null) {
-                binding.apply {
-                    recyclerView.adapter = SeriesAdapter(body.seriesList) {
-                            series: Series -> addSeriesToWatchlist(series)
-                    }
+            binding.apply {
+                recyclerView.adapter = SeriesAdapter(it.body()!!.seriesList) {
+                        series: Series -> addSeriesToWatchlist(series)
                 }
             }
         }
@@ -67,12 +64,11 @@ class SeriesFragment : Fragment() {
 
     private fun addSeriesToWatchlist(series: Series) {
         val responseLiveData: LiveData<Response<MessageResponse>> = liveData {
-            val username = sessionManager.fetchUsername()!!
             val response = watchlistService.addWatchlist(
                 token = "Bearer ${sessionManager.fetchAuthToken()}",
                 WatchlistRequest(
                     series.title,
-                    username,
+                    sessionManager.fetchUsername()!!,
                     SessionManager.WATCHING,
                     0,
                     0,

@@ -9,7 +9,6 @@ class SessionManager(context: Context) {
     companion object {
         const val USER = "username"
         const val USER_TOKEN = "token"
-
         const val WATCHING = "WATCHING"
         const val COMPLETED = "COMPLETED"
         const val ON_HOLD = "ON_HOLD"

@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import it.niko.mywatchlistandroid.databinding.SeriesListBinding
 
 class SeriesAdapter(private val seriesList: ArrayList<Series>,
-                    private val clickListener: (Series) -> Unit
+                    private val addListener: (Series) -> Unit
                     ): RecyclerView.Adapter<SeriesViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SeriesViewHolder {
@@ -14,13 +14,15 @@ class SeriesAdapter(private val seriesList: ArrayList<Series>,
         return SeriesViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: SeriesViewHolder, position: Int) = holder.bind(seriesList[position], clickListener)
+    override fun onBindViewHolder(holder: SeriesViewHolder, position: Int) {
+        holder.bind(seriesList[position], addListener)
+    }
 
     override fun getItemCount(): Int = seriesList.size
 }
 
 class SeriesViewHolder(private val binding: SeriesListBinding): RecyclerView.ViewHolder(binding.root) {
-    fun bind(series: Series, clickListener: (Series) -> Unit) {
+    fun bind(series: Series, addListener: (Series) -> Unit) {
         binding.apply {
             tvTitle.text = series.title
             ("Plot: " + series.plot).also { tvPlot.text = it }
@@ -34,7 +36,7 @@ class SeriesViewHolder(private val binding: SeriesListBinding): RecyclerView.Vie
             }
 
             btnAdd.setOnClickListener {
-                clickListener(series)
+                addListener(series)
             }
         }
     }
