@@ -14,7 +14,7 @@ interface WatchlistService {
     @PUT("/watchlist")
     suspend fun updateWatchlist(@Header("Authorization") token: String, @Body watchlistRequest: WatchlistRequest): Response<MessageResponse>
 
-    @DELETE("/watchlist")
+    @HTTP(method = "DELETE", path = "/watchlist", hasBody = true)
     suspend fun deleteWatchlist(@Header("Authorization") token: String, @Body watchlistRequest: WatchlistRequest): Response<MessageResponse>
 
     @GET("/watchlist/{username}")

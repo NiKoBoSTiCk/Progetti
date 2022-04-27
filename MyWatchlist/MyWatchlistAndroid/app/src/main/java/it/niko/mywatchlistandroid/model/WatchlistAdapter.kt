@@ -5,20 +5,24 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import it.niko.mywatchlistandroid.databinding.WatchListBinding
 
-class WatchlistAdapter(private val watchlists: ArrayList<Watchlist>): RecyclerView.Adapter<WatchlistViewHolder>() {
+class WatchlistAdapter(private val watchlists: ArrayList<Watchlist>,
+                       private val updateListener: (Watchlist) -> Unit,
+                       private val deleteListener: (Watchlist) -> Unit
+                       ): RecyclerView.Adapter<WatchlistViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WatchlistViewHolder {
         val binding = WatchListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return WatchlistViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: WatchlistViewHolder, position: Int) = holder.bind(watchlists[position])
+    override fun onBindViewHolder(holder: WatchlistViewHolder, position: Int)
+    = holder.bind(watchlists[position], updateListener, deleteListener)
 
     override fun getItemCount(): Int = watchlists.size
 }
 
 class WatchlistViewHolder(private val binding: WatchListBinding): RecyclerView.ViewHolder(binding.root) {
-    fun bind(watchlist: Watchlist) {
+    fun bind(watchlist: Watchlist, updateListener: (Watchlist) -> Unit, deleteListener: (Watchlist) -> Unit) {
         binding.apply {
             tvTitleW.text = watchlist.series.title
             ("Score: " + watchlist.score).also { tvScore.text = it }
@@ -27,11 +31,11 @@ class WatchlistViewHolder(private val binding: WatchListBinding): RecyclerView.V
             ("Comment: " + watchlist.comment).also { tvComment.text = it }
 
             btnEdit.setOnClickListener {
-
+                updateListener(watchlist)
             }
 
-            btnEdit.setOnClickListener {
-
+            btnDelete.setOnClickListener {
+                deleteListener(watchlist)
             }
         }
     }

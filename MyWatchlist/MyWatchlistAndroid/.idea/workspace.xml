@@ -13,13 +13,13 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="24a2a446-a7c9-4622-a76f-ed5e082f1689" name="Default Changelist" comment="added Genres to Series">
+    <list default="true" id="24a2a446-a7c9-4622-a76f-ed5e082f1689" name="Default Changelist" comment="added update &amp; delete to watchlist">
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/it/niko/mywatchlistandroid/fragment/SeriesFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/it/niko/mywatchlistandroid/fragment/SeriesFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/it/niko/mywatchlistandroid/fragment/WatchlistFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/it/niko/mywatchlistandroid/fragment/WatchlistFragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/it/niko/mywatchlistandroid/model/SeriesAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/it/niko/mywatchlistandroid/model/SeriesAdapter.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/it/niko/mywatchlistandroid/model/WatchlistAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/it/niko/mywatchlistandroid/model/WatchlistAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/it/niko/mywatchlistandroid/services/WatchlistService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/it/niko/mywatchlistandroid/services/WatchlistService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/watch_list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/watch_list.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -187,7 +187,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651055637720</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="added update &amp; delete to watchlist">
+      <created>1651056471792</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1651056471792</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -209,6 +216,7 @@
     <MESSAGE value=" added watchlist service" />
     <MESSAGE value="added Watchlist Fragment &amp; Service" />
     <MESSAGE value="added Genres to Series" />
-    <option name="LAST_COMMIT_MESSAGE" value="added Genres to Series" />
+    <MESSAGE value="added update &amp; delete to watchlist" />
+    <option name="LAST_COMMIT_MESSAGE" value="added update &amp; delete to watchlist" />
   </component>
 </project>

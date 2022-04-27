@@ -5,7 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import it.niko.mywatchlistandroid.databinding.SeriesListBinding
 
-class SeriesAdapter(private val seriesList: ArrayList<Series>, private val clickListener: (Series) -> Unit): RecyclerView.Adapter<SeriesViewHolder>() {
+class SeriesAdapter(private val seriesList: ArrayList<Series>,
+                    private val clickListener: (Series) -> Unit
+                    ): RecyclerView.Adapter<SeriesViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SeriesViewHolder {
         val binding = SeriesListBinding.inflate(LayoutInflater.from(parent.context), parent, false)

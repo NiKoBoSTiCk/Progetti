@@ -82,10 +82,7 @@ class SeriesFragment : Fragment() {
             emit(response)
         }
         responseLiveData.observe(viewLifecycleOwner) {
-            val body = it.body()
-            if (body != null) {
-                Toast.makeText(requireContext(), body.message, Toast.LENGTH_SHORT).show()
-            }
+            Toast.makeText(requireContext(), it.body()!!.message, Toast.LENGTH_SHORT).show()
         }
     }
 
