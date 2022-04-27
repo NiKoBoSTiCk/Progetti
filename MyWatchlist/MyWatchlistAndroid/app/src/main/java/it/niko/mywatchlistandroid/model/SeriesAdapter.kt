@@ -28,6 +28,11 @@ class SeriesViewHolder(private val binding: SeriesListBinding): RecyclerView.Vie
             ("Rating: " + series.rating.toString()).also { tvRating.text = it }
             ("Views: " + series.views.toString()).also { tvViews.text = it }
 
+            "Genres: ".also { tvGenres.text = it }
+            for (genre: Genre in series.genres) {
+                tvGenres.append(genre.type + " ")
+            }
+
             btnAdd.setOnClickListener {
                 clickListener(series)
             }

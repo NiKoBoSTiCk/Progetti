@@ -51,7 +51,10 @@ class WatchlistFragment : Fragment() {
         val responseLiveData: LiveData<Response<ArrayList<Watchlist>>> = liveData {
             val username = sessionManager.fetchUsername()
             if (username != null) {
-                val response = watchlistService.getWatchlist(token = "Bearer ${sessionManager.fetchAuthToken()}", username)
+                val response = watchlistService.getWatchlist(
+                    token = "Bearer ${sessionManager.fetchAuthToken()}",
+                    username
+                )
                 emit(response)
             }
         }

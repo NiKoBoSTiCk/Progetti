@@ -19,5 +19,8 @@ data class Series(
     val plot: String,
 
     @SerializedName("members")
-    val members: Int
+    val members: Int,
+
+    @SerializedName("genres")
+    val genres: ArrayList<Genre>
 )
