@@ -25,6 +25,14 @@ class WatchlistViewHolder(private val binding: WatchListBinding): RecyclerView.V
             ("Progress: " + watchlist.progress).also { tvProgressW.text = it }
             ("Status: " + watchlist.status.type).also { tvStatus.text = it }
             ("Comment: " + watchlist.comment).also { tvComment.text = it }
+
+            btnEdit.setOnClickListener {
+
+            }
+
+            btnEdit.setOnClickListener {
+
+            }
         }
     }
 }

@@ -15,7 +15,6 @@ import it.niko.mywatchlistandroid.SessionManager
 import it.niko.mywatchlistandroid.databinding.FragmentWatchlistBinding
 import it.niko.mywatchlistandroid.model.Watchlist
 import it.niko.mywatchlistandroid.model.WatchlistAdapter
-import it.niko.mywatchlistandroid.payload.WatchlistResponse
 import it.niko.mywatchlistandroid.services.WatchlistService
 import retrofit2.Response
 
@@ -33,6 +32,7 @@ class WatchlistFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentWatchlistBinding.inflate(inflater, container, false)
         binding.apply {
+
             recyclerViewW.layoutManager = LinearLayoutManager(requireContext())
 
             btnProfileW.setOnClickListener {
@@ -66,6 +66,14 @@ class WatchlistFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun updateUserWatchlist() {
+
+    }
+
+    private fun deleteUserWatchlist() {
+
     }
 
 }
