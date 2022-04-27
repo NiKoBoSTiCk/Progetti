@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import androidx.navigation.findNavController
@@ -19,6 +21,8 @@ import it.niko.mywatchlistandroid.model.WatchlistAdapter
 import it.niko.mywatchlistandroid.payload.MessageResponse
 import it.niko.mywatchlistandroid.payload.WatchlistRequest
 import it.niko.mywatchlistandroid.services.WatchlistService
+import kotlinx.coroutines.*
+import kotlinx.coroutines.android.awaitFrame
 import retrofit2.Response
 
 class WatchlistFragment : Fragment() {
@@ -50,6 +54,11 @@ class WatchlistFragment : Fragment() {
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        getUserWatchlist()
+    }
+
     private fun getUserWatchlist() {
         val responseLiveData: LiveData<Response<ArrayList<Watchlist>>> = liveData {
             val response = watchlistService.getWatchlist(
@@ -65,11 +74,37 @@ class WatchlistFragment : Fragment() {
                     { watchlist: Watchlist -> updateUserWatchlist(watchlist) },
                     { watchlist: Watchlist -> deleteUserWatchlist(watchlist) })
                 }
-            }
+        }
     }
 
     private fun updateUserWatchlist(watchlist: Watchlist) {
+        val oldBundle = bundleOf(
+            "title" to watchlist.series.title,
+            "old_progress" to watchlist.progress,
+            "old_comment" to watchlist.comment
+        )
+        view?.findNavController()?.navigate(R.id.action_watchlistFragment_to_editWatchlistFragment, oldBundle)
 
+        setFragmentResultListener("edit_key") { _, bundle ->
+            val watchlistRequest = WatchlistRequest(
+                watchlist.series.title,
+                sessionManager.fetchUsername()!!,
+                bundle.getString("status")!!,
+                bundle.getInt("progress"),
+                bundle.getInt("score"),
+                bundle.getString("comment")!!
+            )
+            val responseLiveData: LiveData<Response<MessageResponse>> = liveData {
+                val response = watchlistService.updateWatchlist(
+                    token = "Bearer ${sessionManager.fetchAuthToken()}",
+                    watchlistRequest
+                )
+                emit(response)
+            }
+            responseLiveData.observe(viewLifecycleOwner) {
+                Toast.makeText(requireContext(), it.body()!!.message, Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private fun deleteUserWatchlist(watchlist: Watchlist) {
@@ -90,8 +125,8 @@ class WatchlistFragment : Fragment() {
         }
         responseLiveData.observe(viewLifecycleOwner) {
             Toast.makeText(requireContext(), it.body()!!.message, Toast.LENGTH_SHORT).show()
-            getUserWatchlist()
         }
+        getUserWatchlist()
     }
 }
 
