@@ -1,5 +1,6 @@
 package it.niko.mywatchlistandroid.model
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -24,15 +25,16 @@ class SeriesAdapter(private val seriesList: ArrayList<Series>,
 }
 
 class SeriesViewHolder(private val binding: SeriesListBinding): RecyclerView.ViewHolder(binding.root) {
+
+    @SuppressLint("SetTextI18n")
     fun bind(series: Series, addListener: (Series) -> Unit) {
         binding.apply {
             tvTitle.text = series.title
-            ("Plot: " + series.plot).also { tvPlot.text = it }
-            ("Episodes: " + series.episodes.toString()).also { tvEp.text = it }
-            ("Rating: " + series.rating.toString()).also { tvRating.text = it }
-            ("Views: " + series.views.toString()).also { tvViews.text = it }
-
-            "Genres: ".also { tvGenres.text = it }
+            tvPlot.text = "Plot: ${series.plot}"
+            tvEp.text = "Episodes: ${series.episodes}"
+            tvRating.text = "Rating: ${series.rating}"
+            tvViews.text = "Views: ${series.views}"
+            tvGenres.text = "Genres: "
             for (genre: Genre in series.genres) {
                 tvGenres.append(genre.type.lowercase(Locale.getDefault()) + " ")
             }

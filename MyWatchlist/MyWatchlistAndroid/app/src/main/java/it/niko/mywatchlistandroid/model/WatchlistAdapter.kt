@@ -1,5 +1,6 @@
 package it.niko.mywatchlistandroid.model
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -25,13 +26,15 @@ class WatchlistAdapter(private val watchlists: ArrayList<Watchlist>,
 }
 
 class WatchlistViewHolder(private val binding: WatchListBinding): RecyclerView.ViewHolder(binding.root) {
+
+    @SuppressLint("SetTextI18n")
     fun bind(watchlist: Watchlist, updateListener: (Watchlist) -> Unit, deleteListener: (Watchlist) -> Unit) {
         binding.apply {
             tvTitleW.text = watchlist.series.title
-            ("Score: " + watchlist.score).also { tvScore.text = it }
-            ("Progress: " + watchlist.progress).also { tvProgressW.text = it }
-            ("Status: " + watchlist.status.type).also { tvStatus.text = it.lowercase(Locale.getDefault()) }
-            ("Comment: " + watchlist.comment).also { tvComment.text = it }
+            tvScore.text = "Score: ${watchlist.score}"
+            tvProgressW.text = "Progress: ${watchlist.progress}"
+            tvStatus.text = "Status: ${watchlist.status.type.lowercase(Locale.getDefault())}"
+            tvComment.text = "Comment: ${watchlist.comment}"
 
             btnEdit.setOnClickListener {
                 updateListener(watchlist)
