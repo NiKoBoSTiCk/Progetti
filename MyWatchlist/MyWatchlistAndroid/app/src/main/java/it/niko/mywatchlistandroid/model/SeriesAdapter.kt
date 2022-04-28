@@ -4,6 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import it.niko.mywatchlistandroid.databinding.SeriesListBinding
+import java.util.*
+import kotlin.collections.ArrayList
 
 class SeriesAdapter(private val seriesList: ArrayList<Series>,
                     private val addListener: (Series) -> Unit
@@ -32,7 +34,7 @@ class SeriesViewHolder(private val binding: SeriesListBinding): RecyclerView.Vie
 
             "Genres: ".also { tvGenres.text = it }
             for (genre: Genre in series.genres) {
-                tvGenres.append(genre.type + " ")
+                tvGenres.append(genre.type.lowercase(Locale.getDefault()) + " ")
             }
 
             btnAdd.setOnClickListener {

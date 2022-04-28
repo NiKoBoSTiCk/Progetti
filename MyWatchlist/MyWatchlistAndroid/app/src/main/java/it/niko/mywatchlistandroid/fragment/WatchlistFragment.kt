@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.os.bundleOf
-import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import androidx.navigation.findNavController
@@ -21,8 +20,6 @@ import it.niko.mywatchlistandroid.model.WatchlistAdapter
 import it.niko.mywatchlistandroid.payload.MessageResponse
 import it.niko.mywatchlistandroid.payload.WatchlistRequest
 import it.niko.mywatchlistandroid.services.WatchlistService
-import kotlinx.coroutines.*
-import kotlinx.coroutines.android.awaitFrame
 import retrofit2.Response
 
 class WatchlistFragment : Fragment() {
@@ -78,33 +75,14 @@ class WatchlistFragment : Fragment() {
     }
 
     private fun updateUserWatchlist(watchlist: Watchlist) {
-        val oldBundle = bundleOf(
+        val bundle = bundleOf(
             "title" to watchlist.series.title,
-            "old_progress" to watchlist.progress,
-            "old_comment" to watchlist.comment
+            "progress" to watchlist.progress,
+            "score" to watchlist.score,
+            "status" to watchlist.status.type,
+            "comment" to watchlist.comment
         )
-        view?.findNavController()?.navigate(R.id.action_watchlistFragment_to_editWatchlistFragment, oldBundle)
-
-        setFragmentResultListener("edit_key") { _, bundle ->
-            val watchlistRequest = WatchlistRequest(
-                watchlist.series.title,
-                sessionManager.fetchUsername()!!,
-                bundle.getString("status")!!,
-                bundle.getInt("progress"),
-                bundle.getInt("score"),
-                bundle.getString("comment")!!
-            )
-            val responseLiveData: LiveData<Response<MessageResponse>> = liveData {
-                val response = watchlistService.updateWatchlist(
-                    token = "Bearer ${sessionManager.fetchAuthToken()}",
-                    watchlistRequest
-                )
-                emit(response)
-            }
-            responseLiveData.observe(viewLifecycleOwner) {
-                Toast.makeText(requireContext(), it.body()!!.message, Toast.LENGTH_SHORT).show()
-            }
-        }
+        view?.findNavController()?.navigate(R.id.action_watchlistFragment_to_editWatchlistFragment, bundle)
     }
 
     private fun deleteUserWatchlist(watchlist: Watchlist) {

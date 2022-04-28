@@ -2,7 +2,7 @@ package it.niko.mywatchlistandroid.model
 
 import com.google.gson.annotations.SerializedName
 
-data class Watchlist(
+data class Watchlist  (
     @SerializedName("series")
     var series: Series,
 

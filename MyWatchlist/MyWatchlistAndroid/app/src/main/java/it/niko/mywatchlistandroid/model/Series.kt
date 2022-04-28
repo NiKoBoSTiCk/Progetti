@@ -21,6 +21,7 @@ data class Series(
     @SerializedName("members")
     val members: Int,
 
+
     @SerializedName("genres")
     val genres: ArrayList<Genre>
 )

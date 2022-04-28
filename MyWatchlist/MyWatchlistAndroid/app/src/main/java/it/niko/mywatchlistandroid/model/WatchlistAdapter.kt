@@ -4,6 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import it.niko.mywatchlistandroid.databinding.WatchListBinding
+import java.util.*
+import kotlin.collections.ArrayList
 
 class WatchlistAdapter(private val watchlists: ArrayList<Watchlist>,
                        private val updateListener: (Watchlist) -> Unit,
@@ -28,7 +30,7 @@ class WatchlistViewHolder(private val binding: WatchListBinding): RecyclerView.V
             tvTitleW.text = watchlist.series.title
             ("Score: " + watchlist.score).also { tvScore.text = it }
             ("Progress: " + watchlist.progress).also { tvProgressW.text = it }
-            ("Status: " + watchlist.status.type).also { tvStatus.text = it }
+            ("Status: " + watchlist.status.type).also { tvStatus.text = it.lowercase(Locale.getDefault()) }
             ("Comment: " + watchlist.comment).also { tvComment.text = it }
 
             btnEdit.setOnClickListener {
