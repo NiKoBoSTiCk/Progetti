@@ -13,16 +13,10 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="24a2a446-a7c9-4622-a76f-ed5e082f1689" name="Default Changelist" comment="added edit to watchlist">
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+    <list default="true" id="24a2a446-a7c9-4622-a76f-ed5e082f1689" name="Default Changelist" comment="adapter fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/it/niko/mywatchlistandroid/EditWatchlistFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/it/niko/mywatchlistandroid/EditWatchlistFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/it/niko/mywatchlistandroid/fragment/WatchlistFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/it/niko/mywatchlistandroid/fragment/WatchlistFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/it/niko/mywatchlistandroid/model/Series.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/it/niko/mywatchlistandroid/model/Series.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/it/niko/mywatchlistandroid/model/Watchlist.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/it/niko/mywatchlistandroid/model/Watchlist.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/it/niko/mywatchlistandroid/model/WatchlistAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/it/niko/mywatchlistandroid/model/WatchlistAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/it/niko/mywatchlistandroid/fragment/SignupFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/it/niko/mywatchlistandroid/fragment/SignupFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyWatchlistSpring/src/main/java/it/niko/mywatchlist/services/WatchlistService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MyWatchlistSpring/src/main/java/it/niko/mywatchlist/services/WatchlistService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -218,7 +212,21 @@
       <option name="project" value="LOCAL" />
       <updated>1651078610292</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="working watchlist update">
+      <created>1651162550638</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1651162550638</updated>
+    </task>
+    <task id="LOCAL-00012" summary="adapted fix">
+      <created>1651162896262</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1651162896262</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -242,6 +250,8 @@
     <MESSAGE value="added Genres to Series" />
     <MESSAGE value="added update &amp; delete to watchlist" />
     <MESSAGE value="added edit to watchlist" />
-    <option name="LAST_COMMIT_MESSAGE" value="added edit to watchlist" />
+    <MESSAGE value="working watchlist update" />
+    <MESSAGE value="adapted fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="adapted fix" />
   </component>
 </project>

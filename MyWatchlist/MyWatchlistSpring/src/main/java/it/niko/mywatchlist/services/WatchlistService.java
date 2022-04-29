@@ -145,23 +145,23 @@ public class WatchlistService {
             watchlist.setStatus(watching);
         }
         else switch(status){
-            case "completed":
+            case "COMPLETED":
                 Status completed = statusRepository.findByName(EStatus.COMPLETED)
                         .orElseThrow(() -> new RuntimeException("Error: Status completed not found!"));
                 watchlist.setStatus(completed);
                 watchlist.setProgress(series.getEpisodes());
                 break;
-            case "dropped":
+            case "DROPPED":
                 Status dropped = statusRepository.findByName(EStatus.DROPPED)
                         .orElseThrow(() -> new RuntimeException("Error: Status dropped not found!"));
                 watchlist.setStatus(dropped);
                 break;
-            case "on_hold":
+            case "ON HOLD":
                 Status onhold = statusRepository.findByName(EStatus.ON_HOLD)
                         .orElseThrow(() -> new RuntimeException("Error: Status on hold not found!"));
                 watchlist.setStatus(onhold);
                 break;
-            case "plan_to_watch":
+            case "PLAN TO WATCH":
                 Status plantowatch = statusRepository.findByName(EStatus.PLAN_TO_WATCH)
                         .orElseThrow(() -> new RuntimeException("Error: Status plan to watch not found!"));
                 watchlist.setStatus(plantowatch);

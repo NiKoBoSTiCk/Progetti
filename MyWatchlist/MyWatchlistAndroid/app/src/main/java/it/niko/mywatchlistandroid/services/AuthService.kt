@@ -2,6 +2,7 @@ package it.niko.mywatchlistandroid.services
 
 import it.niko.mywatchlistandroid.payload.LoginResponse
 import it.niko.mywatchlistandroid.payload.LoginRequest
+import it.niko.mywatchlistandroid.payload.MessageResponse
 import it.niko.mywatchlistandroid.payload.SignupRequest
 import retrofit2.Response
 import retrofit2.http.Body
@@ -13,5 +14,5 @@ interface AuthService {
     suspend fun login(@Body body: LoginRequest): Response<LoginResponse>
 
     @POST("/auth/signup")
-    suspend fun signup(@Body body: SignupRequest)
+    suspend fun signup(@Body body: SignupRequest): Response<MessageResponse>
 }
