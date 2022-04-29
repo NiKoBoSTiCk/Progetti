@@ -1,4 +1,4 @@
-package it.niko.mywatchlistandroid
+package it.niko.mywatchlistandroid.fragment
 
 import android.os.Bundle
 import android.text.TextUtils
@@ -12,6 +12,9 @@ import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import androidx.navigation.findNavController
+import it.niko.mywatchlistandroid.R
+import it.niko.mywatchlistandroid.RetrofitInstance
+import it.niko.mywatchlistandroid.SessionManager
 import it.niko.mywatchlistandroid.databinding.FragmentEditWatchlistBinding
 import it.niko.mywatchlistandroid.payload.MessageResponse
 import it.niko.mywatchlistandroid.payload.WatchlistRequest

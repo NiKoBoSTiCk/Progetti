@@ -61,7 +61,7 @@
     </fragment>
     <fragment
         android:id="@+id/editWatchlistFragment"
-        android:name="it.niko.mywatchlistandroid.EditWatchlistFragment"
+        android:name="it.niko.mywatchlistandroid.fragment.EditWatchlistFragment"
         android:label="fragment_edit_watchlist"
         tools:layout="@layout/fragment_edit_watchlist" >
         <action

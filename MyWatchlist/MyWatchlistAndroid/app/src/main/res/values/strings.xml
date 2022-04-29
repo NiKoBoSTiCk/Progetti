@@ -49,13 +49,13 @@
     <string-array name="genre_list">
         <item>Drama</item>
         <item>Crime</item>
-        <item>Sci Fi</item>
+        <item>Sci fi</item>
         <item>Comedy</item>
         <item>Fantasy</item>
         <item>Animation</item>
         <item>Sitcom</item>
         <item>Reality</item>
-        <item>Soap Opera</item>
+        <item>Soap opera</item>
         <item>Telenovela</item>
         <item>Documentary</item>
         <item>Action</item>
@@ -67,7 +67,7 @@
         <item>Supernatural</item>
         <item>Science</item>
         <item>School</item>
-        <item>Time Travel</item>
+        <item>Time travel</item>
         <item>Historical</item>
         <item>Adventure</item>
         <item>Thriller</item>

@@ -20,4 +20,7 @@ interface SeriesService {
 
     @GET("/series/search/by_title")
     suspend fun getSeriesByTitle(@Query("title") title: String): Response<SeriesResponse>
+
+    @GET("/series/search/by_genre")
+    suspend fun getSeriesByGenre(@Query("genre") genre: String): Response<SeriesResponse>
 }

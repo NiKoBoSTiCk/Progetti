@@ -7,7 +7,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import androidx.navigation.findNavController
@@ -24,6 +27,8 @@ import it.niko.mywatchlistandroid.payload.WatchlistRequest
 import it.niko.mywatchlistandroid.services.SeriesService
 import it.niko.mywatchlistandroid.services.WatchlistService
 import retrofit2.Response
+import java.util.*
+import kotlin.collections.ArrayList
 
 class SeriesFragment : Fragment() {
     private lateinit var binding: FragmentSeriesBinding
@@ -42,6 +47,15 @@ class SeriesFragment : Fragment() {
         binding = FragmentSeriesBinding.inflate(inflater, container, false)
         binding.apply {
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+            val genreList = resources.getStringArray(R.array.genre_list)
+            spSearchByGenre.adapter = ArrayAdapter(requireContext(),  android.R.layout.simple_spinner_item, genreList)
+            spSearchByGenre.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                    getSeriesByGenre(genreList[position])
+                }
+                override fun onNothingSelected(parent: AdapterView<*>?) {}
+            }
 
             btnAll.setOnClickListener {
                 getAllSeries()
@@ -107,8 +121,8 @@ class SeriesFragment : Fragment() {
         responseLiveData.observe(viewLifecycleOwner) {
             binding.apply {
                 if (it.body() != null) {
-                    recyclerView.adapter = SeriesAdapter(it.body()!!) { series: Series ->
-                        addSeriesToWatchlist(series)
+                    recyclerView.adapter = SeriesAdapter(it.body()!!) {
+                            series: Series -> addSeriesToWatchlist(series)
                     }
                 }
                 else {
@@ -121,6 +135,20 @@ class SeriesFragment : Fragment() {
     private fun getSeriesByTitle(title: String) {
         val responseLiveData: LiveData<Response<SeriesResponse>> = liveData {
             val response = seriesService.getSeriesByTitle(title)
+            emit(response)
+        }
+        responseLiveData.observe(viewLifecycleOwner) {
+            binding.apply {
+                recyclerView.adapter = SeriesAdapter(it.body()!!.seriesList) {
+                        series: Series -> addSeriesToWatchlist(series)
+                }
+            }
+        }
+    }
+
+    private fun getSeriesByGenre(genre: String) {
+        val responseLiveData: LiveData<Response<SeriesResponse>> = liveData {
+            val response = seriesService.getSeriesByTitle(genre)
             emit(response)
         }
         responseLiveData.observe(viewLifecycleOwner) {
