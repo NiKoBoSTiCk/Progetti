@@ -1,6 +1,7 @@
 package it.niko.mywatchlistandroid.fragment
 
 import android.os.Bundle
+import android.text.TextUtils
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -40,17 +41,80 @@ class SeriesFragment : Fragment() {
         binding = FragmentSeriesBinding.inflate(inflater, container, false)
         binding.apply {
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+            btnAll.setOnClickListener {
+                getAllSeries()
+            }
+
+            btnTopViews.setOnClickListener {
+                getTopViewsSeries()
+            }
+
+            btnTopRated.setOnClickListener {
+                getTopRatedSeries()
+            }
+
+            btnSearchByTitle.setOnClickListener {
+                if (!TextUtils.isEmpty(etSearchByTitle.text)) {
+                    val seriesTitle = etSearchByTitle.text.toString()
+                    getSeriesByTitle(seriesTitle)
+                } else {
+                    Toast.makeText(requireContext(), "no title", Toast.LENGTH_SHORT).show()
+                }
+            }
+
             btnProfile.setOnClickListener {
                 it.findNavController().navigate(R.id.action_seriesFragment_to_userFragment)
             }
         }
-        getAllSeries()
         return binding.root
     }
 
     private fun getAllSeries() {
         val responseLiveData: LiveData<Response<SeriesResponse>> = liveData {
             val response = seriesService.getSeries()
+            emit(response)
+        }
+        responseLiveData.observe(viewLifecycleOwner) {
+            binding.apply {
+                recyclerView.adapter = SeriesAdapter(it.body()!!.seriesList) {
+                        series: Series -> addSeriesToWatchlist(series)
+                }
+            }
+        }
+    }
+
+    private fun getTopViewsSeries() {
+        val responseLiveData: LiveData<Response<SeriesResponse>> = liveData {
+            val response = seriesService.getSeriesByViews()
+            emit(response)
+        }
+        responseLiveData.observe(viewLifecycleOwner) {
+            binding.apply {
+                recyclerView.adapter = SeriesAdapter(it.body()!!.seriesList) {
+                        series: Series -> addSeriesToWatchlist(series)
+                }
+            }
+        }
+    }
+
+    private fun getTopRatedSeries() {
+        val responseLiveData: LiveData<Response<SeriesResponse>> = liveData {
+            val response = seriesService.getSeriesByRating()
+            emit(response)
+        }
+        responseLiveData.observe(viewLifecycleOwner) {
+            binding.apply {
+                recyclerView.adapter = SeriesAdapter(it.body()!!.seriesList) {
+                        series: Series -> addSeriesToWatchlist(series)
+                }
+            }
+        }
+    }
+
+    private fun getSeriesByTitle(title: String) {
+        val responseLiveData: LiveData<Response<SeriesResponse>> = liveData {
+            val response = seriesService.getSeriesByTitle(title)
             emit(response)
         }
         responseLiveData.observe(viewLifecycleOwner) {

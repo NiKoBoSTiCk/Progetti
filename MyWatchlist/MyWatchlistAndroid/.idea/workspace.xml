@@ -13,10 +13,16 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="24a2a446-a7c9-4622-a76f-ed5e082f1689" name="Default Changelist" comment="adapter fix">
+    <list default="true" id="24a2a446-a7c9-4622-a76f-ed5e082f1689" name="Default Changelist" comment="added signup">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/it/niko/mywatchlistandroid/fragment/SignupFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/it/niko/mywatchlistandroid/fragment/SignupFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MyWatchlistSpring/src/main/java/it/niko/mywatchlist/services/WatchlistService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MyWatchlistSpring/src/main/java/it/niko/mywatchlist/services/WatchlistService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/it/niko/mywatchlistandroid/fragment/SeriesFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/it/niko/mywatchlistandroid/fragment/SeriesFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/it/niko/mywatchlistandroid/services/SeriesService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/it/niko/mywatchlistandroid/services/SeriesService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_login.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_series.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_series.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_signup.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_signup.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_user.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_user.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_watchlist.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_watchlist.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -226,7 +232,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651162896262</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="added signup">
+      <created>1651238755190</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1651238755190</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -252,6 +265,7 @@
     <MESSAGE value="added edit to watchlist" />
     <MESSAGE value="working watchlist update" />
     <MESSAGE value="adapted fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="adapted fix" />
+    <MESSAGE value="added signup" />
+    <option name="LAST_COMMIT_MESSAGE" value="added signup" />
   </component>
 </project>

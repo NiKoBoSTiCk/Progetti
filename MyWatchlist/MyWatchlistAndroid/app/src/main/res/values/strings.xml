@@ -45,4 +45,32 @@
         <item>9</item>
         <item>10</item>
     </string-array>
+
+    <string-array name="genre_list">
+        <item>Drama</item>
+        <item>Crime</item>
+        <item>Sci Fi</item>
+        <item>Comedy</item>
+        <item>Fantasy</item>
+        <item>Animation</item>
+        <item>Sitcom</item>
+        <item>Reality</item>
+        <item>Soap Opera</item>
+        <item>Telenovela</item>
+        <item>Documentary</item>
+        <item>Action</item>
+        <item>Educational</item>
+        <item>Sport</item>
+        <item>Horror</item>
+        <item>Romance</item>
+        <item>Satirical</item>
+        <item>Supernatural</item>
+        <item>Science</item>
+        <item>School</item>
+        <item>Time Travel</item>
+        <item>Historical</item>
+        <item>Adventure</item>
+        <item>Thriller</item>
+        <item>War</item>
+    </string-array>
 </resources>
