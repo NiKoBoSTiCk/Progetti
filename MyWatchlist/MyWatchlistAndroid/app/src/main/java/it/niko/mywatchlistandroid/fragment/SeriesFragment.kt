@@ -2,6 +2,7 @@ package it.niko.mywatchlistandroid.fragment
 
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -85,13 +86,13 @@ class SeriesFragment : Fragment() {
     }
 
     private fun getTopViewsSeries() {
-        val responseLiveData: LiveData<Response<SeriesResponse>> = liveData {
+        val responseLiveData: LiveData<Response<ArrayList<Series>>> = liveData {
             val response = seriesService.getSeriesByViews()
             emit(response)
         }
         responseLiveData.observe(viewLifecycleOwner) {
             binding.apply {
-                recyclerView.adapter = SeriesAdapter(it.body()!!.seriesList) {
+                recyclerView.adapter = SeriesAdapter(it.body()!!) {
                         series: Series -> addSeriesToWatchlist(series)
                 }
             }
@@ -99,14 +100,19 @@ class SeriesFragment : Fragment() {
     }
 
     private fun getTopRatedSeries() {
-        val responseLiveData: LiveData<Response<SeriesResponse>> = liveData {
+        val responseLiveData: LiveData<Response<ArrayList<Series>>> = liveData {
             val response = seriesService.getSeriesByRating()
             emit(response)
         }
         responseLiveData.observe(viewLifecycleOwner) {
             binding.apply {
-                recyclerView.adapter = SeriesAdapter(it.body()!!.seriesList) {
-                        series: Series -> addSeriesToWatchlist(series)
+                if (it.body() != null) {
+                    recyclerView.adapter = SeriesAdapter(it.body()!!) { series: Series ->
+                        addSeriesToWatchlist(series)
+                    }
+                }
+                else {
+                    Toast.makeText(requireContext(), "no result", Toast.LENGTH_SHORT).show()
                 }
             }
         }
