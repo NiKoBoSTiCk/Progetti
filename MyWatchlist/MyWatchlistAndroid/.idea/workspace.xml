@@ -15,13 +15,19 @@
   <component name="ChangeListManager">
     <list default="true" id="24a2a446-a7c9-4622-a76f-ed5e082f1689" name="Default Changelist" comment="fixed search in series">
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/it/niko/mywatchlistandroid/EditWatchlistFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/it/niko/mywatchlistandroid/fragment/EditWatchlistFragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/it/niko/mywatchlistandroid/fragment/SeriesFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/it/niko/mywatchlistandroid/fragment/SeriesFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/it/niko/mywatchlistandroid/services/SeriesService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/it/niko/mywatchlistandroid/services/SeriesService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_edit_watchlist.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_edit_watchlist.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/navigation/nav_graph.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/navigation/nav_graph.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/it/niko/mywatchlistandroid/fragment/WatchlistFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/it/niko/mywatchlistandroid/fragment/WatchlistFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/it/niko/mywatchlistandroid/services/WatchlistService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/it/niko/mywatchlistandroid/services/WatchlistService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_series.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_series.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_user.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_user.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_watchlist.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_watchlist.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/series_list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/series_list.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/watch_list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/watch_list.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyWatchlistSpring/src/main/java/it/niko/mywatchlist/controllers/SeriesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MyWatchlistSpring/src/main/java/it/niko/mywatchlist/controllers/SeriesController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyWatchlistSpring/src/main/java/it/niko/mywatchlist/services/SeriesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MyWatchlistSpring/src/main/java/it/niko/mywatchlist/services/SeriesService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,11 +44,11 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="navigationResourceFile" />
-        <option value="resourceFile" />
         <option value="Kotlin Interface" />
         <option value="layoutResourceFile" />
         <option value="Kotlin Data Class" />
         <option value="Kotlin Class" />
+        <option value="resourceFile" />
       </list>
     </option>
   </component>
@@ -252,7 +258,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651247920575</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="fixed search in series">
+      <created>1651249436173</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1651249436173</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

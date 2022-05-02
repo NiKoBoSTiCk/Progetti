@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.lifecycle.LiveData
@@ -26,6 +28,7 @@ class WatchlistFragment : Fragment() {
     private lateinit var binding: FragmentWatchlistBinding
     private lateinit var watchlistService: WatchlistService
     private lateinit var sessionManager: SessionManager
+    private var selectedStatus: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,8 +39,20 @@ class WatchlistFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentWatchlistBinding.inflate(inflater, container, false)
         binding.apply {
+            recyclerViewW.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
-            recyclerViewW.layoutManager = LinearLayoutManager(requireContext())
+            val statusList = resources.getStringArray(R.array.status_list)
+            spSearchByStatus.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, statusList)
+            spSearchByStatus.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                    selectedStatus = statusList[position]
+                }
+                override fun onNothingSelected(parent: AdapterView<*>?) {}
+            }
+
+            btnSearchByStatus.setOnClickListener {
+                getUserWatchlistByStatus()
+            }
 
             btnProfileW.setOnClickListener {
                 it.findNavController().navigate(R.id.action_watchlistFragment_to_userFragment)
@@ -69,8 +84,9 @@ class WatchlistFragment : Fragment() {
                 recyclerViewW.adapter = WatchlistAdapter(
                     it.body()!!,
                     { watchlist: Watchlist -> updateUserWatchlist(watchlist) },
-                    { watchlist: Watchlist -> deleteUserWatchlist(watchlist) })
-                }
+                    { watchlist: Watchlist -> deleteUserWatchlist(watchlist) }
+                )
+            }
         }
     }
 
@@ -105,6 +121,26 @@ class WatchlistFragment : Fragment() {
             Toast.makeText(requireContext(), it.body()!!.message, Toast.LENGTH_SHORT).show()
         }
         getUserWatchlist()
+    }
+
+    private fun getUserWatchlistByStatus() {
+        val responseLiveData: LiveData<Response<ArrayList<Watchlist>>> = liveData {
+            val response = watchlistService.getWatchlistByStatus(
+                token = "Bearer ${sessionManager.fetchAuthToken()}",
+                sessionManager.fetchUsername()!!,
+                selectedStatus
+            )
+            emit(response)
+        }
+        responseLiveData.observe(viewLifecycleOwner) {
+            binding.apply {
+                recyclerViewW.adapter = WatchlistAdapter(
+                    it.body()!!,
+                    { watchlist: Watchlist -> updateUserWatchlist(watchlist) },
+                    { watchlist: Watchlist -> deleteUserWatchlist(watchlist) }
+                )
+            }
+        }
     }
 }
 

@@ -24,8 +24,13 @@ class UserFragment : Fragment() {
         binding.apply {
             tvUsername.text = sessionManager.fetchUsername()
             tvToken.text = sessionManager.fetchAuthToken()
-            btnWatchlist.setOnClickListener {
+
+            btnUserToWatchlist.setOnClickListener {
                 it.findNavController().navigate(R.id.action_userFragment_to_watchlistFragment)
+            }
+
+            btnUserToSeries.setOnClickListener {
+                it.findNavController().navigate(R.id.action_userFragment_to_seriesFragment)
             }
         }
         return binding.root

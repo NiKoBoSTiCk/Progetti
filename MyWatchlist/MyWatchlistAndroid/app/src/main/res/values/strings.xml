@@ -24,13 +24,24 @@
     <string name="delete">Delete</string>
     <string name="editing_title">Editing Title</string>
     <string name="save">Save</string>
+    <string name="search">Search</string>
+    <string name="series">Series</string>
+    <string name="top_views">Top Views</string>
+    <string name="all">All</string>
+    <string name="top_rated">Top Rated</string>
+    <string name="search_by_title">search by title</string>
+    <string name="add">ADD</string>
+    <string name="watchlist">Watchlist</string>
+    <string name="token">token</string>
+    <string name="search_by_status">Search by status</string>
+    <string name="search_by_genre">Search by Genre</string>
 
     <string-array name="status_list">
         <item>Watching</item>
         <item>Completed</item>
         <item>Dropped</item>
-        <item>On Hold</item>
-        <item>Plan To Watch</item>
+        <item>On hold</item>
+        <item>Plan to watch</item>
     </string-array>
 
     <string-array name="score_list">

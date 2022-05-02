@@ -9,14 +9,23 @@ import retrofit2.http.*
 interface WatchlistService {
 
     @POST("/watchlist")
-    suspend fun addWatchlist(@Header("Authorization") token: String, @Body watchlistRequest: WatchlistRequest): Response<MessageResponse>
+    suspend fun addWatchlist(@Header("Authorization") token: String,
+                             @Body watchlistRequest: WatchlistRequest): Response<MessageResponse>
 
     @PUT("/watchlist")
-    suspend fun updateWatchlist(@Header("Authorization") token: String, @Body watchlistRequest: WatchlistRequest): Response<MessageResponse>
+    suspend fun updateWatchlist(@Header("Authorization") token: String,
+                                @Body watchlistRequest: WatchlistRequest): Response<MessageResponse>
 
     @HTTP(method = "DELETE", path = "/watchlist", hasBody = true)
-    suspend fun deleteWatchlist(@Header("Authorization") token: String, @Body watchlistRequest: WatchlistRequest): Response<MessageResponse>
+    suspend fun deleteWatchlist(@Header("Authorization") token: String,
+                                @Body watchlistRequest: WatchlistRequest): Response<MessageResponse>
 
     @GET("/watchlist/{username}")
-    suspend fun getWatchlist(@Header("Authorization") token: String, @Path("username") username: String): Response<ArrayList<Watchlist>>
+    suspend fun getWatchlist(@Header("Authorization") token: String,
+                             @Path("username") username: String): Response<ArrayList<Watchlist>>
+
+    @GET("/watchlist/{username}/by_status")
+    suspend fun getWatchlistByStatus(@Header("Authorization") token: String,
+                                     @Path("username") username: String,
+                                     @Query("status") status: String): Response<ArrayList<Watchlist>>
 }

@@ -2,15 +2,13 @@ package it.niko.mywatchlistandroid.fragment
 
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.lifecycle.AndroidViewModel
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import androidx.navigation.findNavController
@@ -27,14 +25,14 @@ import it.niko.mywatchlistandroid.payload.WatchlistRequest
 import it.niko.mywatchlistandroid.services.SeriesService
 import it.niko.mywatchlistandroid.services.WatchlistService
 import retrofit2.Response
-import java.util.*
-import kotlin.collections.ArrayList
 
 class SeriesFragment : Fragment() {
     private lateinit var binding: FragmentSeriesBinding
     private lateinit var seriesService: SeriesService
     private lateinit var watchlistService: WatchlistService
     private lateinit var sessionManager: SessionManager
+    private var selectedGenre: String = ""
+    private var titleInput: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,13 +44,13 @@ class SeriesFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentSeriesBinding.inflate(inflater, container, false)
         binding.apply {
-            recyclerView.layoutManager = LinearLayoutManager(requireContext())
+            recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
             val genreList = resources.getStringArray(R.array.genre_list)
             spSearchByGenre.adapter = ArrayAdapter(requireContext(),  android.R.layout.simple_spinner_item, genreList)
             spSearchByGenre.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                    getSeriesByGenre(genreList[position])
+                    selectedGenre = genreList[position]
                 }
                 override fun onNothingSelected(parent: AdapterView<*>?) {}
             }
@@ -69,12 +67,21 @@ class SeriesFragment : Fragment() {
                 getTopRatedSeries()
             }
 
+            btnSearchByGenre.setOnClickListener {
+                getSeriesByGenre()
+            }
+
             btnSearchByTitle.setOnClickListener {
                 if (!TextUtils.isEmpty(etSearchByTitle.text)) {
-                    val seriesTitle = etSearchByTitle.text.toString()
-                    getSeriesByTitle(seriesTitle)
-                } else {
-                    Toast.makeText(requireContext(), "no title", Toast.LENGTH_SHORT).show()
+                    titleInput = etSearchByTitle.text.toString()
+                    getSeriesByTitle()
+                }
+                else {
+                    Toast.makeText(
+                        requireContext(),
+                        "no title",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
 
@@ -92,8 +99,17 @@ class SeriesFragment : Fragment() {
         }
         responseLiveData.observe(viewLifecycleOwner) {
             binding.apply {
-                recyclerView.adapter = SeriesAdapter(it.body()!!.seriesList) {
-                        series: Series -> addSeriesToWatchlist(series)
+                if (it.body() != null) {
+                    recyclerView.adapter = SeriesAdapter(it.body()!!.seriesList) { series: Series ->
+                        addSeriesToWatchlist(series)
+                    }
+                }
+                else {
+                    Toast.makeText(
+                        requireContext(),
+                        "no result",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         }
@@ -106,8 +122,17 @@ class SeriesFragment : Fragment() {
         }
         responseLiveData.observe(viewLifecycleOwner) {
             binding.apply {
-                recyclerView.adapter = SeriesAdapter(it.body()!!) {
-                        series: Series -> addSeriesToWatchlist(series)
+                if (it.body() != null) {
+                    recyclerView.adapter = SeriesAdapter(it.body()!!) { series: Series ->
+                        addSeriesToWatchlist(series)
+                    }
+                }
+                else {
+                    Toast.makeText(
+                        requireContext(),
+                        "no result",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         }
@@ -126,35 +151,57 @@ class SeriesFragment : Fragment() {
                     }
                 }
                 else {
-                    Toast.makeText(requireContext(), "no result", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireContext(),
+                        "no result",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         }
     }
 
-    private fun getSeriesByTitle(title: String) {
+    private fun getSeriesByTitle() {
         val responseLiveData: LiveData<Response<SeriesResponse>> = liveData {
-            val response = seriesService.getSeriesByTitle(title)
+            val response = seriesService.getSeriesByTitle(titleInput)
             emit(response)
         }
         responseLiveData.observe(viewLifecycleOwner) {
             binding.apply {
-                recyclerView.adapter = SeriesAdapter(it.body()!!.seriesList) {
-                        series: Series -> addSeriesToWatchlist(series)
+                if (it.body() != null) {
+                    recyclerView.adapter = SeriesAdapter(it.body()!!.seriesList) {
+                            series: Series -> addSeriesToWatchlist(series)
+                    }
+                }
+                else {
+                    Toast.makeText(
+                        requireContext(),
+                        "no result",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         }
     }
 
-    private fun getSeriesByGenre(genre: String) {
+    private fun getSeriesByGenre() {
         val responseLiveData: LiveData<Response<SeriesResponse>> = liveData {
-            val response = seriesService.getSeriesByTitle(genre)
+            val response = seriesService.getSeriesByGenre(selectedGenre)
             emit(response)
         }
         responseLiveData.observe(viewLifecycleOwner) {
             binding.apply {
-                recyclerView.adapter = SeriesAdapter(it.body()!!.seriesList) {
-                        series: Series -> addSeriesToWatchlist(series)
+                if (it.body() != null) {
+                    recyclerView.adapter = SeriesAdapter(it.body()!!.seriesList) {
+                            series: Series -> addSeriesToWatchlist(series)
+                    }
+                }
+                else {
+                    Toast.makeText(
+                        requireContext(),
+                        "no result",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         }
@@ -176,7 +223,20 @@ class SeriesFragment : Fragment() {
             emit(response)
         }
         responseLiveData.observe(viewLifecycleOwner) {
-            Toast.makeText(requireContext(), it.body()!!.message, Toast.LENGTH_SHORT).show()
+            if (it.body() != null) {
+                Toast.makeText(
+                    requireContext(),
+                    it.body()!!.message,
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+            else {
+                Toast.makeText(
+                    requireContext(),
+                    "no result",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
     }
 

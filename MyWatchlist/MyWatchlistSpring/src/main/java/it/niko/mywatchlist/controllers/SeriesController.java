@@ -87,7 +87,7 @@ public class SeriesController {
     }
 
     @GetMapping("/search/by_genre")
-    public ResponseEntity<?> getByGenre(@RequestParam(value = "genre", defaultValue = "drama") String genre,
+    public ResponseEntity<?> getByGenre(@RequestParam(value = "genre") String genre,
                                         @RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
                                         @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
                                         @RequestParam(value = "sortBy", defaultValue = "title") String sortBy){
