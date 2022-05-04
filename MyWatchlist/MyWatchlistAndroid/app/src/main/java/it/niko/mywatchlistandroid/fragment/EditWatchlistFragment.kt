@@ -101,7 +101,7 @@ class EditWatchlistFragment : Fragment() {
                 WatchlistRequest(
                     title,
                     sessionManager.fetchUsername()!!,
-                    selectedStatus.uppercase(Locale.getDefault()),
+                    selectedStatus,
                     progress,
                     selectedScore,
                     comment
