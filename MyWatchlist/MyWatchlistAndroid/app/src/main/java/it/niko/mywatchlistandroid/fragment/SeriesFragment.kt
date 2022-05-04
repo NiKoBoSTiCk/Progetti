@@ -99,7 +99,7 @@ class SeriesFragment : Fragment() {
         }
         responseLiveData.observe(viewLifecycleOwner) {
             binding.apply {
-                if (it.body() != null) {
+                if (it.body() != null && it.isSuccessful) {
                     recyclerView.adapter = SeriesAdapter(it.body()!!.seriesList) { series: Series ->
                         addSeriesToWatchlist(series)
                     }
@@ -122,7 +122,7 @@ class SeriesFragment : Fragment() {
         }
         responseLiveData.observe(viewLifecycleOwner) {
             binding.apply {
-                if (it.body() != null) {
+                if (it.body() != null && it.isSuccessful) {
                     recyclerView.adapter = SeriesAdapter(it.body()!!) { series: Series ->
                         addSeriesToWatchlist(series)
                     }
@@ -145,7 +145,7 @@ class SeriesFragment : Fragment() {
         }
         responseLiveData.observe(viewLifecycleOwner) {
             binding.apply {
-                if (it.body() != null) {
+                if (it.body() != null && it.isSuccessful) {
                     recyclerView.adapter = SeriesAdapter(it.body()!!) {
                             series: Series -> addSeriesToWatchlist(series)
                     }
@@ -168,7 +168,7 @@ class SeriesFragment : Fragment() {
         }
         responseLiveData.observe(viewLifecycleOwner) {
             binding.apply {
-                if (it.body() != null) {
+                if (it.body() != null && it.isSuccessful) {
                     recyclerView.adapter = SeriesAdapter(it.body()!!.seriesList) {
                             series: Series -> addSeriesToWatchlist(series)
                     }
@@ -191,7 +191,7 @@ class SeriesFragment : Fragment() {
         }
         responseLiveData.observe(viewLifecycleOwner) {
             binding.apply {
-                if (it.body() != null) {
+                if (it.body() != null && it.isSuccessful) {
                     recyclerView.adapter = SeriesAdapter(it.body()!!.seriesList) {
                             series: Series -> addSeriesToWatchlist(series)
                     }
@@ -223,7 +223,7 @@ class SeriesFragment : Fragment() {
             emit(response)
         }
         responseLiveData.observe(viewLifecycleOwner) {
-            if (it.body() != null) {
+            if (it.body() != null && it.isSuccessful) {
                 Toast.makeText(
                     requireContext(),
                     it.body()!!.message,

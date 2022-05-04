@@ -12,10 +12,12 @@
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_loginFragment_to_signupFragment"
-            app:destination="@id/signupFragment" />
+            app:destination="@id/signupFragment"
+            app:enterAnim="@anim/slide_in_right" />
         <action
             android:id="@+id/action_loginFragment_to_seriesFragment"
-            app:destination="@id/seriesFragment" />
+            app:destination="@id/seriesFragment"
+            app:enterAnim="@anim/slide_down" />
     </fragment>
     <fragment
         android:id="@+id/signupFragment"
@@ -24,7 +26,8 @@
         tools:layout="@layout/fragment_signup" >
         <action
             android:id="@+id/action_signupFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/slide_in_left" />
     </fragment>
     <fragment
         android:id="@+id/seriesFragment"
@@ -33,7 +36,8 @@
         tools:layout="@layout/fragment_series" >
         <action
             android:id="@+id/action_seriesFragment_to_userFragment"
-            app:destination="@id/userFragment" />
+            app:destination="@id/userFragment"
+            app:enterAnim="@anim/slide_in_right" />
     </fragment>
     <fragment
         android:id="@+id/watchlistFragment"
@@ -42,13 +46,16 @@
         tools:layout="@layout/fragment_watchlist" >
         <action
             android:id="@+id/action_watchlistFragment_to_userFragment"
-            app:destination="@id/userFragment" />
+            app:destination="@id/userFragment"
+            app:enterAnim="@anim/slide_in_left" />
         <action
             android:id="@+id/action_watchlistFragment_to_seriesFragment"
-            app:destination="@id/seriesFragment" />
+            app:destination="@id/seriesFragment"
+            app:enterAnim="@anim/slide_in_left" />
         <action
             android:id="@+id/action_watchlistFragment_to_editWatchlistFragment"
-            app:destination="@id/editWatchlistFragment" />
+            app:destination="@id/editWatchlistFragment"
+            app:enterAnim="@anim/slide_in_right" />
     </fragment>
     <fragment
         android:id="@+id/userFragment"
@@ -57,10 +64,12 @@
         tools:layout="@layout/fragment_user" >
         <action
             android:id="@+id/action_userFragment_to_watchlistFragment"
-            app:destination="@id/watchlistFragment" />
+            app:destination="@id/watchlistFragment"
+            app:enterAnim="@anim/slide_in_right" />
         <action
             android:id="@+id/action_userFragment_to_seriesFragment"
-            app:destination="@id/seriesFragment" />
+            app:destination="@id/seriesFragment"
+            app:enterAnim="@anim/slide_in_left" />
     </fragment>
     <fragment
         android:id="@+id/editWatchlistFragment"
@@ -69,6 +78,7 @@
         tools:layout="@layout/fragment_edit_watchlist" >
         <action
             android:id="@+id/action_editWatchlistFragment_to_watchlistFragment"
-            app:destination="@id/watchlistFragment" />
+            app:destination="@id/watchlistFragment"
+            app:enterAnim="@anim/slide_in_left" />
     </fragment>
 </navigation>

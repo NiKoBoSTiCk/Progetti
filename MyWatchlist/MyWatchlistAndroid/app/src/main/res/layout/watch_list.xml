@@ -4,28 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
-    android:background="#6FEAD6">
+    android:background="@color/background">
 
     <TextView
         android:id="@+id/tvTitleW"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:background="#2F98B2"
-        android:elevation="10dp"
+        android:layout_height="50dp"
+        android:background="@color/label"
         android:text="@string/title"
         android:textAlignment="center"
+        android:textColor="@color/text"
         android:textSize="34sp"
         android:textStyle="bold"
         app:circularflow_defaultRadius="10sp"
         app:circularflow_radiusInDP="10sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvProgressW"
@@ -33,16 +29,14 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:layout_marginTop="599dp"
-        android:background="#2F98B2"
-        android:elevation="10dp"
+        android:background="@color/background"
         android:text="@string/progress"
+        android:textColor="@color/text"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitleW"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/tvTitleW" />
 
     <TextView
         android:id="@+id/tvStatus"
@@ -50,16 +44,14 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:layout_marginTop="546dp"
-        android:background="#2F98B2"
-        android:elevation="10dp"
+        android:background="@color/background"
         android:text="@string/status"
+        android:textColor="@color/text"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvProgressW"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/tvProgressW" />
 
     <TextView
         android:id="@+id/tvScore"
@@ -67,16 +59,14 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:layout_marginTop="494dp"
-        android:background="#2F98B2"
-        android:elevation="10dp"
+        android:background="@color/background"
         android:text="@string/score"
+        android:textColor="@color/text"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvStatus"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/tvStatus" />
 
     <TextView
         android:id="@+id/tvComment"
@@ -84,16 +74,14 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:layout_marginTop="441dp"
-        android:background="#2F98B2"
-        android:elevation="10dp"
+        android:background="@color/background"
         android:text="@string/comment"
+        android:textColor="@color/text"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvScore"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/tvScore" />
 
     <Button
         android:id="@+id/btnEdit"
@@ -101,22 +89,20 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:layout_marginTop="369dp"
-        android:background="#CDDC39"
-        android:backgroundTint="#111BC3"
-        android:elevation="10dp"
+        android:backgroundTint="@color/label"
+        android:elevation="20sp"
         android:hapticFeedbackEnabled="false"
         android:text="@string/edit"
-        android:textColor="#23D90F"
-        android:textSize="24sp"
+        android:textColor="@color/text"
+        android:textSize="18sp"
         android:textStyle="bold"
-        app:cornerRadius="10dp"
+        app:cornerRadius="20sp"
         app:iconTint="#CA1616"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvComment"
-        app:layout_constraintVertical_bias="0.0"
         app:rippleColor="#BD1616" />
 
     <Button
@@ -125,19 +111,17 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:layout_marginTop="369dp"
-        android:background="#942B2B"
-        android:backgroundTint="#EA0D0D"
-        android:elevation="10dp"
+        android:backgroundTint="@color/label"
+        android:elevation="20sp"
         android:text="@string/delete"
-        android:textColor="#EA0E0E"
-        android:textSize="24sp"
+        android:textColor="@color/text"
+        android:textSize="18sp"
         android:textStyle="bold"
-        app:cornerRadius="10dp"
+        app:cornerRadius="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvComment"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/tvComment" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

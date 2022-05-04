@@ -81,11 +81,20 @@ class WatchlistFragment : Fragment() {
         }
         responseLiveData.observe(viewLifecycleOwner) {
             binding.apply {
-                recyclerViewW.adapter = WatchlistAdapter(
-                    it.body()!!,
-                    { watchlist: Watchlist -> updateUserWatchlist(watchlist) },
-                    { watchlist: Watchlist -> deleteUserWatchlist(watchlist) }
-                )
+                if (it.body() != null && it.isSuccessful) {
+                    recyclerViewW.adapter = WatchlistAdapter(
+                        it.body()!!,
+                        { watchlist: Watchlist -> updateUserWatchlist(watchlist) },
+                        { watchlist: Watchlist -> deleteUserWatchlist(watchlist) }
+                    )
+                }
+                else {
+                    Toast.makeText(
+                        requireContext(),
+                        "no result",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
         }
     }
@@ -118,7 +127,16 @@ class WatchlistFragment : Fragment() {
             emit(response)
         }
         responseLiveData.observe(viewLifecycleOwner) {
-            Toast.makeText(requireContext(), it.body()!!.message, Toast.LENGTH_SHORT).show()
+            if (it.body() != null && it.isSuccessful) {
+                Toast.makeText(requireContext(), it.body()!!.message, Toast.LENGTH_SHORT).show()
+            }
+            else {
+                Toast.makeText(
+                    requireContext(),
+                    "error",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
         getUserWatchlist()
     }
@@ -134,11 +152,20 @@ class WatchlistFragment : Fragment() {
         }
         responseLiveData.observe(viewLifecycleOwner) {
             binding.apply {
-                recyclerViewW.adapter = WatchlistAdapter(
-                    it.body()!!,
-                    { watchlist: Watchlist -> updateUserWatchlist(watchlist) },
-                    { watchlist: Watchlist -> deleteUserWatchlist(watchlist) }
-                )
+                if (it.body() != null && it.isSuccessful) {
+                    recyclerViewW.adapter = WatchlistAdapter(
+                        it.body()!!,
+                        { watchlist: Watchlist -> updateUserWatchlist(watchlist) },
+                        { watchlist: Watchlist -> deleteUserWatchlist(watchlist) }
+                    )
+                }
+                else {
+                    Toast.makeText(
+                        requireContext(),
+                        "error",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
         }
     }

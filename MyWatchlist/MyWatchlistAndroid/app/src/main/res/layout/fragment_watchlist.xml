@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="5dp"
+    android:background="@color/background"
     tools:context=".fragment.WatchlistFragment">
 
     <Spinner
         android:id="@+id/spSearchByStatus"
         android:layout_width="190dp"
         android:layout_height="48dp"
+        android:elevation="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.045"
@@ -22,15 +23,15 @@
     <Button
         android:id="@+id/btnSeriesW"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_height="50dp"
+        android:elevation="20sp"
         android:text="@string/series"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/btnSearchByStatus"
@@ -50,12 +51,10 @@
     <Button
         android:id="@+id/btnProfileW"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="1dp"
+        android:layout_height="50dp"
+        android:elevation="20sp"
         android:text="@string/profile"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerViewW"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,12 +63,9 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewW"
-        android:layout_width="396dp"
-        android:layout_height="575dp"
-        android:layout_marginStart="1dp"
+        android:layout_width="0dp"
+        android:layout_height="577dp"
         android:layout_marginTop="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -78,17 +74,18 @@
 
     <TextView
         android:id="@+id/tvWatchlist"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="46dp"
-        android:layout_marginEnd="92dp"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:background="@color/label"
         android:text="@string/watchlist"
+        android:textAlignment="center"
+        android:textColor="@color/text"
         android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnProfileW"
-        app:layout_constraintHorizontal_bias="0.313"
-        app:layout_constraintStart_toEndOf="@+id/btnSeriesW"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

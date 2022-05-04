@@ -145,23 +145,23 @@ public class WatchlistService {
             watchlist.setStatus(watching);
         }
         else switch(status){
-            case "COMPLETED":
+            case "Completed":
                 Status completed = statusRepository.findByName(EStatus.COMPLETED)
                         .orElseThrow(() -> new RuntimeException("Error: Status completed not found!"));
                 watchlist.setStatus(completed);
                 watchlist.setProgress(series.getEpisodes());
                 break;
-            case "DROPPED":
+            case "Dropped":
                 Status dropped = statusRepository.findByName(EStatus.DROPPED)
                         .orElseThrow(() -> new RuntimeException("Error: Status dropped not found!"));
                 watchlist.setStatus(dropped);
                 break;
-            case "ON HOLD":
+            case "On hold":
                 Status onhold = statusRepository.findByName(EStatus.ON_HOLD)
                         .orElseThrow(() -> new RuntimeException("Error: Status on hold not found!"));
                 watchlist.setStatus(onhold);
                 break;
-            case "PLAN TO WATCH":
+            case "Plan to watch":
                 Status plantowatch = statusRepository.findByName(EStatus.PLAN_TO_WATCH)
                         .orElseThrow(() -> new RuntimeException("Error: Status plan to watch not found!"));
                 watchlist.setStatus(plantowatch);
@@ -177,16 +177,16 @@ public class WatchlistService {
 
     private Status convertStatus(String status) {
         switch(status){
-            case "completed":
+            case "Completed":
                 return statusRepository.findByName(EStatus.COMPLETED)
                         .orElseThrow(() -> new RuntimeException("Error: Status completed not found!"));
-            case "dropped":
+            case "Dropped":
                 return statusRepository.findByName(EStatus.DROPPED)
                         .orElseThrow(() -> new RuntimeException("Error: Status dropped not found!"));
-            case "onhold":
+            case "On hold":
                 return statusRepository.findByName(EStatus.ON_HOLD)
                         .orElseThrow(() -> new RuntimeException("Error: Status on hold not found!"));
-            case "plantowatch":
+            case "Plan to watch":
                 return statusRepository.findByName(EStatus.PLAN_TO_WATCH)
                         .orElseThrow(() -> new RuntimeException("Error: Status plan to watch not found!"));
             default:

@@ -4,41 +4,50 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".fragment.EditWatchlistFragment">
 
     <TextView
         android:id="@+id/tvTitleE"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="405dp"
+        android:layout_height="48dp"
+        android:background="@color/label"
         android:text="@string/editing_title"
-        android:textSize="24sp"
+        android:textAlignment="center"
+        android:textColor="@color/text"
+        android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.042" />
+        app:layout_constraintVertical_bias="0.002" />
 
     <TextView
         android:id="@+id/tvTitleE2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="130dp"
+        android:layout_height="40dp"
+        android:background="@color/label"
         android:text="@string/progress"
+        android:textAlignment="textEnd"
+        android:textColor="@color/text"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.056"
+        app:layout_constraintHorizontal_bias="0.052"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.158" />
+        app:layout_constraintVertical_bias="0.139" />
 
     <TextView
         android:id="@+id/tvTitleE3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="130dp"
+        android:layout_height="40dp"
+        android:background="@color/label"
         android:text="@string/status"
+        android:textAlignment="textEnd"
+        android:textColor="@color/text"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -50,9 +59,12 @@
 
     <TextView
         android:id="@+id/tvTitleE4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="130dp"
+        android:layout_height="40dp"
+        android:background="@color/label"
         android:text="@string/comment"
+        android:textAlignment="textEnd"
+        android:textColor="@color/text"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -64,75 +76,88 @@
 
     <TextView
         android:id="@+id/tvTitleE5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="130dp"
+        android:layout_height="40dp"
+        android:background="@color/label"
         android:text="@string/score"
+        android:textAlignment="textEnd"
+        android:textColor="@color/text"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.046"
+        app:layout_constraintHorizontal_bias="0.055"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.246" />
+        app:layout_constraintVertical_bias="0.23" />
 
     <EditText
         android:id="@+id/etProgress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:importantForAutofill="no"
         android:inputType="number"
         android:minHeight="48dp"
+        android:textColor="@color/text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.701"
+        app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.141"
-        android:importantForAutofill="no" />
+        app:layout_constraintVertical_bias="0.14"
+        tools:ignore="LabelFor,SpeakableTextPresentCheck" />
 
     <Spinner
         android:id="@+id/spScore"
         android:layout_width="208dp"
         android:layout_height="48dp"
+        android:contentDescription="@string/select_score"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.71"
+        app:layout_constraintHorizontal_bias="0.901"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.236" />
+        app:layout_constraintVertical_bias="0.232" />
 
     <Spinner
         android:id="@+id/spStatus"
         android:layout_width="208dp"
         android:layout_height="48dp"
+        android:contentDescription="@string/select_status"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.709"
+        app:layout_constraintHorizontal_bias="0.901"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.321" />
+        app:layout_constraintVertical_bias="0.333" />
 
     <EditText
         android:id="@+id/etComment"
-        android:layout_width="340dp"
-        android:layout_height="134dp"
+        android:layout_width="372dp"
+        android:layout_height="156dp"
         android:ems="10"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:minHeight="48dp"
+        android:textColor="@color/text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.253"
+        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.584" />
+        app:layout_constraintVertical_bias="0.629"
+        tools:ignore="LabelFor,SpeakableTextPresentCheck" />
 
     <Button
         android:id="@+id/btnSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/save"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

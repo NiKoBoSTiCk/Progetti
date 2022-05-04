@@ -4,140 +4,150 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="5dp"
+    android:background="@color/background"
+    app:barrierMargin="0dp"
     tools:context=".fragment.SeriesFragment">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+    <Button
+        android:id="@+id/btnProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_weight="1"
+        android:elevation="20sp"
+        android:text="@string/profile"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.003"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/tvSeriesTitle"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/recyclerView"
+        android:layout_height="50dp"
+        android:background="@color/label"
+        android:text="@string/series"
+        android:textAlignment="center"
+        android:textColor="@color/text"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="0.0" />
 
-        <Button
-            android:id="@+id/btnProfile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_weight="1"
-            android:text="@string/profile"
-            tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
+    <EditText
+        android:id="@+id/etSearchByTitle"
+        android:layout_width="188dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="@string/search_by_title"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:textColorHint="@color/text_hint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.022"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSeriesTitle"
+        tools:ignore="DuplicateSpeakableTextCheck" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+    <Button
+        android:id="@+id/btnSearchByTitle"
+        android:layout_width="184dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp"
+        android:text="@string/search_by_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.942"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSeriesTitle"
+        tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
 
-            <TextView
-                android:id="@+id/tvSeriesTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/series"
-                android:textAlignment="center"
-                android:textSize="34sp"
-                android:textStyle="bold" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <EditText
-                    android:id="@+id/etSearchByTitle"
-                    android:layout_width="184dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="10dp"
-                    android:ems="10"
-                    android:hint="@string/search_by_title"
-                    android:importantForAutofill="no"
-                    android:inputType="textPersonName"
-                    android:textColorHint="#757575"
-                    tools:ignore="DuplicateSpeakableTextCheck" />
-
-                <Button
-                    android:id="@+id/btnSearchByTitle"
-                    android:layout_width="181dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:text="@string/search_by_title"
-                    tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <Spinner
-                    android:id="@+id/spSearchByGenre"
-                    android:layout_width="184dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="10dp"
-                    tools:ignore="SpeakableTextPresentCheck" />
-
-                <Button
-                    android:id="@+id/btnSearchByGenre"
-                    android:layout_width="184dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:text="@string/search_by_genre" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/btnAll"
-                    style="?android:attr/buttonBarButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:text="@string/all" />
-
-                <Button
-                    android:id="@+id/btnTopViews"
-                    style="?android:attr/buttonBarButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:text="@string/top_views" />
-
-                <Button
-                    android:id="@+id/btnTopRated"
-                    style="?android:attr/buttonBarButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:text="@string/top_rated" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
+    <Spinner
+        android:id="@+id/spSearchByGenre"
+        android:layout_width="188dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:elevation="10dp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.022"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etSearchByTitle"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="397dp"
-        android:layout_height="523dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="1dp"
+        android:layout_width="413dp"
+        android:layout_height="486dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.833"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/btnTopRated" />
+
+    <Button
+        android:id="@+id/btnTopRated"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/label"
+        android:text="@string/top_rated"
+        android:textColor="@color/text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spSearchByGenre" />
+
+    <Button
+        android:id="@+id/btnTopViews"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp"
+        android:backgroundTint="@color/label"
+        android:text="@string/top_views"
+        android:textColor="@color/text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.971"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSearchByGenre" />
+
+    <Button
+        android:id="@+id/btnSearchByGenre"
+        android:layout_width="184dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp"
+        android:text="@string/search_by_genre"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.96"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSearchByTitle" />
+
+    <Button
+        android:id="@+id/btnAll"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/label"
+        android:text="@string/all"
+        android:textColor="@color/text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.027"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spSearchByGenre" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
