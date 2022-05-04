@@ -13,8 +13,10 @@
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_weight="1"
+        android:backgroundTint="@color/label"
         android:elevation="20sp"
         android:text="@string/profile"
+        android:textColor="@color/text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.003"
@@ -63,7 +65,9 @@
         android:layout_height="48dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="5dp"
+        android:backgroundTint="@color/label"
         android:text="@string/search_by_title"
+        android:textColor="@color/text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.942"
         app:layout_constraintStart_toStartOf="parent"
@@ -86,14 +90,16 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="413dp"
-        android:layout_height="486dp"
+        android:layout_width="383dp"
+        android:layout_height="472dp"
         android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnTopRated" />
+        app:layout_constraintTop_toBottomOf="@+id/btnTopRated"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/btnTopRated"
@@ -129,7 +135,9 @@
         android:layout_height="48dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="5dp"
+        android:backgroundTint="@color/label"
         android:text="@string/search_by_genre"
+        android:textColor="@color/text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.96"
         app:layout_constraintStart_toStartOf="parent"

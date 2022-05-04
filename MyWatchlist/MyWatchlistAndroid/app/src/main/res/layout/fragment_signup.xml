@@ -37,6 +37,7 @@
         android:backgroundTint="@color/label"
         android:elevation="10sp"
         android:text="@string/signup"
+        android:textColor="@color/text"
         android:textSize="18sp"
         android:textStyle="bold"
         app:cornerRadius="20dp"
