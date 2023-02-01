@@ -1,32 +1,3 @@
-; ---------------------------------------------------------
-; Regressione con istruzioni SSE a 32 bit
-; ---------------------------------------------------------
-; F. Angiulli
-; 23/11/2017
-;
-
-;
-; Software necessario per l'esecuzione:
-;
-;     NASM (www.nasm.us)
-;     GCC (gcc.gnu.org)
-;
-; entrambi sono disponibili come pacchetti software 
-; installabili mediante il packaging tool del sistema 
-; operativo; per esempio, su Ubuntu, mediante i comandi:
-;
-;     sudo apt-get install nasm
-;     sudo apt-get install gcc
-;
-; potrebbe essere necessario installare le seguenti librerie:
-;
-;     sudo apt-get install lib32gcc-4.8-dev (o altra versione)
-;     sudo apt-get install libc6-dev-i386
-;
-; Per generare file oggetto:
-;
-;     nasm -f elf32 fss32.nasm 
-;
 %include "sseutils32.nasm"
 
 section .data			; Sezione contenente dati inizializzati
@@ -163,15 +134,15 @@ set_matrix_ott:
     pop	edi		    ; ripristina i registri da preservare
     pop	esi
     pop	ebx
-    mov	esp, ebp	; ripristina lo Stack Pointer
+    mov	esp, ebp	    ; ripristina lo Stack Pointer
     pop	ebp		    ; ripristina il Base Pointer
     ret			    ; torna alla funzione C chiamante
 
 global divisione_tensore_ott
 divisione_tensore_ott:
-    push		ebp		    ; salva il Base Pointer
+    push		ebp	; salva il Base Pointer
     mov		    ebp, esp	; il Base Pointer punta al Record di Attivazione corrente
-    push		ebx		    ; salva i registri da preservare
+    push		ebx	; salva i registri da preservare
     push		esi
     push		edi
 
@@ -207,14 +178,14 @@ divisione_tensore_ott:
     pop	edi		    ; ripristina i registri da preservare
     pop	esi
     pop	ebx
-    mov	esp, ebp	; ripristina lo Stack Pointer
+    mov	esp, ebp	    ; ripristina lo Stack Pointer
     pop	ebp		    ; ripristina il Base Pointer
     ret			    ; torna alla funzione C chiamante
 
 global f_ott
 f_ott:
     push		ebp		; salva il Base Pointer
-    mov		ebp, esp	; il Base Pointer punta al Record di Attivazione corrente
+    mov		        ebp, esp        ; il Base Pointer punta al Record di Attivazione corrente
     push		ebx		; salva i registri da preservare
     push		esi
     push		edi
@@ -293,7 +264,7 @@ f_ott:
     pop	edi		    ; ripristina i registri da preservare
     pop	esi
     pop	ebx
-    mov	esp, ebp	; ripristina lo Stack Pointer
+    mov	esp, ebp	    ; ripristina lo Stack Pointer
     pop	ebp		    ; ripristina il Base Pointer
     ret			    ; torna alla funzione C chiamante
 
@@ -301,7 +272,7 @@ f_ott:
 global prodotto_matrici_ott
 prodotto_matrici_ott:
     push		ebp		    ; salva il Base Pointer
-    mov		    ebp, esp	; il Base Pointer punta al Record di Attivazione corrente
+    mov		    ebp, esp	            ; il Base Pointer punta al Record di Attivazione corrente
     push		ebx		    ; salva i registri da preservare
     push		esi
     push		edi
@@ -376,6 +347,6 @@ prodotto_matrici_ott:
     pop	edi		    ; ripristina i registri da preservare
     pop	esi
     pop	ebx
-    mov	esp, ebp	; ripristina lo Stack Pointer
+    mov	esp, ebp	    ; ripristina lo Stack Pointer
     pop	ebp		    ; ripristina il Base Pointer
     ret			    ; torna alla funzione C chiamante
