@@ -1,44 +1,3 @@
-/**************************************************************************************
-* 
-* CdL Magistrale in Ingegneria Informatica
-* Corso di Architetture e Programmazione dei Sistemi di Elaborazione - a.a. 2020/21
-* 
-* Progetto dell'algoritmo Attention Mechanism 221 231 a
-* in linguaggio assembly x86-64 + SSE
-* 
-* Fabrizio Angiulli, aprile 2019
-* 
-**************************************************************************************/
-
-/*
-* 
-* Software necessario per l'esecuzione:
-* 
-*    NASM (www.nasm.us)
-*    GCC (gcc.gnu.org)
-* 
-* entrambi sono disponibili come pacchetti software 
-* installabili mediante il packaging tool del sistema 
-* operativo; per esempio, su Ubuntu, mediante i comandi:
-* 
-*    sudo apt-get install nasm
-*    sudo apt-get install gcc
-* 
-* potrebbe essere necessario installare le seguenti librerie:
-* 
-*    sudo apt-get install lib64gcc-4.8-dev (o altra versione)
-*    sudo apt-get install libc6-dev-i386
-* 
-* Per generare il file eseguibile:
-* 
-* nasm -f elf64 fss64.nasm && gcc -m64 -msse -O0 -no-pie sseutils64.o fss64.o fss64c.c -o fss64c -lm && ./fss64c $pars
-* 
-* oppure
-* 
-* ./runfss64
-* 
-*/
-
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
@@ -71,17 +30,10 @@ typedef struct {
 } params;
 
 /*
-* 
 *	Le funzioni sono state scritte assumento che le matrici siano memorizzate 
 * 	mediante un array (float*), in modo da occupare un unico blocco
-* 	di memoria, ma a scelta del candidato possono essere 
-* 	memorizzate mediante array di array (float**).
-* 
-* 	In entrambi i casi il candidato dovr� inoltre scegliere se memorizzare le
-* 	matrici per righe (row-major order) o per colonne (column major-order).
-*
-* 	L'assunzione corrente � che le matrici siano in row-major order.
-* 
+* 	di memoria.
+* 	L'assunzione corrente è che le matrici siano in row-major order.
 */
 
 void* get_block(int size, int elements) { 
