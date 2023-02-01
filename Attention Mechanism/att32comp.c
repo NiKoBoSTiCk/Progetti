@@ -30,6 +30,13 @@ typedef struct {
     int silent;
 } params;
 
+/*
+*	Le funzioni sono state scritte assumento che le matrici siano memorizzate
+* 	mediante un array (float*), in modo da occupare un unico blocco
+* 	di memoria.
+* 	L'assunzione corrente è che le matrici siano in row-major order.
+*/
+
 void* get_block(int size, int elements) {
     return _mm_malloc(elements*size,16);
 }
